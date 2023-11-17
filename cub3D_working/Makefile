@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/17 23:00:31 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/18 00:21:56 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,18 @@ OBJ_FOLDER		=	objs/
 CFLAGS			=	-Wall -Wextra -Werror -g
 
 # Link to libft, mlx, and math libraries
-LINKS			=	-Llibft -lft -Lminilibx -lmlx -lXext -lX11 -lm
+LINKS			=	-Llibft -lft -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
 LIBS			=	libft/libft.a \
-					minilibx/libmlx_Linux.a \
+					minilibx-linux/libmlx_Linux.a \
 
-SUBMODULES		=	minilibx/.git \
+SUBMODULES		=	minilibx-linux/.git \
 
 SRC_FOLDER		=	srcs/
 
 HEADERS_FOLDER	=	includes/ \
 					libft/includes \
-					minilibx \
+					minilibx-linux \
 
 DEPENDS		:=	$(patsubst %.c,$(OBJ_FOLDER)%.d,$(SRC))
 OBJS		:=	$(patsubst %.c,$(OBJ_FOLDER)%.o,$(SRC))
@@ -45,13 +45,13 @@ all: $(NAME) compile_commands.json
 -include $(DEPENDS)
 
 $(SUBMODULES) :
-	git submodule update --init --recursive minilibx
+	git submodule update --init --recursive minilibx-linux
+	git submodule update --init --recursive libft
 
 %.a: $(SUBMODULES)
 	make -C $(@D)
 
 $(NAME): $(LIBS) $(OBJS) $(SUBMODULES)
-	make -C libft
 	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $@
 
 COMP_COMMAND = $(CC) -c $(CFLAGS) $(addprefix -I,$(HEADERS_FOLDER)) $(LINKS) -MMD -MP $< -o $@
@@ -72,12 +72,13 @@ norm:
 	find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} +
 
 clean: $(SUBMODULES)
+	@rm -rf $(OBJ_FOLDER)
 	make -C libft clean
-	rm -rf $(OBJ_FOLDER)
+	make -C minilibx-linux clean
 
 fclean: clean $(SUBMODULES)
-	make -C libft fclean
 	rm -f $(NAME) compile_commands.json
+	make -C libft fclean
 
 re: fclean all
 
