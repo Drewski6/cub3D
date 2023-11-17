@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/17 18:38:41 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/17 23:00:31 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ COMP_COMMAND = $(CC) -c $(CFLAGS) $(addprefix -I,$(HEADERS_FOLDER)) $(LINKS) -MM
 CONCAT = awk 'FNR==1 && NR!=1 {print ","}{print}'
 
 $(OBJ_FOLDER)%.o $(OBJ_FOLDER)%.cc: $(SRC_FOLDER)%.c
+	@mkdir -p $(dir $@)
 	$(COMP_COMMAND)
 	@printf '{\n\t"directory" : "$(shell pwd)",\n\t"command" : "$(COMP_COMMAND)",\n\t"file" : "$<"\n}' > $(OBJ_FOLDER)$*.cc
 
@@ -72,7 +73,7 @@ norm:
 
 clean: $(SUBMODULES)
 	make -C libft clean
-	rm -f $(OBJS) $(DEPENDS) $(COMMANDS)
+	rm -rf $(OBJ_FOLDER)
 
 fclean: clean $(SUBMODULES)
 	make -C libft fclean
