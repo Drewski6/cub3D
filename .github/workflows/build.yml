@@ -5,13 +5,9 @@ on: [pull_request]
 jobs:
   build:
 
-    runs-on: freebsd-latest
-
-    - name: Install BSD Libs
-      run: sudo pkg install -y libbsd
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
     - name: Make cub3D
       run: make -C cub3D_working
-
