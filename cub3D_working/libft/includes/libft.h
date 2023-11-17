@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:31:39 by dpentlan          #+#    #+#             */
-/*   Updated: 2022/11/30 07:25:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:05:18 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <string.h>
-# include <bsd/string.h>
 # include <stdbool.h>
 # include <assert.h>
 # include <unistd.h>
