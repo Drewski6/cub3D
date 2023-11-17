@@ -1,8 +1,21 @@
+# binaries
 cub3D
+libft/libft.a
+# objects
 objs/*/*.o
 objs/*/*.d
 objs/*/*.cc
+libft/objs/*.o
+# cache
 .cache/
 .cache/*
+# debug files
 gdb.txt
+# compile_commands
 compile_commands.json
+# minilibx-linux
+minilibx-linux/*.a
+minilibx-linux/man/*
+minilibx-linux/obj/*
+minilibx-linux/test/*.o
+minilibx-linux/LICENSE

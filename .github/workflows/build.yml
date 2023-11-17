@@ -8,6 +8,13 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Make cub3D
-      run: make -C cub3D_working
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install libbsd-dev
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libbsd-dev
+
+      - name: Make cub3D
+        run: make -C cub3D_working
