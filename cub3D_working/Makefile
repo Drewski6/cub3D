@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/17 13:53:23 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/17 15:08:08 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,15 @@ CFLAGS			=	-Wall -Wextra -Werror -g
 LINKS			=	-Llibft -lft -Lmlx -lmlx -lXext -lX11 -lm
 
 LIBS			=	libft/libft.a \
-					minilibx-linux/libmlx_Linux.a \
+					minilibx/libmlx_Linux.a \
+
+SUBMODULES		=	minilibx/.git \
 
 SRC_FOLDER		=	srcs/
 
 HEADERS_FOLDER	=	includes/ \
 					libft/includes \
-					minilibx-linux \
+					minilibx \
 
 DEPENDS		:=	$(patsubst %.c,$(OBJ_FOLDER)%.d,$(SRC))
 OBJS		:=	$(patsubst %.c,$(OBJ_FOLDER)%.o,$(SRC))
@@ -40,12 +42,15 @@ all: $(NAME) compile_commands.json
 
 -include $(DEPENDS)
 
-%.a:
+$(SUBMODULES) :
+	git submodule update --init --recursive minilibx-linux
+
+%.a: $(SUBMODULES)
 	make -C $(@D)
 
-$(NAME): $(LIBS) $(OBJS)
+$(NAME): $(LIBS) $(OBJS) $(SUBMODULES)
 	make -C libft
-	make -C minilibx-linux
+#	make -C minilibx-linux
 	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $@
 
 COMP_COMMAND = $(CC) -c $(CFLAGS) $(addprefix -I,$(HEADERS_FOLDER)) $(LINKS) -MMD -MP $< -o $@
@@ -55,7 +60,7 @@ $(OBJ_FOLDER)%.o $(OBJ_FOLDER)%.cc: $(SRC_FOLDER)%.c
 	$(COMP_COMMAND)
 	@printf '{\n\t"directory" : "$(shell pwd)",\n\t"command" : "$(COMP_COMMAND)",\n\t"file" : "$<"\n}' > $(OBJ_FOLDER)$*.cc
 
-compile_commands.json : $(COMMANDS) Makefile
+compile_commands.json : $(COMMANDS) Makefile $(SUBMODULES)
 	@echo "Making compile_commands.json"
 	@echo "[" > compile_commands.json
 	$(CONCAT) $(COMMANDS) >> compile_commands.json
@@ -64,12 +69,12 @@ compile_commands.json : $(COMMANDS) Makefile
 norm:
 	find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} +
 
-clean:
+clean: $(SUBMODULES)
 	make -C libft clean
 	make -C minilibx-linux clean
 	rm -f $(OBJS) $(DEPENDS) $(COMMANDS)
 
-fclean: clean
+fclean: clean $(SUBMODULES)
 	make -C libft fclean
 	rm -f $(NAME) compile_commands.json
 
