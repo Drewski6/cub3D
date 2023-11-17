@@ -1,0 +1,8 @@
+cub3D
+objs/*/*.o
+objs/*/*.d
+objs/*/*.cc
+.cache/
+.cache/*
+gdb.txt
+compile_commands.json
