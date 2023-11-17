@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/17 13:33:09 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/17 13:53:23 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,9 @@ compile_commands.json : $(COMMANDS) Makefile
 	$(CONCAT) $(COMMANDS) >> compile_commands.json
 	@echo "]" >> compile_commands.json
 
+norm:
+	find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} +
+
 clean:
 	make -C libft clean
 	make -C minilibx-linux clean
@@ -72,7 +75,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus norm
 .SUFFIXES:
 # MAKEFLAGS += --warn-undefined-variables
 # MAKEFLAGS += --no-builtin-rules
