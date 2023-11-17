@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/17 15:20:11 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/17 15:26:44 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJ_FOLDER		=	objs/
 CFLAGS			=	-Wall -Wextra -Werror -g
 
 # Link to libft, mlx, and math libraries
-LINKS			=	-Llibft -lft -Lmlx -lmlx -lXext -lX11 -lm
+LINKS			=	-Llibft -lft -Lminilibx -lmlx -lXext -lX11 -lm
 
 LIBS			=	libft/libft.a \
 					minilibx/libmlx_Linux.a \
