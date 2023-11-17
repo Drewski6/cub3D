@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:36:56 by dpentlan          #+#    #+#              #
-#    Updated: 2023/05/29 15:34:45 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/17 23:56:35 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,131 +16,105 @@ NAME = libft.a
 
 # ***** Sources *****
 
-SRCS =	ft_isalpha.c \
-	ft_isdigit.c \
-	ft_isalnum.c \
-	ft_isascii.c \
-	ft_isprint.c \
-	ft_strlen.c \
-	ft_memset.c \
-	ft_bzero.c \
-	ft_memcpy.c \
-	ft_memmove.c \
-	ft_strlcpy.c \
-	ft_strlcat.c \
-	ft_toupper.c \
-	ft_tolower.c \
-	ft_strchr.c \
-	ft_strrchr.c \
-	ft_strncmp.c \
-	ft_memchr.c \
-	ft_memcmp.c \
-	ft_strnstr.c \
-	ft_atoi.c \
-	ft_calloc.c \
-	ft_strdup.c \
-	ft_substr.c \
-	ft_strjoin.c \
-	ft_strtrim.c \
-	ft_split.c \
-	ft_itoa.c \
-	ft_strmapi.c \
-	ft_striteri.c \
-	ft_putchar_fd.c \
-	ft_putstr_fd.c \
-	ft_putendl_fd.c \
-	ft_putnbr_fd.c \
-	
-BONUS_SRCS =	ft_lstnew.c \
-	ft_lstadd_front.c \
-	ft_lstsize.c \
-	ft_lstlast.c \
-	ft_lstadd_back.c \
-	ft_lstdelone.c \
-	ft_lstclear.c \
-	ft_lstiter.c \
-	ft_lstmap.c \
-
-GNL_SRCS = get_next_line_bonus.c \
-	ft_strjoin_gnl.c \
-
-FT_PRINTF_SRCS = ft_printf_bonus.c \
-	ft_printf_utils_1_bonus.c \
-	ft_printf_utils_2_bonus.c \
-	ft_printf_utils_3_bonus.c \
-	ft_printf_utils_format_switch_bonus.c \
-	ft_printf_utils_subseq_helpers_bonus.c \
-	ft_printf_utils_t_flags_bonus.c \
-	ft_printf_utils_use_flags_bonus.c
+SRCS =				mandatory/ft_isalpha.c \
+					mandatory/ft_isdigit.c \
+					mandatory/ft_isalnum.c \
+					mandatory/ft_isascii.c \
+					mandatory/ft_isprint.c \
+					mandatory/ft_strlen.c \
+					mandatory/ft_memset.c \
+					mandatory/ft_bzero.c \
+					mandatory/ft_memcpy.c \
+					mandatory/ft_memmove.c \
+					mandatory/ft_strlcpy.c \
+					mandatory/ft_strlcat.c \
+					mandatory/ft_toupper.c \
+					mandatory/ft_tolower.c \
+					mandatory/ft_strchr.c \
+					mandatory/ft_strrchr.c \
+					mandatory/ft_strncmp.c \
+					mandatory/ft_memchr.c \
+					mandatory/ft_memcmp.c \
+					mandatory/ft_strnstr.c \
+					mandatory/ft_atoi.c \
+					mandatory/ft_calloc.c \
+					mandatory/ft_strdup.c \
+					mandatory/ft_substr.c \
+					mandatory/ft_strjoin.c \
+					mandatory/ft_strtrim.c \
+					mandatory/ft_split.c \
+					mandatory/ft_itoa.c \
+					mandatory/ft_strmapi.c \
+					mandatory/ft_striteri.c \
+					mandatory/ft_putchar_fd.c \
+					mandatory/ft_putstr_fd.c \
+					mandatory/ft_putendl_fd.c \
+					mandatory/ft_putnbr_fd.c \
+					bonus/ft_lstnew.c \
+					bonus/ft_lstadd_front.c \
+					bonus/ft_lstsize.c \
+					bonus/ft_lstlast.c \
+					bonus/ft_lstadd_back.c \
+					bonus/ft_lstdelone.c \
+					bonus/ft_lstclear.c \
+					bonus/ft_lstiter.c \
+					bonus/ft_lstmap.c \
+					gnl/get_next_line.c \
+					ft_printf/ft_printf_bonus.c \
+					ft_printf/ft_printf_utils_1_bonus.c \
+					ft_printf/ft_printf_utils_2_bonus.c \
+					ft_printf/ft_printf_utils_3_bonus.c \
+					ft_printf/ft_printf_utils_format_switch_bonus.c \
+					ft_printf/ft_printf_utils_subseq_helpers_bonus.c \
+					ft_printf/ft_printf_utils_t_flags_bonus.c \
+					ft_printf/ft_printf_utils_use_flags_bonus.c \
 
 SRCS_DIR = srcs/
-BONUS_SRCS_DIR = srcs/
-GNL_SRCS_DIR = srcs/
-FT_PRINTF_SRCS_DIR = srcs/
 
 # ***** Includes *****
-
-INCS = libft.h
 
 INCS_DIR = includes/
 
 # ***** Objects *****
 
-ALL_OBJS = $(OBJS) $(BONUS_OBJS) $(GNL_OBJS) $(FT_PRINTF_OBJS)
-
-OBJS = $(patsubst %.c,$(OBJS_DIR)%.o,$(SRCS))
-BONUS_OBJS = $(patsubst %.c,$(BONUS_OBJS_DIR)%.o,$(BONUS_SRCS))
-GNL_OBJS = $(patsubst %.c,$(GNL_OBJS_DIR)%.o,$(GNL_SRCS))
-FT_PRINTF_OBJS = $(patsubst %.c,$(FT_PRINTF_OBJS_DIR)%.o,$(FT_PRINTF_SRCS))
-
 OBJS_DIR = objs/
-BONUS_OBJS_DIR = objs/
-GNL_OBJS_DIR = objs/
-FT_PRINTF_OBJS_DIR = objs/
+
+DEPENDS			:= $(patsubst %.c,$(OBJS_DIR)%.d,$(SRCS))
+OBJS			:= $(patsubst %.c,$(OBJS_DIR)%.o,$(SRCS))
+COMMANDS		:= $(patsubst %.c,$(OBJS_DIR)%.cc,$(SRCS))
 
 # ***** Compiler and Archiver *****
 
 CFLAGS = -Wall -Wextra -Werror -g
 CC = cc
-SLIB = ar rcs
+ARC = ar rcs
+COMP_COMMAND = $(CC) -c $(CFLAGS) $(addprefix -I,$(INCS_DIR)) -MMD -MP $< -o $@
+CONCAT = awk 'FNR==1 && NR!=1 {print ","}{print}'
 
 # ***** Build *****
 
-all: $(NAME)
+all: $(NAME) compile_commands.json
 
-$(NAME): $(ALL_OBJS)
-	@printf "===== MAKING LIBFT =====\n"
-	@$(SLIB) $(NAME) -o $(ALL_OBJS)
+$(NAME): $(OBJS)
+	$(ARC) $(NAME) -o $(OBJS)
 
-m: $(OBJS)
-	@printf "===== MAKING LIBFT MANDATORY ONLY =====\n"
-	@$(SLIB) $(NAME) -o $(OBJS)
-
-bonus: $(OBJS) $(BONUS_OBJS)
-	@printf "===== MAKING LIBFT BONUS ONLY =====\n"
-	@$(SLIB) $(NAME) -o $(OBJS) $(BONUS_OBJS)
-
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-	@mkdir -p $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -c -I$(INCS_DIR) $< -o $@
-
-$(BONUS_OBJS_DIR)%.o: $(BONUS_SRCS_DIR)%.c
-	@mkdir -p $(BONUS_OBJS_DIR)
-	@$(CC) $(CFLAGS) -c -I$(INCS_DIR) $< -o $@
-
-$(GNL_OBJS_DIR)%.o: $(GNL_SRCS_DIR)%.c
-	@mkdir -p $(GNL_OBJS_DIR)
-	@$(CC) $(CFLAGS) -c -I$(INCS_DIR) $< -o $@
-
-$(FT_PRINTF_OBJS_DIR)%.o: $(FT_PRINTF_SRCS_DIR)%.c
-	@mkdir -p $(FT_PRINTF_OBJS_DIR)
-	@$(CC) $(CFLAGS) -c -I$(INCS_DIR) $< -o $@
+$(OBJS_DIR)%.o $(OBJS_DIR)%.cc: $(SRCS_DIR)%.c
+	@mkdir -p $(dir $@)
+	$(COMP_COMMAND)
+	@printf '\t{\n\t\t"directory" : "$(shell pwd)",\n\t\t"command" : "$(COMP_COMMAND)",\n\t\t"file" : "$<"\n\t}' > $(OBJS_DIR)$*.cc
 
 clean:
-	@rm -f $(OBJS) $(BONUS_OBJS) $(GNL_OBJS) $(FT_PRINTF_OBJS)
 	@rm -rf $(OBJS_DIR)
 
 fclean:	clean
-	@rm -f $(NAME)
+	@rm -f $(NAME) compile_commands.json
 
 re:	fclean all
+
+compile_commands.json: $(COMMANDS) Makefile
+	@echo "[" > compile_commands.json
+	@$(CONCAT) $(COMMANDS) >> compile_commands.json
+	@echo "]" >> compile_commands.json
+
+.PHONY:		all clean fclean re bonus norm
+.SUFFIXES:

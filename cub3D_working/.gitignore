@@ -13,9 +13,6 @@ libft/objs/*.o
 gdb.txt
 # compile_commands
 compile_commands.json
-# minilibx-linux
-minilibx-linux/*.a
-minilibx-linux/man/*
-minilibx-linux/obj/*
-minilibx-linux/test/*.o
-minilibx-linux/LICENSE
+# submodules
+minilibx-linux/
+libft/
