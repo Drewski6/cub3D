@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/17 15:08:08 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/17 15:11:21 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,6 @@ norm:
 
 clean: $(SUBMODULES)
 	make -C libft clean
-	make -C minilibx-linux clean
 	rm -f $(OBJS) $(DEPENDS) $(COMMANDS)
 
 fclean: clean $(SUBMODULES)

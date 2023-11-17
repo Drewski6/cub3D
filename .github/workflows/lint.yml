@@ -12,4 +12,3 @@ jobs:
     - uses: alexandregv/norminette-action@v3
       with:
         flags: '.'
-      run: find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} +
