@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/17 15:15:12 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/17 15:20:11 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,6 @@ $(SUBMODULES) :
 
 $(NAME): $(LIBS) $(OBJS) $(SUBMODULES)
 	make -C libft
-#	make -C minilibx-linux
 	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $@
 
 COMP_COMMAND = $(CC) -c $(CFLAGS) $(addprefix -I,$(HEADERS_FOLDER)) $(LINKS) -MMD -MP $< -o $@
