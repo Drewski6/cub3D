@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 18:26:37 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 18:36:47 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 	(void) map_data;
 	(void) fd;
 	(void) line;
+	ft_printf("map line: %s\n", *line);
 	return (0);
 }
