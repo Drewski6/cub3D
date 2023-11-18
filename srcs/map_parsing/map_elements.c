@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 19:44:23 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:02:46 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,24 @@ bool	ft_save_rgb_settings(t_rgb *rgb, char *src)
 
 bool	ft_select_element(t_map_data *map_data, char **tab)
 {
+	int	ret;
+
+	ret = 0;
 	if (!ft_strncmp(tab[0], "NO", 3))
-		if (ft_save_texture_path(&map_data->no, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "SO", 3))
-		if (ft_save_texture_path(&map_data->so, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "EA", 3))
-		if (ft_save_texture_path(&map_data->ea, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "WE", 3))
-		if (ft_save_texture_path(&map_data->we, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "F", 2))
-		if (ft_save_rgb_settings(&map_data->f, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "C", 2))
-		if (ft_save_rgb_settings(&map_data->c, tab[1]))
-			return (1);
-	return (0);
+		ret = ft_save_texture_path(&map_data->no, tab[1]);
+	else if (!ft_strncmp(tab[0], "SO", 3))
+		ret = ft_save_texture_path(&map_data->so, tab[1]);
+	else if (!ft_strncmp(tab[0], "EA", 3))
+		ret = ft_save_texture_path(&map_data->ea, tab[1]);
+	else if (!ft_strncmp(tab[0], "WE", 3))
+		ret = ft_save_texture_path(&map_data->we, tab[1]);
+	else if (!ft_strncmp(tab[0], "F", 2))
+		ret = ft_save_rgb_settings(&map_data->f, tab[1]);
+	else if (!ft_strncmp(tab[0], "C", 2))
+		ret = ft_save_rgb_settings(&map_data->c, tab[1]);
+	else
+		return (ft_putstr_fd("Error: Invalid line in map file\n", 2), 1);
+	return (ret);
 }
 
 bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)
