@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 13:08:34 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/18 12:51:26 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/18 13:14:28 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include <stdbool.h>
-#include "debug.h"
+#ifndef DEBUG_H
+# define DEBUG_H
 
-/*
-**	NAME
-		ft_init_map
-**	DESCRIPTION
-		1. test and try to open the file from argv[1]
-		2. 
-**	RETURN
-		Bool returns 0 for successful map load or 1 for error.
-*/
+//***** typedefs *****//
 
-bool	ft_init_map(t_map_data *map_data, char *file_name)
-{
-	debug_print_map_data(map_data);
-	(void) file_name;
-	return (0);
-}
+typedef struct s_map_data t_map_data;
+
+//***** function prototypes *****//
+
+void	debug_print_table(char **table);
+void	debug_print_map_data(t_map_data *map_data);
+
+#endif
