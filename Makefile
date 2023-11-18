@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/18 11:18:32 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/18 18:25:36 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,11 @@ CC				=	cc
 
 SRC 			=	main/main.c \
 					args/arg_parsing.c \
-					map_parsing/map_parsing.c \
+					map_parsing/map_data_load.c \
+					map_parsing/map_elements.c \
+					map_parsing/map_readin.c \
+					map_parsing/map_validation.c \
+					debug/map_debug.c \
 
 NAME			=	cub3D
 
@@ -46,8 +50,8 @@ all: $(NAME) compile_commands.json
 -include $(DEPENDS)
 
 $(SUBMODULES) :
-	git submodule update --init --recursive libft
 	git submodule update --init --recursive minilibx-linux
+	git submodule update --init --recursive libft
 
 %.a: $(SUBMODULES)
 	make -C $(@D)
@@ -70,7 +74,7 @@ compile_commands.json : $(COMMANDS) Makefile $(SUBMODULES)
 	@echo "]" >> compile_commands.json
 
 norm:
-	find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} +
+	@watch 'find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} + | grep -v "OK!"'
 
 clean: $(SUBMODULES)
 	@rm -rf $(OBJ_FOLDER)

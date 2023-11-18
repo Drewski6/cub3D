@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.h                                             :+:      :+:    :+:   */
+/*   map_readin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:41:01 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 12:06:06 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/18 18:36:47 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_H
-# define ARGS_H
+#include "cub3D.h"
+#include <stdbool.h>
+#include "ft_printf.h"
 
-# include <stdbool.h>
-
-bool	ft_arg_parse(int argc, char **argv);
-
-#endif
+bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
+{
+	(void) map_data;
+	(void) fd;
+	(void) line;
+	ft_printf("map line: %s\n", *line);
+	return (0);
+}

@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.h                                             :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:41:01 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 12:06:06 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/18 18:38:12 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_H
-# define ARGS_H
+#include "cub3D.h"
+#include <stdbool.h>
 
-# include <stdbool.h>
+/*
+*	if any element of map_data is left null, reason to fail.
+*	
+*
+*/
 
-bool	ft_arg_parse(int argc, char **argv);
-
-#endif
+bool	ft_map_validation(t_map_data *map_data)
+{
+	(void) map_data;
+	return (0);
+}
