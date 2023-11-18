@@ -7,11 +7,10 @@ objs/
 .cache/
 # debug files
 gdb.txt
+# temp folder for misc local files
 tmp/
 # compile_commands
 compile_commands.json
-# subject
-en.subject.pdf
 # submodules
 minilibx-linux/
 !minilibx-linux/.git
