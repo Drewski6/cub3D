@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/18 10:52:00 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/18 11:18:32 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ all: $(NAME) compile_commands.json
 -include $(DEPENDS)
 
 $(SUBMODULES) :
-	git submodule update --init --recursive minilibx-linux
 	git submodule update --init --recursive libft
+	git submodule update --init --recursive minilibx-linux
 
 %.a: $(SUBMODULES)
 	make -C $(@D)
