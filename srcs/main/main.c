@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 16:46:08 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 18:24:17 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 	ft_bzero((void *)&map_data, sizeof(map_data));
 	if (0
 		|| ft_arg_parse(argc, argv)
-		|| ft_init_map(&map_data, argv[1])
+		|| ft_map_data(&map_data, argv[1])
 	)
 		return (ft_free_map_data(&map_data), 1);
 	return (ft_free_map_data(&map_data), 0);
