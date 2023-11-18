@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 11:50:13 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/18 12:51:26 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/18 13:26:12 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include <stdbool.h>
+#ifndef DEBUG_H
+# define DEBUG_H
 
-bool	ft_init_map(void)
-{
-	return (0);
-}
+//***** typedefs *****//
+
+typedef struct s_map_data	t_map_data;
+
+//***** function prototypes *****//
+
+void	debug_print_table(char **table);
+void	debug_print_map_data(t_map_data *map_data);
+
+#endif
