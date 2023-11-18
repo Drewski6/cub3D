@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:37:54 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 12:06:41 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:37:05 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include "libft.h"
 
 /*
-**	NAME
-		ft_arg_parse
-**	DESCRIPTION
-		Performs checks on the input argument.
-
-		First number of arguments must be 2 ["./cub3D", "filename.cub"]
-		Second filename must be 5 or greater (smallest is a.cub, b.cub, etc)
-		Third check for ".cub" and make sure it's at the end of the string.
-**	RETURN
-		Bool returns 0 on success and 1 on error.
-*/
+ *	***** ft_arg_parse *****
+ *
+ *	DESCRIPTION:
+ *		Performs checks on the input argument.
+ *
+ *		First number of arguments must be 2 ["./cub3D", "filename.cub"]
+ *		Second filename must be 5 or greater (smallest is a.cub, b.cub, etc)
+ *		Third check for ".cub" and make sure it's at the end of the string.
+ *	RETURN:
+ *		Bool returns 0 on success and 1 on error.
+ */
 
 bool	ft_arg_parse(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:21:02 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 19:27:38 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:39:43 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 #include "debug.h"
 
 /*
-**	NAME
-		ft_read_in_map_data
-**	DESCRIPTION
-		desc
-**	RETURN
-		Bool function returns 0 on success or 1 on error;
-*/
+ *	***** ft_read_in_map_data *****
+ *
+ *	DESCRIPTION:
+ *		Separates the element parsing and the map parsing into 2 sections.
+ *		Shares a pointer to line between the two so that when element parsing
+ *		is finished, the most recently read line can be passed to the map parsing.
+ *	RETURN:
+ *		Bool function returns 0 on success and 1 on error.
+ */
 
 bool	ft_read_in_map_data(t_map_data *map_data, int fd)
 {
@@ -39,15 +41,15 @@ bool	ft_read_in_map_data(t_map_data *map_data, int fd)
 }
 
 /*
-**	NAME
-		ft_map_data
-**	DESCRIPTION
-		First opens the file indicated with filename and checks return.
-		Second calls ft_read_in_map_data to read the file into the struct.
-		Third validates map via ft_map_validation.
-**	RETURN
-		Bool function returns 0 on success and 1 on error.
-*/
+ *	***** ft_map_data *****
+ *
+ *	DESCRIPTION:
+ *		First opens the file indicated with filename and checks return.
+ *		Second calls ft_read_in_map_data to read the file into the struct.
+ *		Third validates map via ft_map_validation.
+ *	RETURN:
+ *		Bool function returns 0 on success and 1 on error.
+ */
 
 bool	ft_map_data(t_map_data *map_data, char *filename)
 {
