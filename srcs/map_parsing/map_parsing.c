@@ -6,13 +6,14 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/17 18:37:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 11:50:13 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include <stdbool.h>
 
-void	ft_init_map(void)
+bool	ft_init_map(void)
 {
-	return ;
+	return (0);
 }
