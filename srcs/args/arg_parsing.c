@@ -6,12 +6,11 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:37:54 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 12:00:29 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:06:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include <stdbool.h>
+#include "args.h"
 #include "libft.h"
 
 /*
