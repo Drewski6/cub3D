@@ -6,13 +6,17 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 13:25:21 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 14:08:14 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include <stdbool.h>
 #include "debug.h"
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
 
 /*
 **	NAME
@@ -24,9 +28,17 @@
 		Bool returns 0 for successful map load or 1 for error.
 */
 
-bool	ft_init_map(t_map_data *map_data, char *file_name)
+bool	ft_init_map(t_map_data *map_data, char *filename)
 {
+	int	fd;
+
 	debug_print_map_data(map_data);
-	(void) file_name;
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error: open");
+		return (1);
+	}
+	close(fd);
 	return (0);
 }
