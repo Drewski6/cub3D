@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 13:41:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 15:30:44 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:34:16 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "debug.h"
 #include "ft_printf.h"
 #include "libft.h"
+
+/*
+ *	***** debug_print_map_data *****
+ *
+ *	DESCRIPTION:
+ *		Used to print the contents and current values of the map_data struct.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
 
 void	debug_print_map_data(t_map_data *map_data)
 {
