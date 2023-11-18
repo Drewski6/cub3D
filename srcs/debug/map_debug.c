@@ -5,31 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2023/11/18 12:51:14 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 13:29:33 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/18 13:41:57 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/18 13:54:08 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "debug.h"
 #include "ft_printf.h"
-
-void	debug_print_table(char **table)
-{
-	int	i;
-
-	i = 0;
-	if (table)
-	{
-		ft_printf("\n");
-		while (table[i])
-			ft_printf("%s\n", table[i++]);
-	}
-	else
-	{
-		ft_printf("(NULL)\n");
-	}
-}
+#include "libft.h"
 
 void	debug_print_map_data(t_map_data *map_data)
 {
@@ -55,7 +39,7 @@ void	debug_print_map_data(t_map_data *map_data)
 		map_data->c.red, map_data->c.green, map_data->c.blue);
 	ft_printf("map: ");
 	if (map_data->map)
-		debug_print_table(map_data->map);
+		ft_print_table(map_data->map);
 	else
 		ft_printf("(NULL)\n");
 }
