@@ -1,6 +1,6 @@
-[submodule "cub3D_working/libft"]
-	path = cub3D_working/libft
+[submodule "libft"]
+	path = libft
 	url = https://github.com/Drewski6/Libft
-[submodule "cub3D_working/minilibx-linux"]
-	path = cub3D_working/minilibx-linux
+[submodule "minilibx-linux"]
+	path = minilibx-linux
 	url = https://github.com/42Paris/minilibx-linux

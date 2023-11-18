@@ -1,0 +1,14 @@
+# binaries
+cub3D
+libft/libft.a
+# objects
+objs/
+# cache
+.cache/
+# debug files
+gdb.txt
+# compile_commands
+compile_commands.json
+# submodules
+minilibx-linux/
+libft/
