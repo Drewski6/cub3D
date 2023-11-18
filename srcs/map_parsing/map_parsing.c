@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 14:44:59 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:10:39 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,59 @@
 #include "libft.h"
 #include "map_parsing.h"
 #include <string.h>
+#include "ft_printf.h"
 
-bool	ft_process_line(t_map_data *map_data, char *line)
+bool	ft_save_element(char **dest, char *src)
 {
-	static int	i;
+	if (*dest)
+		return (ft_putstr_fd("Error: Duplicate element in map.", 2), 1);
+	*dest = ft_strdup(src);
+	if (!*dest)
+		return (perror("Error: malloc"), 1);
+	ft_striteri(*dest, ft_newline_to_null);
+	return (0);
+}
+
+bool	ft_select_element(t_map_data *map_data, char **tab)
+{
+	if (!ft_strncmp(tab[0], "NO", 3))
+		if (ft_save_element(&map_data->no, tab[1]))
+			return (1);
+	if (!ft_strncmp(tab[0], "SO", 3))
+		if (ft_save_element(&map_data->so, tab[1]))
+			return (1);
+	if (!ft_strncmp(tab[0], "EA", 3))
+		if (ft_save_element(&map_data->ea, tab[1]))
+			return (1);
+	if (!ft_strncmp(tab[0], "WE", 3))
+		if (ft_save_element(&map_data->we, tab[1]))
+			return (1);
+	return (0);
+}
+
+bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)
+{
+	char	**tab;
 
 	(void) map_data;
-	printf("%02d: %s", i++, line);
+	*line = get_next_line(fd);
+	if (!*line)
+		return (1);
+	while (*line)
+	{
+		if (**line != '\n')
+		{
+			tab = ft_split(*line, ' ');
+			if (!tab)
+				return (perror("Error: malloc"), 1);
+			if (ft_select_element(map_data, tab))
+				return (ft_table_free(tab), 1);
+			ft_table_free(tab);
+		}
+		free(*line);
+		*line = NULL;
+		*line = get_next_line(fd);
+	}
 	return (0);
 }
 
@@ -44,19 +90,13 @@ bool	ft_read_in_map_data(t_map_data *map_data, int fd)
 {
 	char	*line;
 
-	line = get_next_line(fd);
-	if (!line)
-		return (perror("Error: gnl"), 1);
-	while (line)
-	{
-		if (ft_process_line(map_data, line))
-			return (free(line), line = NULL,
-				ft_putstr_fd("Error: error processing map file.\n", 2), 1);
-		free(line);
-		line = NULL;
-		line = get_next_line(fd);
-	}
-	return (0);
+	line = NULL;
+	if (0
+		|| ft_read_in_elements(map_data, fd, &line)
+		|| ft_read_in_map(map_data, fd, &line)
+	)
+		return (free(line), 1);
+	return (free(line), 0);
 }
 
 /*
@@ -74,7 +114,6 @@ bool	ft_init_map(t_map_data *map_data, char *filename)
 {
 	int	fd;
 
-	debug_print_map_data(map_data);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
@@ -85,6 +124,10 @@ bool	ft_init_map(t_map_data *map_data, char *filename)
 		|| ft_read_in_map_data(map_data, fd)
 		|| ft_map_validation(map_data)
 	)
+	{
+		debug_print_map_data(map_data);
 		return (close(fd), 1);
+	}
+	debug_print_map_data(map_data);
 	return (close(fd), 0);
 }

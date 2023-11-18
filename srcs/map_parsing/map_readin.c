@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parsing.h                                      :+:      :+:    :+:   */
+/*   map_readin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 18:40:07 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 17:00:02 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/18 16:59:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_PARSING_H
-# define MAP_PARSING_H
+#include "cub3D.h"
+#include <stdbool.h>
+#include "ft_printf.h"
 
-//***** includes *****//
-
-# include <stdbool.h>
-
-//***** typedefs *****//
-
-typedef struct s_map_data	t_map_data;
-
-//***** function prototypes *****//
-
-bool	ft_init_map(t_map_data *map_data, char *file_name);
-bool	ft_map_validation(t_map_data *map_data);
-bool	ft_read_in_map(t_map_data *map_data, int fd, char **line);
-
-#endif
+bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
+{
+	(void) map_data;
+	(void) fd;
+	(void) line;
+	ft_printf("map line: %s\n", *line);
+	return (0);
+}

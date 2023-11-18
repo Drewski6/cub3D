@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 14:09:50 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 16:46:08 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,33 @@
 #include "libft.h"
 #include "args.h"
 #include "map_parsing.h"
+
+static void	ft_free_map_data(t_map_data *map_data)
+{
+	if (map_data->no)
+	{
+		free(map_data->no);
+		map_data->no = NULL;
+	}
+	if (map_data->so)
+	{
+		free(map_data->so);
+		map_data->so = NULL;
+	}
+	if (map_data->ea)
+	{
+		free(map_data->ea);
+		map_data->ea = NULL;
+	}
+	if (map_data->we)
+	{
+		free(map_data->we);
+		map_data->we = NULL;
+	}
+	if (map_data->map)
+		ft_table_free(map_data->map);
+	return ;
+}
 
 /*
 **	NAME
@@ -36,6 +63,6 @@ int	main(int argc, char **argv)
 		|| ft_arg_parse(argc, argv)
 		|| ft_init_map(&map_data, argv[1])
 	)
-		return (1);
-	return (0);
+		return (ft_free_map_data(&map_data), 1);
+	return (ft_free_map_data(&map_data), 0);
 }
