@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:43 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 13:25:42 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:35:51 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 typedef struct s_rgb
 {
-	char		red;
-	char		green;
-	char		blue;
+	int			red;
+	int			green;
+	int			blue;
 }				t_rgb;
 
 typedef struct s_map_data
