@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/18 12:57:21 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/18 13:26:28 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ compile_commands.json : $(COMMANDS) Makefile $(SUBMODULES)
 	@echo "]" >> compile_commands.json
 
 norm:
-	find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} +
+	@watch 'find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} + | grep -v "OK!"'
 
 clean: $(SUBMODULES)
 	@rm -rf $(OBJ_FOLDER)

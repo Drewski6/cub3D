@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 12:56:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:26:53 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 #include "libft.h"
 #include "args.h"
 #include "map_parsing.h"
+
+/*
+**	NAME
+		name
+**	DESCRIPTION
+		ALLOWED FUNCTIONS:
+			open, close, read, write, printf, malloc, free, perror, strerror, exit
+			All functions of the math library (-lm man man 3 math)
+			All functions of the MinilibX
+**	RETURN
+		Int returns 0 on success or non-0 int on error.
+*/
 
 int	main(int argc, char **argv)
 {

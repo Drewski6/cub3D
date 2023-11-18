@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 12:51:26 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 13:14:28 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:26:12 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //***** typedefs *****//
 
-typedef struct s_map_data t_map_data;
+typedef struct s_map_data	t_map_data;
 
 //***** function prototypes *****//
 
