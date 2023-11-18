@@ -4,3 +4,4 @@
 [submodule "libft"]
 	path = libft
 	url = https://github.com/Drewski6/Libft
+	branch = master
