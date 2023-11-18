@@ -10,5 +10,7 @@ gdb.txt
 # compile_commands
 compile_commands.json
 # submodules
+minilibx-linux/
 !minilibx-linux/.git
+libft/
 !libft/.git
