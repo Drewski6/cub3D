@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 20:19:00 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:24:40 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	ft_select_element(t_map_data *map_data, char **tab)
 
 	ret = 0;
 	if (ft_tablen(tab) != 2)
-		ret = 1;
+		ret = 2;
 	else if (!ft_strncmp(tab[0], "NO", 3))
 		ret = ft_save_texture_path(&map_data->no, tab[1]);
 	else if (!ft_strncmp(tab[0], "SO", 3))
@@ -85,6 +85,8 @@ bool	ft_select_element(t_map_data *map_data, char **tab)
 	else
 		ret = 1;
 	if (ret == 1)
+		return (1);
+	else if (ret == 2)
 		return (ft_putstr_fd("Error: Invalid line in map file\n", 2), 1);
 	return (ret);
 }
