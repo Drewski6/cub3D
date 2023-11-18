@@ -6,14 +6,15 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 20:36:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 23:52:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "args.h"
 #include "cub3D.h"
 #include "libft.h"
-#include "args.h"
 #include "map_parsing.h"
+#include <stdlib.h>
 
 static void	ft_free_map_data(t_map_data *map_data)
 {

@@ -6,13 +6,13 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 18:36:47 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 23:52:20 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include <stdbool.h>
 #include "ft_printf.h"
+#include <stdbool.h>
 
 bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 {
