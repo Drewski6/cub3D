@@ -17,4 +17,4 @@ jobs:
           sudo apt-get install -y libbsd-dev
 
       - name: Make cub3D
-        run: make -C cub3D_working
+        run: make
