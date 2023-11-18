@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*   map_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 18:19:13 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 18:26:14 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ bool	ft_save_rgb_settings(t_rgb *rgb, char *src)
 	if (ft_tablen(tab) != 3)
 		return (ft_table_free(tab),
 			ft_putstr_fd("Error: RGB values incorrect\n", 2), 1);
-	ft_print_table(tab, 1);
 	if (!ft_tabiter_ver(tab, ft_striter_ver, ft_isdigit))
 		return (ft_table_free(tab),
 			ft_putstr_fd("Error: RGB values incorrect\n", 2), 1);
@@ -105,59 +104,4 @@ bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)
 		*line = get_next_line(fd);
 	}
 	return (0);
-}
-
-/*
-**	NAME
-		ft_read_in_map_data
-**	DESCRIPTION
-		desc
-**	RETURN
-		Bool function returns 0 on success or 1 on error;
-*/
-
-bool	ft_read_in_map_data(t_map_data *map_data, int fd)
-{
-	char	*line;
-
-	line = NULL;
-	if (0
-		|| ft_read_in_elements(map_data, fd, &line)
-		|| ft_read_in_map(map_data, fd, &line)
-	)
-		return (free(line), 1);
-	return (free(line), 0);
-}
-
-/*
-**	NAME
-		ft_init_map
-**	DESCRIPTION
-		First opens the file indicated with filename and checks return.
-		Second calls ft_read_in_map_data to read the file into the struct.
-		Third validates map via ft_map_validation.
-**	RETURN
-		Bool function returns 0 on success and 1 on error.
-*/
-
-bool	ft_init_map(t_map_data *map_data, char *filename)
-{
-	int	fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error: open");
-		return (1);
-	}
-	if (0
-		|| ft_read_in_map_data(map_data, fd)
-		|| ft_map_validation(map_data)
-	)
-	{
-		debug_print_map_data(map_data);
-		return (close(fd), 1);
-	}
-	debug_print_map_data(map_data);
-	return (close(fd), 0);
 }
