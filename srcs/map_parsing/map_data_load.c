@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:21:02 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 18:23:30 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 19:27:38 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ bool	ft_read_in_map_data(t_map_data *map_data, int fd)
 		|| ft_read_in_elements(map_data, fd, &line)
 		|| ft_read_in_map(map_data, fd, &line)
 	)
-		return (free(line), 1);
-	return (free(line), 0);
+		return (free(line), line = NULL, 1);
+	return (free(line), line = NULL, 0);
 }
 
 /*

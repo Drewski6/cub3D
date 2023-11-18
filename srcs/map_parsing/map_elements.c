@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 19:24:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/18 19:44:23 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include "map_parsing.h"
 #include <string.h>
 #include "ft_printf.h"
+#include "errno.h"
 
 bool	ft_save_texture_path(char **dest, char *src)
 {
@@ -89,10 +90,9 @@ bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)
 {
 	char	**tab;
 
-	(void) map_data;
 	*line = get_next_line(fd);
-	if (!*line)
-		return (1);
+	if (errno != 0)
+		return (ft_putstr_fd("Error: malloc", 2), 1);
 	while (*line)
 	{
 		if (**line != '\n')
