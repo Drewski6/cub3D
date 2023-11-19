@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/19 21:24:23 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/19 21:55:43 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "libft.h"
 #include <stdio.h>
 
-
 bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 {
 	t_list	*current;
@@ -27,6 +26,7 @@ bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 	while (*line)
 	{
 		*line = get_next_line(fd);
+		ft_striteri(*line, ft_newline_to_null);
 		current = ft_lstnew(*line);
 		if (!current)
 			return (perror("Error: malloc"), 1);

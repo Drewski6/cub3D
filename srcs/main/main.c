@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 23:52:41 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/19 21:39:01 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_free_map_data(t_map_data *map_data)
 		map_data->we = NULL;
 	}
 	if (map_data->map)
-		ft_free_table(map_data->map);
+		ft_lstclear(&map_data->map, ft_lst_free_link);
 	return ;
 }
 
