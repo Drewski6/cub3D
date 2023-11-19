@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/19 21:55:43 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/19 23:33:42 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
+bool	ft_initial_read_in(t_map_data *map_data, int fd, char **line)
 {
 	t_list	*current;
 
@@ -32,5 +32,18 @@ bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 			return (perror("Error: malloc"), 1);
 		ft_lstadd_back(&map_data->map, current);
 	}
+	return (0);
+}
+
+bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
+{
+	size_t	x_len;
+	size_t	y_len;
+
+	if (ft_initial_read_in(map_data, fd, line))
+		return (1);
+	x_len = ft_lst_largest(&map_data->map, ft_lst_strlen);
+	y_len = ft_lstsize(map_data->map) - 1;
+	printf("Size of map: x(%ld), y(%ld)\n", x_len, y_len);
 	return (0);
 }
