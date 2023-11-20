@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:43 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 17:35:51 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:08:47 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 //***** typedefs/structs *****//
+
+typedef struct s_list	t_list;
 
 typedef struct s_rgb
 {

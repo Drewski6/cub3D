@@ -6,23 +6,24 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 19:44:23 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/19 21:50:15 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include <stdbool.h>
 #include "debug.h"
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "errno.h"
+#include "ft_printf.h"
 #include "gnl.h"
 #include "libft.h"
 #include "map_parsing.h"
+#include <fcntl.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
-#include "ft_printf.h"
-#include "errno.h"
+#include <sys/stat.h>
+#include <unistd.h>
 
 bool	ft_save_texture_path(char **dest, char *src)
 {
@@ -65,25 +66,30 @@ bool	ft_save_rgb_settings(t_rgb *rgb, char *src)
 
 bool	ft_select_element(t_map_data *map_data, char **tab)
 {
-	if (!ft_strncmp(tab[0], "NO", 3))
-		if (ft_save_texture_path(&map_data->no, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "SO", 3))
-		if (ft_save_texture_path(&map_data->so, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "EA", 3))
-		if (ft_save_texture_path(&map_data->ea, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "WE", 3))
-		if (ft_save_texture_path(&map_data->we, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "F", 2))
-		if (ft_save_rgb_settings(&map_data->f, tab[1]))
-			return (1);
-	if (!ft_strncmp(tab[0], "C", 2))
-		if (ft_save_rgb_settings(&map_data->c, tab[1]))
-			return (1);
-	return (0);
+	int	ret;
+
+	ret = 0;
+	if (ft_tablen(tab) != 2)
+		ret = 2;
+	else if (!ft_strncmp(tab[0], "NO", 3))
+		ret = ft_save_texture_path(&map_data->no, tab[1]);
+	else if (!ft_strncmp(tab[0], "SO", 3))
+		ret = ft_save_texture_path(&map_data->so, tab[1]);
+	else if (!ft_strncmp(tab[0], "EA", 3))
+		ret = ft_save_texture_path(&map_data->ea, tab[1]);
+	else if (!ft_strncmp(tab[0], "WE", 3))
+		ret = ft_save_texture_path(&map_data->we, tab[1]);
+	else if (!ft_strncmp(tab[0], "F", 2))
+		ret = ft_save_rgb_settings(&map_data->f, tab[1]);
+	else if (!ft_strncmp(tab[0], "C", 2))
+		ret = ft_save_rgb_settings(&map_data->c, tab[1]);
+	else
+		ret = 1;
+	if (ret == 1)
+		return (1);
+	else if (ret == 2)
+		return (ft_putstr_fd("Error: Invalid line in map file\n", 2), 1);
+	return (ret);
 }
 
 bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)

@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 13:41:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 15:30:44 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:48:55 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "debug.h"
 #include "ft_printf.h"
 #include "libft.h"
+
+/*
+ *	***** debug_print_map_data *****
+ *
+ *	DESCRIPTION:
+ *		Used to print the contents and current values of the map_data struct.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
 
 void	debug_print_map_data(t_map_data *map_data)
 {
@@ -37,7 +46,7 @@ void	debug_print_map_data(t_map_data *map_data)
 		map_data->f.red, map_data->f.green, map_data->f.blue);
 	ft_printf("c: R(%d), G(%d), B(%d)\n",
 		map_data->c.red, map_data->c.green, map_data->c.blue);
-	ft_printf("map: ");
+	ft_printf("map: \n");
 	if (map_data->map)
 		ft_print_table(map_data->map, 0);
 	else
