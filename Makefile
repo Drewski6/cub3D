@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/18 18:25:36 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/20 18:44:28 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CC				=	cc
 SRC 			=	main/main.c \
 					args/arg_parsing.c \
 					map_parsing/map_data_load.c \
+					map_parsing/map_data_valid.c \
 					map_parsing/map_elements.c \
 					map_parsing/map_readin.c \
 					map_parsing/map_validation.c \

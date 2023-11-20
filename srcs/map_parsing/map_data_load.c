@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:21:02 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 23:52:34 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:59:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ bool	ft_read_in_map_data(t_map_data *map_data, int fd)
 	char	*line;
 
 	line = NULL;
+	map_data->f = (t_rgb){-1, -1, -1};
+	map_data->c = (t_rgb){-1, -1, -1};
 	if (0
 		|| ft_read_in_elements(map_data, fd, &line)
 		|| ft_read_in_map(map_data, fd, &line)
@@ -68,6 +70,7 @@ bool	ft_map_data(t_map_data *map_data, char *filename)
 	}
 	if (0
 		|| ft_read_in_map_data(map_data, fd)
+		|| ft_map_data_validation(map_data)
 		|| ft_map_validation(map_data)
 	)
 	{

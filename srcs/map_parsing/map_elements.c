@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/19 21:50:15 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:59:31 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 bool	ft_save_texture_path(char **dest, char *src)
 {
 	if (*dest)
-		return (ft_putstr_fd("Error: Duplicate element in map.", 2), 1);
+		return (ft_putstr_fd("Error: Duplicate element in map.\n", 2), 1);
 	*dest = ft_strdup(src);
 	if (!*dest)
 		return (perror("Error: malloc"), 1);
