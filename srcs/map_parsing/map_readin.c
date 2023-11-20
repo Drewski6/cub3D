@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 18:27:37 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:31:04 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ char	**ft_create_blank_map(size_t x_len, size_t y_len)
 		ft_memset(map[i], 32, x_len + 2);
 		i++;
 	}
-	ft_printf("init map:\n");
-	ft_print_table(map, 0);
 	return (map);
 }
 
