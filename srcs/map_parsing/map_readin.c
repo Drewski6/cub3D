@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 13:00:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:27:37 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 #include "libft.h"
 #include <stdio.h>
 
-bool	ft_initial_read_in(t_map_data *map_data, int fd, char **line)
+bool	ft_initial_read_in(t_list **list, int fd, char **line)
 {
 	t_list	*current;
 
-	map_data->map = ft_lstnew((void *)*line);
+	*list = ft_lstnew((void *)*line);
 	while (*line)
 	{
 		*line = get_next_line(fd);
@@ -30,7 +30,7 @@ bool	ft_initial_read_in(t_map_data *map_data, int fd, char **line)
 		current = ft_lstnew(*line);
 		if (!current)
 			return (perror("Error: malloc"), 1);
-		ft_lstadd_back(&map_data->map, current);
+		ft_lstadd_back(list, current);
 	}
 	return (0);
 }
@@ -57,19 +57,38 @@ char	**ft_create_blank_map(size_t x_len, size_t y_len)
 	return (map);
 }
 
+void	ft_xfer_map(t_list *list, char **map)
+{
+	t_list	*current;
+	size_t	i;
+	size_t	y_len;
+
+	i = 1;
+	current = list;
+	y_len = ft_lstsize(list) - 1;
+	while (i <= y_len)
+	{
+		ft_memcpy((void *)&map[i][1], current->content,
+			ft_strlen(current->content));
+		current = current->next;
+		i++;
+	}
+}
+
 bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 {
-	char	**map;
+	t_list	*lst_map;
 	size_t	x_len;
 	size_t	y_len;
 
-	if (ft_initial_read_in(map_data, fd, line))
+	if (ft_initial_read_in(&lst_map, fd, line))
 		return (1);
-	x_len = ft_lst_largest(&map_data->map, ft_lst_strlen);
-	y_len = ft_lstsize(map_data->map) - 1;
-	map = ft_create_blank_map(x_len, y_len);
-	if (!map)
+	x_len = ft_lst_largest(&lst_map, ft_lst_strlen);
+	y_len = ft_lstsize(lst_map) - 1;
+	map_data->map = ft_create_blank_map(x_len, y_len);
+	if (!map_data->map)
 		return (1);
-	printf("Size of map: x(%ld), y(%ld)\n", x_len, y_len);
+	ft_xfer_map(lst_map, map_data->map);
+	ft_lstclear(&lst_map, ft_lst_free_link);
 	return (0);
 }
