@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 22:06:31 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:14:19 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ bool	ft_map_validation(t_map_data *map_data)
 	if (0
 		|| ft_map_crawl_get_start(map_data->map, &head)
 	)
-		return (1);
+		return (ft_putstr_fd("Error: Map validation failed. Please check map.\n"
+				, 2), 1);
 	printf("head: x(%d) y(%d)\n", head.x, head.y);
 	return (0);
 }
