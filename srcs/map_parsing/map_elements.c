@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 18:59:31 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:12:16 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,9 @@ bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)
 			ft_free_table(tab);
 		}
 		free(*line);
-		*line = NULL;
 		*line = get_next_line(fd);
+		if (errno != 0)
+			return (ft_putstr_fd("Error: malloc", 2), 1);
 	}
 	return (0);
 }
