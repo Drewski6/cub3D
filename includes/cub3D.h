@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:43 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 17:08:47 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 22:03:19 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 //***** typedefs/structs *****//
 
 typedef struct s_list	t_list;
+
+typedef struct s_coord
+{
+	int			x;
+	int			y;
+}				t_coord;
 
 typedef struct s_rgb
 {
