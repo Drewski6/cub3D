@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/22 14:55:54 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:27:05 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,32 @@ bool	ft_map_space_check(char **map)
 			{
 				coord = (t_coord){x, y, 0, 0};
 				if (ft_map_space_invalid_neighbors(map, &coord))
-					return (ft_printf(
-							"Error: invalid character at x(%d) y(%d).\n",
-							x + 1, y - 1), 1);
+					return (ft_putstr_fd(
+							"Error: invalid character next to a space.\n",
+							2), 1);
 			}
 			x++;
 		}
 		y++;
 	}
 	return (0);
+}
+
+bool	ft_map_at_least_one_start(char **map)
+{
+	int		y;
+	char	*nsew;
+
+	y = 0;
+	while (map[y])
+	{
+		nsew = ft_strset(map[y], "01 ");
+		if (nsew)
+			return (0);
+		y++;
+	}
+	ft_putstr_fd("Error: No starting position (N, S, E, or W) in map.\n", 2);
+	return (1);
 }
 
 /*
@@ -113,8 +130,8 @@ bool	ft_map_validation(t_map_data *map_data)
 		|| ft_map_crawl(map_data->map, &head)
 		|| ft_map_boarder_check(map_data->map)
 		|| ft_map_space_check(map_data->map)
+		|| ft_map_at_least_one_start(map_data->map)
 	)
-		return (ft_putstr_fd("Error: Map validation failed. Please check map.\n"
-				, 2), 1);
+		return (1);
 	return (0);
 }
