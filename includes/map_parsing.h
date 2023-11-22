@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:40:07 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 18:45:43 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:41:31 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 //***** typedefs *****//
 
 typedef struct s_map_data	t_map_data;
+typedef struct s_coord		t_coord;
 
 //***** function prototypes *****//
 
@@ -28,5 +29,7 @@ bool	ft_map_validation(t_map_data *map_data);
 bool	ft_map_data_validation(t_map_data *map_data);
 bool	ft_read_in_map(t_map_data *map_data, int fd, char **line);
 bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line);
+bool	ft_map_crawl(char **map, t_coord *head);
+bool	ft_map_crawl_get_start(char **map, t_coord *head);
 
 #endif

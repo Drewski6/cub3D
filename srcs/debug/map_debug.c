@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 13:41:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/22 10:45:06 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:49:55 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ bool	debug_print_coord_data(t_coord *coord, char *name)
 	buf = ft_num_to_bin(coord->neighbors, 8);
 	if (!buf)
 		return (1);
-	ft_printf("neighbors:\t%c%c%c\n\t\t\t%c %c\n\t\t\t%c%c%c\n",
+	ft_printf("neighbors:\t%c%c%c\n\t\t%c %c\n\t\t%c%c%c\n",
 		buf[0], buf[1], buf[2],
 		buf[7], buf[3],
 		buf[6], buf[5], buf[4]);
