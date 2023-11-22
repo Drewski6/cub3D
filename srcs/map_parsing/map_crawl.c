@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:17:14 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/22 13:58:28 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:24:54 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,39 @@
 #include "libft.h"
 #include <stdio.h>
 #include "ft_printf.h"
+#include "map_parsing.h"
+
+/*
+ *	***** ft_map_crawl_get_start *****
+ *
+ *	DESCRIPTION:
+ *		Starts looking through the map for the starting place. This should be 
+ *		the first non space in the top left most portion of the map.
+ *	RETURN:
+ *		Bool function returns 0 on success and 1 on error.
+ */
+
+bool	ft_map_crawl_get_start(char **map, t_coord *head)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (ft_isinset(map[y][x], "01NSEW"))
+				return (*head = (t_coord){x, y, 0, 0},
+					ft_get_coord_neighbors(head, map, '1'), 0);
+			x++;
+		}
+		y++;
+	}
+	return (ft_putstr_fd("Error: could not find start of map.\n", 2),
+		1);
+}
 
 /*
  *	***** ft_get_coord_neighbors *****
@@ -57,37 +90,6 @@ void	ft_get_coord_neighbors(t_coord *coord, char **map, int c)
 	if (map[coord->y - 1][coord->x - 1] == c)
 		neighbors = neighbors | (1 << 7);
 	coord->neighbors = neighbors;
-}
-
-/*
- *	***** ft_map_crawl_get_start *****
- *
- *	DESCRIPTION:
- *		Starts looking through the map for the starting place. This should be 
- *		the first non space in the top left most portion of the map.
- *	RETURN:
- *		Bool function returns 0 on success and 1 on error.
- */
-
-bool	ft_map_crawl_get_start(char **map, t_coord *head)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (ft_isinset(map[y][x], "01NSEW"))
-				return (*head = (t_coord){x, y, 0, 0},
-					ft_get_coord_neighbors(head, map, '1'), 0);
-			x++;
-		}
-		y++;
-	}
-	return (1);
 }
 
 /*
@@ -194,8 +196,10 @@ bool	ft_map_crawl(char **map, t_coord *head)
 
 	i = 0;
 	if (head->neighbors == 0)
-		return (1);
+		return (ft_putstr_fd("Error: map perimeter too small.\n", 2), 1);
 	ft_memcpy(&start, head, sizeof(t_coord));
+	if (map[start.x][start.y] != '1')
+		return (ft_putstr_fd("Error: invalid character in boarder.\n", 2), 1);
 	ft_memcpy(&next, head, sizeof(t_coord));
 	ft_take_next_step(&next, map, ft_find_next_step(&next));
 	while ((next.x != start.x) || (next.y != start.y))
@@ -206,7 +210,6 @@ bool	ft_map_crawl(char **map, t_coord *head)
 		i++;
 	}
 	if (i < 7)
-		return (1);
-	ft_printf("i: %d\n", i);
+		return (ft_putstr_fd("Error: map perimeter too small.\n", 2), 1);
 	return (0);
 }
