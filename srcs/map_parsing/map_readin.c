@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 18:36:03 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:34:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,24 @@
 #include "gnl.h"
 #include "libft.h"
 #include <stdio.h>
+#include <errno.h>
 
 bool	ft_initial_read_in(t_list **list, int fd, char **line)
 {
 	t_list	*current;
 
 	*list = ft_lstnew((void *)*line);
+	if (errno != 0)
+		return (ft_putstr_fd("Error: malloc", 2), 1);
 	while (*line)
 	{
 		*line = get_next_line(fd);
+		if (errno != 0)
+			return (ft_putstr_fd("Error: malloc", 2), 1);
 		ft_striteri(*line, ft_newline_to_null);
+		if (ft_strset(*line, "01NSEW "))
+			return (ft_putstr_fd("Error: Invalid character in map.\n", 2),
+				1);
 		current = ft_lstnew(*line);
 		if (!current)
 			return (perror("Error: malloc"), 1);
@@ -80,7 +88,7 @@ bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 	size_t	y_len;
 
 	if (ft_initial_read_in(&lst_map, fd, line))
-		return (1);
+		return (ft_lstclear(&lst_map, ft_lst_free_link), 1);
 	x_len = ft_lst_largest(&lst_map, ft_lst_strlen);
 	y_len = ft_lstsize(lst_map) - 1;
 	map_data->map = ft_create_blank_map(x_len, y_len);
