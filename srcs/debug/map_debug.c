@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 13:41:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 17:48:55 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:45:06 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "debug.h"
 #include "ft_printf.h"
 #include "libft.h"
+#include <stdbool.h>
+#include <stdlib.h>
 
 /*
  *	***** debug_print_map_data *****
@@ -51,4 +53,23 @@ void	debug_print_map_data(t_map_data *map_data)
 		ft_print_table(map_data->map, 0);
 	else
 		ft_printf("(NULL)\n");
+}
+
+bool	debug_print_coord_data(t_coord *coord, char *name)
+{
+	char	*buf;
+
+	if (!name)
+		return (1);
+	ft_printf("%s:\t\tx(%d) y(%d) src(%d)\n",
+		name, coord->x, coord->y, coord->source);
+	buf = ft_num_to_bin(coord->neighbors, 8);
+	if (!buf)
+		return (1);
+	ft_printf("neighbors:\t%c%c%c\n\t\t\t%c %c\n\t\t\t%c%c%c\n",
+		buf[0], buf[1], buf[2],
+		buf[7], buf[3],
+		buf[6], buf[5], buf[4]);
+	free(buf);
+	return (0);
 }
