@@ -6,17 +6,17 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 10:31:28 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:19:15 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "args.h"
 #include "cub3D.h"
 #include "debug.h"
+#include "engine.h"
 #include "libft.h"
 #include "map_parsing.h"
 #include <stdlib.h>
-#include "engine.h"
 
 /*
  * ***** main *****
@@ -32,17 +32,19 @@
 int	main(int argc, char **argv)
 {
 	t_map_data	map_data;
+	t_engine	engine;
 
 	ft_bzero((void *)&map_data, sizeof(map_data));
+	ft_bzero((void *)&engine, sizeof(engine));
 	if (0
 		|| ft_arg_parse(argc, argv)
 		|| ft_map_data(&map_data, argv[1])
+		|| ft_engine_init(&engine)
 	)
 	{
 		debug_print_map_data(&map_data);
-		return (ft_free_map_data(&map_data), 1);
+		return (ft_free_map_data(&map_data), ft_free_engine(&engine), 1);
 	}
-	ft_engine_init();
 	debug_print_map_data(&map_data);
-	return (ft_free_map_data(&map_data), 0);
+	return (ft_free_map_data(&map_data), ft_free_engine(&engine), 0);
 }
