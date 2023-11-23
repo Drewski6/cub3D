@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 23:34:29 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 23:43:27 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,15 @@ typedef struct s_rgb
 	int			blue;
 }				t_rgb;
 
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}			t_point;
+
 typedef struct s_player
 {
-
+	t_point	pos;
 }			t_player;
 
 //***** function declarations *****//
