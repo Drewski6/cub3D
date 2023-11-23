@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:23:46 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 17:54:18 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:59:06 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ void	ft_free_engine(t_engine *engine)
  *		ret
  */
 
-bool	ft_images_init(t_image *image, void *mlx_ptr)
+bool	ft_images_init(t_image *image, void *mlx_ptr, int x, int y)
 {
 	image->img_ptr = mlx_new_image(mlx_ptr,
-			WIN_X, WIN_Y);
+			x, y);
 	if (!image->img_ptr)
 		return (ft_putstr_fd("Error\nCould not initialize image.\n", 2), 1);
 	image->bits_per_pixel = 0;
@@ -122,7 +122,7 @@ bool	ft_images_init(t_image *image, void *mlx_ptr)
  *	***** ft_engine_init *****
  *
  *	DESCRIPTION:
- *		Initializes the mlx pointer and the window pointer.
+ *		Initializes the mlx pointer and the window pointer and the images.
  *	RETURN:
  *		Bool function returns 0 on success and 1 on error.
  */
@@ -136,5 +136,10 @@ bool	ft_engine_init(t_engine *engine)
 			WIN_X, WIN_Y, WIN_NAME);
 	if (!engine->win_ptr)
 		return (ft_putstr_fd("Error\nCould not initialize win_ptr.\n", 2), 1);
+	if (0
+		|| ft_images_init(&engine->bg_image, engine->mlx_ptr, WIN_X, WIN_Y)
+		|| ft_images_init(&engine->map_image, engine->mlx_ptr, MAP_X, MAP_Y)
+	)
+		return (ft_putstr_fd("Error\nCould not initialize images.\n", 2), 1);
 	return (0);
 }

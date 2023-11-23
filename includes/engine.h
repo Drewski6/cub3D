@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 18:26:14 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:53:24 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);
 int		ft_key_press(int key, void *param);
 bool	ft_render(t_map_data *map_data, t_engine *engine);
-bool	ft_images_init(t_image *image, void *mlx_ptr);
+bool	ft_images_init(t_image *image, void *mlx_ptr, int x, int y);
 bool	ft_img_buf_set_px_color(t_image *image, t_rgb *color, int x, int y);
 
 #endif

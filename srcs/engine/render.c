@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 18:44:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:51:24 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,15 @@ bool	ft_paint_bucket(t_image *image, t_rgb *color, int x, int y)
 
 bool	ft_render(t_map_data *map_data, t_engine *engine)
 {
+	t_rgb	map;
+
+	map = (t_rgb){255, 255, 255};
 	ft_paint_bucket(&engine->bg_image, &map_data->f, WIN_X, WIN_Y);
 	ft_paint_bucket(&engine->bg_image, &map_data->c, WIN_X, WIN_Y / 2);
 	mlx_put_image_to_window(engine->mlx_ptr, engine->win_ptr,
 		engine->bg_image.img_ptr, 0, 0);
+	ft_paint_bucket(&engine->map_image, &map, MAP_X, MAP_Y);
+	mlx_put_image_to_window(engine->mlx_ptr, engine->win_ptr,
+		engine->map_image.img_ptr, 5, 5);
 	return (0);
 }
