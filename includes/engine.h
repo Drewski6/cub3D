@@ -19,8 +19,8 @@
 
 //***** defines *****//
 
-# define WIN_X 500
-# define WIN_Y 500
+# define WIN_X 1024
+# define WIN_Y 512
 # define WIN_NAME "dpentlan - cub3D"
 
 # define HOME_PC
