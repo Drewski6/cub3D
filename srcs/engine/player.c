@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 23:06:16 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/23 23:05:22 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "mlx.h"
-#include "cub3D.h"
 
-bool	ft_render(t_map_data *map_data, t_engine *engine)
+void	ft_draw_player(void)
 {
-	ft_draw_background(engine, &engine->bg_image, &map_data->f, &map_data->c);
-	ft_draw_map(engine);
-	ft_draw_player();
-	return (0);
 }

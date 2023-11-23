@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 23:06:16 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/23 22:49:30 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/23 22:53:08 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "mlx.h"
-#include "cub3D.h"
 
-bool	ft_render(t_map_data *map_data, t_engine *engine)
+void	ft_draw_background(t_engine *engine,
+						t_image *bg_image, t_rgb *f, t_rgb *c)
 {
-	ft_draw_background(engine, &engine->bg_image, &map_data->f, &map_data->c);
-	ft_draw_map(engine);
-	ft_draw_player();
-	return (0);
+	ft_paint_bucket(bg_image, f, WIN_X, WIN_Y);
+	ft_paint_bucket(bg_image, c, WIN_X, WIN_Y / 2);
+	mlx_put_image_to_window(engine->mlx_ptr, engine->win_ptr,
+		engine->bg_image.img_ptr, 0, 0);
 }
