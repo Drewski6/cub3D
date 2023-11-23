@@ -6,12 +6,13 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 17:48:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:21:14 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "args.h"
 #include "cub3D.h"
+#include "debug.h"
 #include "libft.h"
 #include "map_parsing.h"
 #include <stdlib.h>
@@ -63,6 +64,10 @@ int	main(int argc, char **argv)
 		|| ft_arg_parse(argc, argv)
 		|| ft_map_data(&map_data, argv[1])
 	)
+	{
+		debug_print_map_data(&map_data);
 		return (ft_free_map_data(&map_data), 1);
+	}
+	debug_print_map_data(&map_data);
 	return (ft_free_map_data(&map_data), 0);
 }
