@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:21:02 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 18:59:41 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:42:06 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,6 @@ bool	ft_map_data(t_map_data *map_data, char *filename)
 		|| ft_map_data_validation(map_data)
 		|| ft_map_validation(map_data)
 	)
-	{
-		debug_print_map_data(map_data);
 		return (close(fd), 1);
-	}
-	debug_print_map_data(map_data);
 	return (close(fd), 0);
 }
