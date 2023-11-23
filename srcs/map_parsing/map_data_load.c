@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:21:02 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/22 15:42:06 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:30:31 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,43 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
+
+/*
+ *	***** ft_free_map_data *****
+ *
+ *	DESCRIPTION:
+ *		Takes the struct map_data and frees all the elements and resets 
+ *		everything to NULL.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
+void	ft_free_map_data(t_map_data *map_data)
+{
+	if (map_data->no)
+	{
+		free(map_data->no);
+		map_data->no = NULL;
+	}
+	if (map_data->so)
+	{
+		free(map_data->so);
+		map_data->so = NULL;
+	}
+	if (map_data->ea)
+	{
+		free(map_data->ea);
+		map_data->ea = NULL;
+	}
+	if (map_data->we)
+	{
+		free(map_data->we);
+		map_data->we = NULL;
+	}
+	if (map_data->map)
+		ft_free_table(map_data->map);
+	return ;
+}
 
 /*
  *	***** ft_read_in_map_data *****
