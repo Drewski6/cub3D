@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 11:19:15 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:39:34 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "libft.h"
 #include "map_parsing.h"
 #include <stdlib.h>
+#include "mlx.h"
+#include "ft_printf.h"
 
 /*
  * ***** main *****
@@ -33,18 +35,23 @@ int	main(int argc, char **argv)
 {
 	t_map_data	map_data;
 	t_engine	engine;
+	t_clear		clear;
 
 	ft_bzero((void *)&map_data, sizeof(map_data));
 	ft_bzero((void *)&engine, sizeof(engine));
+	clear = (t_clear){(void *)&engine, (void *)&map_data};
 	if (0
 		|| ft_arg_parse(argc, argv)
 		|| ft_map_data(&map_data, argv[1])
 		|| ft_engine_init(&engine)
+		|| !mlx_hook(engine.win_ptr, 17, 0, &ft_close_cub3d, (void *)&clear)
+		|| !mlx_key_hook(engine.win_ptr, &ft_key_press, (void *)&clear)
 	)
 	{
 		debug_print_map_data(&map_data);
 		return (ft_free_map_data(&map_data), ft_free_engine(&engine), 1);
 	}
 	debug_print_map_data(&map_data);
+	mlx_loop(engine.mlx_ptr);
 	return (ft_free_map_data(&map_data), ft_free_engine(&engine), 0);
 }
