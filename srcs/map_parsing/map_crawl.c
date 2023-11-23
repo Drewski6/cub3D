@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:17:14 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/22 15:24:54 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:32:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	ft_map_crawl_get_start(char **map, t_coord *head)
 		}
 		y++;
 	}
-	return (ft_putstr_fd("Error: could not find start of map.\n", 2),
+	return (ft_putstr_fd("Error\ncould not find start of map.\n", 2),
 		1);
 }
 
@@ -196,10 +196,10 @@ bool	ft_map_crawl(char **map, t_coord *head)
 
 	i = 0;
 	if (head->neighbors == 0)
-		return (ft_putstr_fd("Error: map perimeter too small.\n", 2), 1);
+		return (ft_putstr_fd("Error\nmap perimeter too small.\n", 2), 1);
 	ft_memcpy(&start, head, sizeof(t_coord));
 	if (map[start.x][start.y] != '1')
-		return (ft_putstr_fd("Error: invalid character in boarder.\n", 2), 1);
+		return (ft_putstr_fd("Error\ninvalid character in boarder.\n", 2), 1);
 	ft_memcpy(&next, head, sizeof(t_coord));
 	ft_take_next_step(&next, map, ft_find_next_step(&next));
 	while ((next.x != start.x) || (next.y != start.y))
@@ -210,6 +210,6 @@ bool	ft_map_crawl(char **map, t_coord *head)
 		i++;
 	}
 	if (i < 7)
-		return (ft_putstr_fd("Error: map perimeter too small.\n", 2), 1);
+		return (ft_putstr_fd("Error\nmap perimeter too small.\n", 2), 1);
 	return (0);
 }

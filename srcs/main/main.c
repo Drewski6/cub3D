@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 12:39:34 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:30:39 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ int	main(int argc, char **argv)
 		|| ft_arg_parse(argc, argv)
 		|| ft_map_data(&map_data, argv[1])
 		|| ft_engine_init(&engine)
+	)
+		return (ft_free_map_data(&map_data), ft_free_engine(&engine), 1);
+	if (0
 		|| !mlx_hook(engine.win_ptr, 17, 0, &ft_close_cub3d, (void *)&clear)
 		|| !mlx_key_hook(engine.win_ptr, &ft_key_press, (void *)&clear)
 	)
-	{
-		debug_print_map_data(&map_data);
-		return (ft_free_map_data(&map_data), ft_free_engine(&engine), 1);
-	}
+		return (ft_putstr_fd(("Error\nmlx hook functions returned error.\n"), 2),
+			ft_free_map_data(&map_data), ft_free_engine(&engine), 1);
 	debug_print_map_data(&map_data);
 	mlx_loop(engine.mlx_ptr);
 	return (ft_free_map_data(&map_data), ft_free_engine(&engine), 0);
