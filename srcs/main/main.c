@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 13:30:39 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:42:46 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 		|| !mlx_hook(engine.win_ptr, 17, 0, &ft_close_cub3d, (void *)&clear)
 		|| !mlx_key_hook(engine.win_ptr, &ft_key_press, (void *)&clear)
 	)
-		return (ft_putstr_fd(("Error\nmlx hook functions returned error.\n"), 2),
+		return (ft_putstr_fd(("Error\nMLX hook functions returned error.\n"), 2),
 			ft_free_map_data(&map_data), ft_free_engine(&engine), 1);
 	debug_print_map_data(&map_data);
 	mlx_loop(engine.mlx_ptr);

@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 13:31:37 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:45:01 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ bool	ft_map_space_check(char **map)
 				coord = (t_coord){x, y, 0, 0};
 				if (ft_map_space_invalid_neighbors(map, &coord))
 					return (ft_putstr_fd(
-							"Error\ninvalid character next to a space.\n",
+							"Error\nInvalid character next to a space.\n",
 							2), 1);
 			}
 			x++;
