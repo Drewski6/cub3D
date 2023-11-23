@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 17:04:40 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:55:44 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	main(int argc, char **argv)
 		|| ft_arg_parse(argc, argv)
 		|| ft_map_data(&map_data, argv[1])
 		|| ft_engine_init(&engine)
-		|| ft_images_init(&engine)
+		|| ft_images_init(&engine.bg_image, engine.mlx_ptr)
+		|| ft_images_init(&engine.map_image, engine.mlx_ptr)
 		|| ft_render(&map_data, &engine)
 	)
 		return (ft_free_map_data(&map_data), ft_free_engine(&engine), 1);

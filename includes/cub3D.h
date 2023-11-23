@@ -6,12 +6,16 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:43 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 12:26:13 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:18:43 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+//***** includes *****//
+
+# include "engine.h"
 
 //***** typedefs/structs *****//
 
@@ -30,13 +34,6 @@ typedef struct s_coord
 	int				source;
 	unsigned char	neighbors;
 }					t_coord;
-
-typedef struct s_rgb
-{
-	int			red;
-	int			green;
-	int			blue;
-}				t_rgb;
 
 typedef struct s_map_data
 {

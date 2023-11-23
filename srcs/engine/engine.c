@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:23:46 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 17:11:48 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:54:18 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,27 @@ int	ft_close_cub3d(t_clear *clear)
 }
 
 /*
+ *	***** ft_free_image *****
+ *
+ *	DESCRIPTION:
+ *		Frees an image and reinitialiezes its struct values.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
+void	ft_free_image(t_image *image, void *mlx_ptr)
+{
+	if (image->img_ptr)
+	{
+		mlx_destroy_image(mlx_ptr, image->img_ptr);
+		image->img_ptr = NULL;
+	}
+	image->endian = 0;
+	image->size_line = 0;
+	image->bits_per_pixel = 0;
+}
+
+/*
  *	***** ft_free_engine *****
  *
  *	DESCRIPTION:
@@ -56,16 +77,10 @@ void	ft_free_engine(t_engine *engine)
 		mlx_destroy_window(engine->mlx_ptr, engine->win_ptr);
 		engine->win_ptr = NULL;
 	}
-	if (engine->bg_img_ptr)
-	{
-		mlx_destroy_image(engine->mlx_ptr, engine->bg_img_ptr);
-		engine->bg_img_ptr = NULL;
-	}
-	if (engine->map_img_ptr)
-	{
-		mlx_destroy_image(engine->mlx_ptr, engine->map_img_ptr);
-		engine->map_img_ptr = NULL;
-	}
+	if (engine->bg_image.img_ptr)
+		ft_free_image(&engine->bg_image, engine->mlx_ptr);
+	if (engine->map_image.img_ptr)
+		ft_free_image(&engine->map_image, engine->mlx_ptr);
 	if (engine->mlx_ptr)
 	{
 		mlx_destroy_display(engine->mlx_ptr);
@@ -83,16 +98,23 @@ void	ft_free_engine(t_engine *engine)
  *		ret
  */
 
-bool	ft_images_init(t_engine *engine)
+bool	ft_images_init(t_image *image, void *mlx_ptr)
 {
-	engine->bg_img_ptr = mlx_new_image(engine->mlx_ptr,
+	image->img_ptr = mlx_new_image(mlx_ptr,
 			WIN_X, WIN_Y);
-	if (!engine->bg_img_ptr)
-		return (ft_putstr_fd("Error\nCould not initialize bg_img_ptr.\n", 2), 1);
-	engine->map_img_ptr = mlx_new_image(engine->mlx_ptr,
-			MAP_X, MAP_Y);
-	if (!engine->map_img_ptr)
-		return (ft_putstr_fd("Error\nCould not initialize map_img_ptr.\n", 2), 1);
+	if (!image->img_ptr)
+		return (ft_putstr_fd("Error\nCould not initialize image.\n", 2), 1);
+	image->bits_per_pixel = 0;
+	image->size_line = 0;
+	image->endian = 0;
+	image->img_buf = NULL;
+	image->img_buf = mlx_get_data_addr(
+			image->img_ptr,
+			&image->bits_per_pixel,
+			&image->size_line,
+			&image->endian);
+	if (!image->img_buf)
+		return (ft_putstr_fd("Error\nCould not initialize image.\n", 2), 1);
 	return (0);
 }
 
