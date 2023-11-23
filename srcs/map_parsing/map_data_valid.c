@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:42:52 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 19:02:59 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:31:48 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ bool	ft_map_data_validation(t_map_data *map_data)
 		|| !map_data->we
 		|| !map_data->map
 	)
-		return (ft_putstr_fd("Error: At least one map element not set.\n", 2),
+		return (ft_putstr_fd("Error\nAt least one map element not set.\n", 2),
 			1);
 	if (0
 		|| ft_rgb_check(&map_data->f)
 		|| ft_rgb_check(&map_data->c)
 	)
 		return (ft_putstr_fd(
-				"Error: RGB values in map out of range or not set.\n", 2), 1);
+				"Error\nRGB values in map out of range or not set.\n", 2), 1);
 	return (0);
 }

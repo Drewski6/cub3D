@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:23:46 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 12:32:32 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:31:12 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
  *	RETURN:
  *		Function shouldn't return. Used with mlx_hook if the x in the window
  *		is pressed.
+ *		Also used with mlx_key_hook if ESC key is pressed.
  */
 
 int	ft_close_cub3d(t_clear *clear)
@@ -83,10 +84,10 @@ bool	ft_engine_init(t_engine *engine)
 	engine->win_ptr = NULL;
 	engine->mlx_ptr = mlx_init();
 	if (!engine->mlx_ptr)
-		return (ft_putstr_fd("Error: Could not initialize mlx_ptr.\n", 2), 1);
+		return (ft_putstr_fd("Error\nCould not initialize mlx_ptr.\n", 2), 1);
 	engine->win_ptr = mlx_new_window(engine->mlx_ptr,
 			WIN_X, WIN_Y, WIN_NAME);
 	if (!engine->win_ptr)
-		return (ft_putstr_fd("Error: Could not initialize win_ptr.\n", 2), 1);
+		return (ft_putstr_fd("Error\nCould not initialize win_ptr.\n", 2), 1);
 	return (0);
 }

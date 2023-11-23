@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 18:21:02 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 10:30:31 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:34:56 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ bool	ft_map_data(t_map_data *map_data, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Error: open");
+		perror("open");
 		return (1);
 	}
 	if (0
