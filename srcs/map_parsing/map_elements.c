@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 13:32:44 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:44:24 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	ft_save_texture_path(char **dest, char *src)
 		return (ft_putstr_fd("Error\nDuplicate element in map.\n", 2), 1);
 	*dest = ft_strdup(src);
 	if (!*dest)
-		return (perror("Error\nmalloc"), 1);
+		return (perror("malloc"), 1);
 	return (0);
 }
 
@@ -41,7 +41,7 @@ bool	ft_save_rgb_settings(t_rgb *rgb, char *src)
 
 	tab = ft_split(src, ',');
 	if (!tab)
-		return (perror("Error\nmalloc"), 1);
+		return (perror("malloc"), 1);
 	if (ft_tablen(tab) != 3)
 		return (ft_free_table(tab),
 			ft_putstr_fd("Error\nRGB values incorrect\n", 2), 1);
@@ -98,7 +98,7 @@ bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)
 
 	*line = get_next_line(fd);
 	if (errno != 0)
-		return (ft_putstr_fd("Error\nmalloc", 2), 1);
+		return (perror("malloc"), 1);
 	while (*line)
 	{
 		if (**line != '\n')
@@ -108,7 +108,7 @@ bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)
 				return (0);
 			tab = ft_split(*line, ' ');
 			if (!tab)
-				return (perror("Error\nmalloc"), 1);
+				return (perror("malloc"), 1);
 			if (ft_select_element(map_data, tab))
 				return (ft_free_table(tab), 1);
 			ft_free_table(tab);
@@ -116,7 +116,7 @@ bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)
 		free(*line);
 		*line = get_next_line(fd);
 		if (errno != 0)
-			return (ft_putstr_fd("Error\nmalloc", 2), 1);
+			return (perror("malloc"), 1);
 	}
 	return (0);
 }
