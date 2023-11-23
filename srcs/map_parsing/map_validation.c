@@ -6,10 +6,11 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 13:45:01 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:01:06 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine.h"
 #include "map_parsing.h"
 #include "cub3D.h"
 #include <stdbool.h>
@@ -139,17 +140,23 @@ bool	ft_map_space_check(char **map)
  *		Bool function returns 0 on success and 1 on error.
  */
 
-bool	ft_map_at_least_one_start(char **map)
+bool	ft_map_at_least_one_start(t_map_data *map_data)
 {
 	int		y;
 	char	*nsew;
 
 	y = 0;
-	while (map[y])
+	while (map_data->map[y])
 	{
-		nsew = ft_strset(map[y], "01 ");
+		nsew = ft_strset(map_data->map[y], "01 ");
 		if (nsew)
+		{
+			map_data->start_pos.x = nsew - map_data->map[y];
+			map_data->start_pos.y = y;
+			map_data->start_pos.source = 0;
+			map_data->start_pos.neighbors = 0;
 			return (0);
+		}
 		y++;
 	}
 	ft_putstr_fd("Error\nNo starting position (N, S, E, or W) in map.\n", 2);
@@ -179,7 +186,7 @@ bool	ft_map_validation(t_map_data *map_data)
 		|| ft_map_crawl(map_data->map, &head)
 		|| ft_map_boarder_check(map_data->map)
 		|| ft_map_space_check(map_data->map)
-		|| ft_map_at_least_one_start(map_data->map)
+		|| ft_map_at_least_one_start(map_data)
 	)
 		return (1);
 	return (0);

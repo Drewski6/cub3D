@@ -6,12 +6,22 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:49:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 22:53:08 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:06:16 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "mlx.h"
+
+/*
+ *	***** ft_draw_background *****
+ *
+ *	DESCRIPTION:
+ *		Adds the floor and ceiling colors to the background image and puts that
+ *		image to the window.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
 
 void	ft_draw_background(t_engine *engine,
 						t_image *bg_image, t_rgb *f, t_rgb *c)
