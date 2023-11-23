@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 23:06:41 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 23:34:29 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ typedef struct s_engine
 // Only one address can be passed to the mlx_hook family of functions.
 typedef struct s_clear
 {
-	void	*engine;
-	void	*map_data;
+	t_engine	*engine;
+	t_map_data	*map_data;
 }			t_clear;
 
 typedef struct s_rgb
@@ -87,18 +87,24 @@ typedef struct s_rgb
 	int			blue;
 }				t_rgb;
 
+typedef struct s_player
+{
+
+}			t_player;
+
 //***** function declarations *****//
 
+bool	ft_render(t_map_data *map_data, t_engine *engine, t_player *player);
 void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);
 int		ft_key_press(int key, void *param);
-bool	ft_render(t_map_data *map_data, t_engine *engine);
 bool	ft_images_init(t_image *image, void *mlx_ptr, int x, int y);
 bool	ft_img_buf_set_px_color(t_image *image, t_rgb *color, int x, int y);
 bool	ft_paint_bucket(t_image *image, t_rgb *color, int x, int y);
 void	ft_draw_background(t_engine *engine,
 			t_image *bg_image, t_rgb *f, t_rgb *c);
 void	ft_draw_map(t_engine *engine);
-void	ft_draw_player(void);
+bool	ft_player_init(t_player *player, t_map_data *map_data);
+void	ft_draw_player(t_player *player);
 
 #endif
