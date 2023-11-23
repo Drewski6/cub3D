@@ -6,12 +6,21 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:55:09 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 22:58:32 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:12:02 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "mlx.h"
+
+/*
+ *	***** ft_draw_map *****
+ *
+ *	DESCRIPTION:
+ *		Draws the displayable map for the player.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
 
 void	ft_draw_map(t_engine *engine)
 {
