@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:23:46 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 13:31:12 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:11:48 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,15 @@ void	ft_free_engine(t_engine *engine)
 		mlx_destroy_window(engine->mlx_ptr, engine->win_ptr);
 		engine->win_ptr = NULL;
 	}
-	if (engine->img_ptr)
+	if (engine->bg_img_ptr)
 	{
-		mlx_destroy_image(engine->mlx_ptr, engine->img_ptr);
-		engine->img_ptr = NULL;
+		mlx_destroy_image(engine->mlx_ptr, engine->bg_img_ptr);
+		engine->bg_img_ptr = NULL;
+	}
+	if (engine->map_img_ptr)
+	{
+		mlx_destroy_image(engine->mlx_ptr, engine->map_img_ptr);
+		engine->map_img_ptr = NULL;
 	}
 	if (engine->mlx_ptr)
 	{
@@ -67,6 +72,28 @@ void	ft_free_engine(t_engine *engine)
 		free(engine->mlx_ptr);
 		engine->mlx_ptr = NULL;
 	}
+}
+
+/*
+ *	***** ft_images_init *****
+ *
+ *	DESCRIPTION:
+ *		Initializes the images to be used in cub3D
+ *	RETURN:
+ *		ret
+ */
+
+bool	ft_images_init(t_engine *engine)
+{
+	engine->bg_img_ptr = mlx_new_image(engine->mlx_ptr,
+			WIN_X, WIN_Y);
+	if (!engine->bg_img_ptr)
+		return (ft_putstr_fd("Error\nCould not initialize bg_img_ptr.\n", 2), 1);
+	engine->map_img_ptr = mlx_new_image(engine->mlx_ptr,
+			MAP_X, MAP_Y);
+	if (!engine->map_img_ptr)
+		return (ft_putstr_fd("Error\nCould not initialize map_img_ptr.\n", 2), 1);
+	return (0);
 }
 
 /*
@@ -80,8 +107,6 @@ void	ft_free_engine(t_engine *engine)
 
 bool	ft_engine_init(t_engine *engine)
 {
-	engine->mlx_ptr = NULL;
-	engine->win_ptr = NULL;
 	engine->mlx_ptr = mlx_init();
 	if (!engine->mlx_ptr)
 		return (ft_putstr_fd("Error\nCould not initialize mlx_ptr.\n", 2), 1);

@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/23 12:35:56 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/23 16:56:20 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC 			=	main/main.c \
 					map_parsing/map_crawl.c \
 					engine/engine.c \
 					engine/keys.c \
+					engine/render.c \
 					debug/map_debug.c \
 
 NAME			=	cub3D

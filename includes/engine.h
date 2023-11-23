@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 12:50:52 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:11:18 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define WIN_X 1024
 # define WIN_Y 512
 # define WIN_NAME "dpentlan - cub3D"
+# define MAP_X 500
+# define MAP_Y 500
 
 # define HOME_PC
 # ifdef HOME_PC
@@ -51,11 +53,14 @@
 
 //***** typesdefs/structs *****//
 
+typedef struct s_map_data	t_map_data;
+
 typedef struct s_engine
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	void	*img_ptr;
+	void	*bg_img_ptr;
+	void	*map_img_ptr;
 }			t_engine;
 
 // t_clear is a struct for use with mlx_hook so the program can close properly.
@@ -72,5 +77,7 @@ int		ft_close_cub3d(t_clear *clear);
 void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);
 int		ft_key_press(int key, void *param);
+bool	ft_render(t_map_data *map_data, t_engine *engine);
+bool	ft_images_init(t_engine *engine);
 
 #endif
