@@ -6,12 +6,22 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:35:11 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 12:53:39 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:47:33 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "engine.h"
+
+/*
+ *	***** ft_key_press *****
+ *
+ *	DESCRIPTION:
+ *		Called when a key press event is detected. Use as a switch for key 
+ *		related events.
+ *	RETURN:
+ *		Returns int for mlx_key_hook.
+ */
 
 int	ft_key_press(int key, void *param)
 {
