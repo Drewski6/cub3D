@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 18:53:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:27:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ typedef struct s_rgb
 
 //***** function declarations *****//
 
-int		ft_close_cub3d(t_clear *clear);
 void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);
 int		ft_key_press(int key, void *param);
