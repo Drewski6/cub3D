@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/22 15:37:23 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:45:01 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ bool	ft_map_boarder_check(char **map)
 		if (y == 1 || y == (int)(ft_tablen(map) - 2))
 			if (ft_strset(map[y], " 1"))
 				return (ft_putstr_fd(
-						"Error: Map boarder contains invalid character.\n"
+						"Error\nMap boarder contains invalid character.\n"
 						, 2), 1);
 		if (map[y][1] != '1' && map[y][1] != ' ')
 			return (ft_putstr_fd(
-					"Error: Map boarder contains invalid character.\n"
+					"Error\nMap boarder contains invalid character.\n"
 					, 2), 1);
 		if (map[y][ft_strlen(map[y]) - 2] != '1'
 			&& map[y][ft_strlen(map[y]) - 2] != ' ')
 			return (ft_putstr_fd(
-					"Error: Map boarder contains invalid character.\n"
+					"Error\nMap boarder contains invalid character.\n"
 					, 2), 1);
 		y++;
 	}
@@ -119,7 +119,7 @@ bool	ft_map_space_check(char **map)
 				coord = (t_coord){x, y, 0, 0};
 				if (ft_map_space_invalid_neighbors(map, &coord))
 					return (ft_putstr_fd(
-							"Error: invalid character next to a space.\n",
+							"Error\nInvalid character next to a space.\n",
 							2), 1);
 			}
 			x++;
@@ -152,7 +152,7 @@ bool	ft_map_at_least_one_start(char **map)
 			return (0);
 		y++;
 	}
-	ft_putstr_fd("Error: No starting position (N, S, E, or W) in map.\n", 2);
+	ft_putstr_fd("Error\nNo starting position (N, S, E, or W) in map.\n", 2);
 	return (1);
 }
 

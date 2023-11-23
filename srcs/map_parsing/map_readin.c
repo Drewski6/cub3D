@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/20 21:34:11 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:35:21 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ bool	ft_initial_read_in(t_list **list, int fd, char **line)
 
 	*list = ft_lstnew((void *)*line);
 	if (errno != 0)
-		return (ft_putstr_fd("Error: malloc", 2), 1);
+		return (perror("malloc"), 1);
 	while (*line)
 	{
 		*line = get_next_line(fd);
 		if (errno != 0)
-			return (ft_putstr_fd("Error: malloc", 2), 1);
+			return (perror("malloc"), 1);
 		ft_striteri(*line, ft_newline_to_null);
 		if (ft_strset(*line, "01NSEW "))
-			return (ft_putstr_fd("Error: Invalid character in map.\n", 2),
+			return (ft_putstr_fd("Error\nInvalid character in map.\n", 2),
 				1);
 		current = ft_lstnew(*line);
 		if (!current)
-			return (perror("Error: malloc"), 1);
+			return (perror("malloc"), 1);
 		ft_lstadd_back(list, current);
 	}
 	return (0);
@@ -51,12 +51,12 @@ char	**ft_create_blank_map(size_t x_len, size_t y_len)
 	i = 0;
 	map = (char **)ft_calloc(y_len + 1 + 2, sizeof(char *));
 	if (!map)
-		return (perror("Error: malloc"), NULL);
+		return (perror("malloc"), NULL);
 	while (i < y_len + 2)
 	{
 		map[i] = (char *)ft_calloc(x_len + 1 + 2, sizeof(char));
 		if (!map[i])
-			return (perror("Error: malloc"), NULL);
+			return (perror("malloc"), NULL);
 		ft_memset(map[i], 32, x_len + 2);
 		i++;
 	}

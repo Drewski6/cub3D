@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:37:54 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/18 20:37:05 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/23 13:42:26 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ bool	ft_arg_parse(int argc, char **argv)
 	size_t	arg_len;
 
 	if (argc != 2)
-		return (ft_putstr_fd("Error: Incorrect number of arguments.\n", 2), 1);
+		return (ft_putstr_fd("Error\nIncorrect number of arguments.\n", 2), 1);
 	arg_len = ft_strlen(argv[1]);
 	if (arg_len < 5)
-		return (ft_putstr_fd("Error: map file type incorrect.\n", 2), 1);
+		return (ft_putstr_fd("Error\nMap file type incorrect.\n", 2), 1);
 	if (ft_strnstr(argv[1], ".cub", arg_len) != argv[1] + (arg_len - 4))
-		return (ft_putstr_fd("Error: map file type incorrect.\n", 2), 1);
+		return (ft_putstr_fd("Error\nMap file type incorrect.\n", 2), 1);
 	return (0);
 }
