@@ -6,15 +6,15 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/24 11:44:05 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/24 12:00:39 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC				=	cc
 
-SRC 			=	main/main.c \
-					main/close.c \
+SRC 			=	main/close.c \
 					main/hooks.c \
+					main/main.c \
 					args/arg_parsing.c \
 					map_parsing/map_data_load.c \
 					map_parsing/map_data_valid.c \
@@ -22,14 +22,14 @@ SRC 			=	main/main.c \
 					map_parsing/map_readin.c \
 					map_parsing/map_validation.c \
 					map_parsing/map_crawl.c \
+					engine/drawing/rectangle.c \
+					engine/image_utils/background.c \
+					engine/image_utils/init_free_image.c \
+					engine/image_utils/map.c \
 					engine/init_free_engine.c \
 					engine/keys.c \
-					engine/render.c \
-					engine/drawing/rectangle.c \
-					engine/drawing/background.c \
-					engine/drawing/map.c \
 					engine/player.c \
-					engine/image_utils/init_free_image.c \
+					engine/render.c \
 					debug/map_debug.c \
 
 NAME			=	cub3D
