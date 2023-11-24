@@ -6,13 +6,12 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 13:17:28 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:12:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:15:59 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "libft.h"
-#include <stdio.h>
 
 bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
 						t_point size, t_rgb color)
