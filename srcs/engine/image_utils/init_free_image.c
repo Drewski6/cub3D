@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_free.c                                        :+:      :+:    :+:   */
+/*   init_free_image.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:33:19 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 11:39:19 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:40:54 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	ft_image_init(t_image *image,
 				void *mlx_ptr, t_image_id ID, t_point size)
 {
 	image->mlx_ptr = mlx_ptr;
-	image->ID = ID;
+	image->id = ID;
 	image->size = size;
 	image->img_ptr = mlx_new_image(mlx_ptr,
 			size.x, size.y);
@@ -100,7 +100,7 @@ void	ft_free_image(void *image_ptr)
 	image->size_line = 0;
 	image->endian = 0;
 	image->mlx_ptr = NULL;
-	image->ID = NO_ID;
+	image->id = NO_ID;
 	image->size = (t_point){0, 0};
 	free(image);
 }

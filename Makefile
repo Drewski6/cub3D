@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/24 12:00:39 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/24 12:20:40 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC 			=	main/close.c \
 					map_parsing/map_crawl.c \
 					engine/drawing/rectangle.c \
 					engine/image_utils/background.c \
+					engine/image_utils/get_image.c \
 					engine/image_utils/init_free_image.c \
 					engine/image_utils/map.c \
 					engine/init_free_engine.c \

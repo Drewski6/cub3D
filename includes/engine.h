@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 11:48:42 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:40:14 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef enum e_image_id
 
 //***** typesdefs/structs *****//
 
-
 typedef struct s_map_data	t_map_data;
 typedef struct s_list		t_list;
 
@@ -79,15 +78,13 @@ typedef struct s_player
 
 typedef struct s_image
 {
-	//***** used in mlx *****//
 	void		*img_ptr;
 	char		*img_buf;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	//***** used in engine *****//
 	void		*mlx_ptr;
-	t_image_id	ID;
+	t_image_id	id;
 	t_point		size;
 }				t_image;
 
@@ -126,16 +123,17 @@ int		ft_key_press(int key, void *param);
 		//***** drawing *****/
 void	ft_img_buf_set_px_color(t_image *image, t_rgb *color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rgb *color, int x, int y);
-void	ft_draw_background(t_engine *engine,
-			t_image *bg_image, t_rgb *f, t_rgb *c);
+void	ft_draw_background(t_image *bg_image, t_rgb *f, t_rgb *c);
 void	ft_draw_map(t_engine *engine, t_map_data *map_data, t_player *player);
 		//***** player *****/
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 void	ft_draw_player(t_player *player);
 		//***** images *****/
-bool	ft_image_init(t_image *image, void *mlx_ptr, t_image_id ID, t_point size);
+bool	ft_image_init(t_image *image,
+			void *mlx_ptr, t_image_id ID, t_point size);
 bool	ft_add_image(t_list **lst, void *mlx_ptr, t_image_id ID, t_point size);
 void	ft_free_image(void *image_ptr);
 void	ft_free_lst_images(t_list **lst);
+t_image	*ft_get_image(t_list *lst, t_image_id ID);
 
 #endif
