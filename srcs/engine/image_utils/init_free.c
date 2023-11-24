@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:33:19 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 11:33:17 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:39:19 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,22 @@ bool	ft_image_init(t_image *image,
  *		Initializes a new image, and a new link for the linked list and adds
  *		a link pointing to the new image to the end of the list.
  *	RETURN:
- *		Returns an integer indicating the index in the list of the new image.
+ *		Bool function returns 0 on success and 1 on error.
  */
 
-int	ft_add_image(t_list **lst, void *mlx_ptr, t_image_id ID, t_point size)
+bool	ft_add_image(t_list **lst, void *mlx_ptr, t_image_id ID, t_point size)
 {
 	t_image	*new_image;
 	t_list	*new_link;
 
 	new_image = (t_image *)ft_calloc(1, sizeof(t_image));
 	if (!new_image)
-		return (perror("malloc"), -1);
+		return (perror("malloc"), 1);
 	if (ft_image_init(new_image, mlx_ptr, ID, size))
 		return (-1);
 	new_link = ft_lstnew(new_image);
 	if (!new_link)
-		return (perror("malloc"), -1);
+		return (perror("malloc"), 1);
 	ft_lstadd_back(lst, new_link);
 	return (0);
 }
