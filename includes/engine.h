@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 12:50:52 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:39:17 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@
 
 //***** defines *****//
 
-# define WIN_X 500
-# define WIN_Y 500
+# define WIN_X 1024
+# define WIN_Y 512
 # define WIN_NAME "dpentlan - cub3D"
+# define MAP_X 500
+# define MAP_Y 500
+# define MAP_ORIG_X 10
+# define MAP_ORIG_Y 10
 
 # define HOME_PC
 # ifdef HOME_PC
@@ -49,28 +53,109 @@
 #  define D_KEY			0
 # endif
 
+//***** enums *****//
+
+typedef enum e_image_id
+{
+	NO_ID = 0,
+	BG_IMAGE_C = 1,
+	BG_IMAGE_F = 2,
+	MAP_BG = 3,
+	MAP_SQR = 4,
+	PLAYER = 5,
+}	t_image_id;
+
 //***** typesdefs/structs *****//
+
+typedef struct s_map_data	t_map_data;
+typedef struct s_list		t_list;
+
+typedef struct s_rgb
+{
+	int			red;
+	int			green;
+	int			blue;
+}				t_rgb;
+
+typedef struct s_point
+{
+	int		x;
+	int		y;
+}			t_point;
+
+typedef struct s_rect
+{
+	t_point	top_left;
+	t_point	bottom_right;
+	t_rgb	color;
+}		t_rect;
+
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}			t_pos;
+
+typedef struct s_player
+{
+	t_pos	pos;
+}			t_player;
+
+typedef struct s_image
+{
+	void		*img_ptr;
+	char		*img_buf;
+	int			bits_per_pixel;
+	int			size_line;
+	int			endian;
+	void		*mlx_ptr;
+	t_image_id	id;
+	t_point		size;
+}				t_image;
 
 typedef struct s_engine
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_list		*lst_images;
 }			t_engine;
 
 // t_clear is a struct for use with mlx_hook so the program can close properly.
 // Only one address can be passed to the mlx_hook family of functions.
 typedef struct s_clear
 {
-	void	*engine;
-	void	*map_data;
+	t_engine	*engine;
+	t_map_data	*map_data;
 }			t_clear;
 
 //***** function declarations *****//
 
-int		ft_close_cub3d(t_clear *clear);
+		//***** render *****/
+bool	ft_render(t_engine *engine, t_map_data *map_data, t_player *player);
+bool	ft_prerender(t_engine *engine, t_map_data *map_data, t_player *player);
+		//***** engine *****/
 void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);
+		//***** keys *****/
 int		ft_key_press(int key, void *param);
+		//***** drawing *****/
+void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
+void	ft_paint_bucket(t_image *image, t_rect rect);
+void	ft_draw_background(t_image *bg_image, t_rgb *f, t_rgb *c);
+bool	ft_draw_map(t_engine *engine, t_map_data *map_data, t_player *player);
+		//***** player *****/
+bool	ft_player_init(t_player *player, t_map_data *map_data);
+void	ft_draw_player(t_player *player);
+		//***** images *****/
+bool	ft_image_init(t_image *image,
+			void *mlx_ptr, t_image_id ID, t_point size);
+bool	ft_add_image(t_list **lst, void *mlx_ptr, t_image_id ID, t_point size);
+void	ft_free_image(void *image_ptr);
+void	ft_free_lst_images(t_list **lst);
+t_image	*ft_get_image(t_list *lst, t_image_id ID);
+bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID,
+			t_point start);
+bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
+			t_point size, t_rgb color);
 
 #endif

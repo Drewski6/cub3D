@@ -6,12 +6,16 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:43 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 12:26:13 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:41:39 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+//***** includes *****//
+
+# include "engine.h"
 
 //***** typedefs/structs *****//
 
@@ -31,13 +35,6 @@ typedef struct s_coord
 	unsigned char	neighbors;
 }					t_coord;
 
-typedef struct s_rgb
-{
-	int			red;
-	int			green;
-	int			blue;
-}				t_rgb;
-
 typedef struct s_map_data
 {
 	char		*no;
@@ -47,6 +44,13 @@ typedef struct s_map_data
 	t_rgb		f;
 	t_rgb		c;
 	char		**map;
+	t_coord		start_pos;
+	t_point		size;
 }				t_map_data;
+
+//***** function declaractions *****//
+
+int		ft_close_cub3d(t_clear *clear);
+bool	ft_hooks_cub3d(t_clear *clear);
 
 #endif
