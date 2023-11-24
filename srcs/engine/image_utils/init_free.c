@@ -6,13 +6,15 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:33:19 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 11:18:29 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:33:17 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "libft.h"
 #include "mlx.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /*
  *	***** ft_image_init *****
@@ -23,11 +25,14 @@
  *		Bool function returns 0 on success and 1 on error.
  */
 
-bool	ft_image_init(t_image *image, void *mlx_ptr, int x, int y)
+bool	ft_image_init(t_image *image,
+				void *mlx_ptr, t_image_id ID, t_point size)
 {
 	image->mlx_ptr = mlx_ptr;
+	image->ID = ID;
+	image->size = size;
 	image->img_ptr = mlx_new_image(mlx_ptr,
-			x, y);
+			size.x, size.y);
 	if (!image->img_ptr)
 		return (ft_putstr_fd("Error\nCould not initialize image.\n", 2), 1);
 	image->bits_per_pixel = 0;
@@ -54,13 +59,20 @@ bool	ft_image_init(t_image *image, void *mlx_ptr, int x, int y)
  *		Returns an integer indicating the index in the list of the new image.
  */
 
-int	ft_add_image(t_list *lst, void *mlx_ptr, t_image_id ID, t_point size)
+int	ft_add_image(t_list **lst, void *mlx_ptr, t_image_id ID, t_point size)
 {
-	(void) lst;
-	(void) mlx_ptr;
-	(void) size;
-	(void) ID;
+	t_image	*new_image;
+	t_list	*new_link;
 
+	new_image = (t_image *)ft_calloc(1, sizeof(t_image));
+	if (!new_image)
+		return (perror("malloc"), -1);
+	if (ft_image_init(new_image, mlx_ptr, ID, size))
+		return (-1);
+	new_link = ft_lstnew(new_image);
+	if (!new_link)
+		return (perror("malloc"), -1);
+	ft_lstadd_back(lst, new_link);
 	return (0);
 }
 
@@ -90,6 +102,7 @@ void	ft_free_image(void *image_ptr)
 	image->mlx_ptr = NULL;
 	image->ID = NO_ID;
 	image->size = (t_point){0, 0};
+	free(image);
 }
 
 /*

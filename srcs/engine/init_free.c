@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:23:46 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 11:10:43 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:34:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ bool	ft_engine_init(t_engine *engine)
 	if (!engine->win_ptr)
 		return (ft_putstr_fd("Error\nCould not initialize win_ptr.\n", 2), 1);
 	if (0
-		|| ft_add_image(engine->lst_images, engine->mlx_ptr,
+		|| ft_add_image(&engine->lst_images, engine->mlx_ptr,
 			BG_IMAGE, (t_point){WIN_X, WIN_Y}) < 0
-		|| ft_add_image(engine->lst_images, engine->mlx_ptr,
+		|| ft_add_image(&engine->lst_images, engine->mlx_ptr,
 			MAP_IMAGE, (t_point){MAP_X, MAP_Y}) < 0
 	)
 		return (ft_putstr_fd("Error\nCould not initialize images.\n", 2), 1);
