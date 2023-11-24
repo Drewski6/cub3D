@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:14:50 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:39:17 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define WIN_NAME "dpentlan - cub3D"
 # define MAP_X 500
 # define MAP_Y 500
+# define MAP_ORIG_X 10
+# define MAP_ORIG_Y 10
 
 # define HOME_PC
 # ifdef HOME_PC
