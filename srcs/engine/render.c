@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:05:07 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:10:45 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@
 bool	ft_prerender(t_engine *engine, t_map_data *map_data, t_player *player)
 {
 	(void) player;
-	if (ft_create_rect_image(engine, BG_IMAGE_C, (t_point){WIN_X, WIN_Y},
-		map_data->c))
+	if (0
+		|| ft_create_rect_image(engine, BG_IMAGE_C, (t_point){WIN_X, WIN_Y / 2},
+		map_data->c)
+		|| ft_create_rect_image(engine, BG_IMAGE_F, (t_point){WIN_X, WIN_Y / 2},
+		map_data->f)
+	)
 		return (1);
 	return (0);
 }
@@ -51,6 +55,8 @@ bool	ft_render(t_engine *engine, t_map_data *map_data, t_player *player)
 	if (0
 		|| ft_send_image_to_window(engine, engine->lst_images, BG_IMAGE_C,
 			(t_point){0, 0})
+		|| ft_send_image_to_window(engine, engine->lst_images, BG_IMAGE_F,
+			(t_point){0, WIN_Y / 2})
 	)
 		return (1);
 	return (0);

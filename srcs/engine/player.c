@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 10:34:55 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:12:29 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ bool	ft_player_init(t_player *player, t_map_data *map_data)
 
 void	ft_draw_player(t_player *player)
 {
-	printf("player x(%f) y(%f)\n", player->pos.x, player->pos.y);
+	(void) player;
 }

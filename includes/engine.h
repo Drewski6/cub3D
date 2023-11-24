@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:05:34 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:11:56 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_rgb
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
+	int		x;
+	int		y;
 }			t_point;
 
 typedef struct s_rect

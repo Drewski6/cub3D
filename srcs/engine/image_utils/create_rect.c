@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 13:17:28 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:01:48 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:12:16 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
 {
 	t_image	*image;
 
-	printf("size: x(%f) y(%f)\n", size.x, size.y);
 	if (ft_add_image(&engine->lst_images, engine->mlx_ptr, ID, size))
 		return (1);
 	image = ft_get_image(engine->lst_images, ID);
