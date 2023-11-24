@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:33:19 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 11:10:02 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:18:29 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,26 @@ bool	ft_image_init(t_image *image, void *mlx_ptr, int x, int y)
 }
 
 /*
+ *	***** ft_add_image *****
+ *
+ *	DESCRIPTION:
+ *		Initializes a new image, and a new link for the linked list and adds
+ *		a link pointing to the new image to the end of the list.
+ *	RETURN:
+ *		Returns an integer indicating the index in the list of the new image.
+ */
+
+int	ft_add_image(t_list *lst, void *mlx_ptr, t_image_id ID, t_point size)
+{
+	(void) lst;
+	(void) mlx_ptr;
+	(void) size;
+	(void) ID;
+
+	return (0);
+}
+
+/*
  *	***** ft_free_image *****
  *
  *	DESCRIPTION:
@@ -63,28 +83,13 @@ void	ft_free_image(void *image_ptr)
 		mlx_destroy_image(image->mlx_ptr, image->img_ptr);
 		image->img_ptr = NULL;
 	}
-	image->endian = 0;
-	image->size_line = 0;
+	image->img_buf = NULL;
 	image->bits_per_pixel = 0;
-}
-
-/*
- *	***** ft_add_image *****
- *
- *	DESCRIPTION:
- *		Initializes a new image, and a new link for the linked list and adds
- *		a link pointing to the new image to the end of the list.
- *	RETURN:
- *		Returns an integer indicating the index in the list of the new image.
- */
-
-int	ft_add_image(t_list *lst, void *mlx_ptr, t_image_id ID, t_point size)
-{
-	(void) lst;
-	(void) mlx_ptr;
-	(void) size;
-	(void) ID;
-	return (0);
+	image->size_line = 0;
+	image->endian = 0;
+	image->mlx_ptr = NULL;
+	image->ID = NO_ID;
+	image->size = (t_point){0, 0};
 }
 
 /*

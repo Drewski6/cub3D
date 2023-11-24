@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 11:09:49 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:16:27 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 
 typedef enum e_image_id
 {
+	NO_ID = 0,
 	BG_IMAGE = 1,
 	MAP_IMAGE = 2,
 }	t_image_id;
@@ -65,15 +66,29 @@ typedef enum e_image_id
 typedef struct s_map_data	t_map_data;
 typedef struct s_list		t_list;
 
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}			t_point;
+
+typedef struct s_player
+{
+	t_point	pos;
+}			t_player;
+
 typedef struct s_image
 {
+	//***** used in mlx *****//
 	void		*img_ptr;
 	char		*img_buf;
 	int			bits_per_pixel;
 	int			size_line;
 	int			endian;
-	//****************************//
+	//***** used in engine *****//
 	void		*mlx_ptr;
+	t_image_id	ID;
+	t_point		size;
 }				t_image;
 
 typedef struct s_engine
@@ -97,17 +112,6 @@ typedef struct s_rgb
 	int			green;
 	int			blue;
 }				t_rgb;
-
-typedef struct s_point
-{
-	double	x;
-	double	y;
-}			t_point;
-
-typedef struct s_player
-{
-	t_point	pos;
-}			t_player;
 
 //***** function declarations *****//
 
