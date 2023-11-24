@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:42:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 13:50:19 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:26:32 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y)
  *	***** ft_paint_bucket *****
  *
  *	DESCRIPTION:
- *		My first basic coloring function. Starting from position (0, 0) changes
- *		the color in the image buffer until position (x, y) using color 'color'.
+ *		My first basic coloring function. Starting from position (rect top_left)
+ *		changes the color in the image buffer until position (rect bottom_right)
+ *		using color (rect color).
  *	RETURN:
  *		Void function does not return a value.
  */

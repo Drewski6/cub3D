@@ -6,12 +6,24 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 13:17:28 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:15:59 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:29:20 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "libft.h"
+
+/*
+ *	***** ft_create_rect_image *****
+ *
+ *	DESCRIPTION:
+ *		Uses ft_add_image to add a new malloced image struct with initialized
+ *		values to a linked list of images.
+ *		Uses ft_get_image to then get the address of the newly created image
+ *		and calls the paintbucket function to fill with an initial color.
+ *	RETURN:
+ *		Bool function returns 0 on success and 1 on error.
+ */
 
 bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
 						t_point size, t_rgb color)
