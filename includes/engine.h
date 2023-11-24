@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 09:26:52 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:31:27 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_player
 
 //***** function declarations *****//
 
-bool	ft_render(t_map_data *map_data, t_engine *engine, t_player *player);
+bool	ft_render(t_engine *engine, t_map_data *map_data, t_player *player);
 void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);
 int		ft_key_press(int key, void *param);
@@ -109,7 +109,7 @@ void	ft_img_buf_set_px_color(t_image *image, t_rgb *color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rgb *color, int x, int y);
 void	ft_draw_background(t_engine *engine,
 			t_image *bg_image, t_rgb *f, t_rgb *c);
-void	ft_draw_map(t_engine *engine, t_player *player);
+void	ft_draw_map(t_engine *engine, t_map_data *map_data, t_player *player);
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 void	ft_draw_player(t_player *player);
 
