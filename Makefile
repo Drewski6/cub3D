@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/23 23:17:20 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/24 11:01:43 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,11 @@ SRC 			=	main/main.c \
 					engine/init_free.c \
 					engine/keys.c \
 					engine/render.c \
-					engine/drawing.c \
+					engine/drawing/rectangle.c \
 					engine/background.c \
 					engine/map.c \
 					engine/player.c \
+					engine/image_utils/init_free.c \
 					debug/map_debug.c \
 
 NAME			=	cub3D

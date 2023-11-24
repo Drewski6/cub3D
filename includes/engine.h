@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 09:31:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:58:09 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,19 @@
 #  define D_KEY			0
 # endif
 
+//***** enums *****//
+
+typedef enum e_image_id
+{
+	BG_IMAGE = 1,
+	MAP_IMAGE = 2,
+}	t_image_id;
+
 //***** typesdefs/structs *****//
 
+
 typedef struct s_map_data	t_map_data;
+typedef struct s_list		t_list;
 
 typedef struct s_image
 {
@@ -68,8 +78,7 @@ typedef struct s_engine
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_image		bg_image;
-	t_image		map_image;
+	t_list		*lst_images;
 }			t_engine;
 
 // t_clear is a struct for use with mlx_hook so the program can close properly.
@@ -112,5 +121,9 @@ void	ft_draw_background(t_engine *engine,
 void	ft_draw_map(t_engine *engine, t_map_data *map_data, t_player *player);
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 void	ft_draw_player(t_player *player);
+void	ft_free_image(t_image *image, void *mlx_ptr);
+bool	ft_image_init(t_image *image, void *mlx_ptr, int x, int y);
+int		ft_add_image(t_list *lst, void *mlx_ptr, t_image_id ID, t_point size);
+void	ft_free_lst_images(t_list *lst, void *mlx_ptr);
 
 #endif
