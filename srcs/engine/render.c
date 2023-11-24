@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 12:44:06 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:55:30 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ bool	ft_prerender(t_engine *engine, t_map_data *map_data, t_player *player)
 		return (ft_putstr_fd("Error\nImage with matching ID not found \
 					during prerender.\n", 2), 1);
 	ft_draw_background(image, &map_data->f, &map_data->c);
-	ft_draw_map(engine, map_data, player);
+	if (ft_draw_map(engine, map_data, player))
+		return (1);
 	return (0);
 }
 
@@ -54,20 +55,12 @@ bool	ft_prerender(t_engine *engine, t_map_data *map_data, t_player *player)
  *	RETURN:
  *		Bool function returns 0 on success and 1 on error.
  */
-	// mlx_put_image_to_window(engine->mlx_ptr, engine->win_ptr,
-	// 	engine->map_image.img_ptr, 5, 5);
 
 bool	ft_render(t_engine *engine, t_map_data *map_data, t_player *player)
 {
-	t_image	*image;
-
 	(void) map_data;
 	(void) player;
-	image = ft_get_image(engine->lst_images, BG_IMAGE);
-	if (!image)
-		return (ft_putstr_fd("Error\nImage with matching ID not found \
-					during render.\n", 2), 1);
-	mlx_put_image_to_window(engine->mlx_ptr, engine->win_ptr,
-		image->img_ptr, 0, 0);
+	ft_send_image_to_window(engine, engine->lst_images, BG_IMAGE);
+	ft_send_image_to_window(engine, engine->lst_images, MAP_IMAGE);
 	return (0);
 }
