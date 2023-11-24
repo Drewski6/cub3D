@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 00:10:58 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:26:52 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_img_buf_set_px_color(t_image *image, t_rgb *color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rgb *color, int x, int y);
 void	ft_draw_background(t_engine *engine,
 			t_image *bg_image, t_rgb *f, t_rgb *c);
-void	ft_draw_map(t_engine *engine);
+void	ft_draw_map(t_engine *engine, t_player *player);
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 void	ft_draw_player(t_player *player);
 
