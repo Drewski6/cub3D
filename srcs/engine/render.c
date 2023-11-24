@@ -6,13 +6,31 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 10:59:40 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:46:48 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "mlx.h"
 #include "cub3D.h"
+
+/*
+ *	***** ft_prerender *****
+ *
+ *	DESCRIPTION:
+ *		Initializes most images that will not change during execution of the
+ *		program.
+ *	RETURN:
+ *		Bool function returns 0 on success and 1 on error.
+ */
+
+bool	ft_prerender(t_engine *engine, t_map_data *map_data, t_player *player)
+{
+	(void) engine;
+	(void) map_data;
+	(void) player;
+	return (0);
+}
 
 /*
  *	***** ft_render *****
