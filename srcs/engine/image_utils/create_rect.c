@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   create_rect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 22:55:09 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 12:50:36 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/11/24 13:17:28 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/11/24 13:48:29 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
-#include "mlx.h"
 #include "libft.h"
+#include <stdio.h>
 
-/*
- *	***** ft_draw_map *****
- *
- *	DESCRIPTION:
- *		Draws the displayable map for the player.
- *	RETURN:
- *		Void function does not return a value.
- */
-
-bool	ft_draw_map(t_engine *engine, t_map_data *map_data, t_player *player)
+bool	ft_create_rect_image(t_engine *engine, t_image_id ID, t_rect rect)
 {
-	t_rgb	map;
 	t_image	*image;
+	t_point	size;
 
-	(void) map_data;
-	map = (t_rgb){40, 40, 40};
-	image = ft_get_image(engine->lst_images, MAP_IMAGE);
+	size.x = rect.bottom_right.x - rect.top_left.x;
+	size.y = rect.bottom_right.y - rect.top_left.y;
+	printf("size: x(%f) y(%f)\n", size.x, size.y);
+	if (ft_add_image(&engine->lst_images, engine->mlx_ptr, ID, size))
+		return (1);
+	image = ft_get_image(engine->lst_images, ID);
 	if (!image)
 		return (ft_putstr_fd("Error\nImage with matching ID not found \
 					during prerender.\n", 2), 1);
-	ft_paint_bucket(image, &map, MAP_X, MAP_Y);
-	ft_draw_player(player);
+	ft_paint_bucket(image, rect);
 	return (0);
 }

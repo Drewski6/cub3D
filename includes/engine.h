@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 12:54:41 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:43:52 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@
 typedef enum e_image_id
 {
 	NO_ID = 0,
-	BG_IMAGE = 1,
-	MAP_IMAGE = 2,
+	BG_IMAGE_C = 1,
+	BG_IMAGE_F = 2,
+	MAP_IMAGE = 3,
 }	t_image_id;
 
 //***** typesdefs/structs *****//
@@ -65,11 +66,25 @@ typedef enum e_image_id
 typedef struct s_map_data	t_map_data;
 typedef struct s_list		t_list;
 
+typedef struct s_rgb
+{
+	int			red;
+	int			green;
+	int			blue;
+}				t_rgb;
+
 typedef struct s_point
 {
 	double	x;
 	double	y;
 }			t_point;
+
+typedef struct s_rect
+{
+	t_point	top_left;
+	t_point	bottom_right;
+	t_rgb	color;
+}		t_rect;
 
 typedef struct s_player
 {
@@ -103,13 +118,6 @@ typedef struct s_clear
 	t_map_data	*map_data;
 }			t_clear;
 
-typedef struct s_rgb
-{
-	int			red;
-	int			green;
-	int			blue;
-}				t_rgb;
-
 //***** function declarations *****//
 
 		//***** render *****/
@@ -121,8 +129,8 @@ bool	ft_engine_init(t_engine *engine);
 		//***** keys *****/
 int		ft_key_press(int key, void *param);
 		//***** drawing *****/
-void	ft_img_buf_set_px_color(t_image *image, t_rgb *color, int x, int y);
-void	ft_paint_bucket(t_image *image, t_rgb *color, int x, int y);
+void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
+void	ft_paint_bucket(t_image *image, t_rect rect);
 void	ft_draw_background(t_image *bg_image, t_rgb *f, t_rgb *c);
 bool	ft_draw_map(t_engine *engine, t_map_data *map_data, t_player *player);
 		//***** player *****/
@@ -136,5 +144,6 @@ void	ft_free_image(void *image_ptr);
 void	ft_free_lst_images(t_list **lst);
 t_image	*ft_get_image(t_list *lst, t_image_id ID);
 bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID);
+bool	ft_create_rect_image(t_engine *engine, t_image_id ID, t_rect rect);
 
 #endif
