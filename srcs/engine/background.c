@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:49:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 00:06:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:34:48 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	ft_draw_background(t_engine *engine,
 	ft_paint_bucket(bg_image, f, WIN_X, WIN_Y);
 	ft_paint_bucket(bg_image, c, WIN_X, WIN_Y / 2);
 	mlx_put_image_to_window(engine->mlx_ptr, engine->win_ptr,
-		engine->bg_image.img_ptr, 0, 0);
+		bg_image->img_ptr, 0, 0);
 }
