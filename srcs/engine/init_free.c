@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:23:46 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 10:58:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:10:43 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_free_engine(t_engine *engine)
 		engine->win_ptr = NULL;
 	}
 	if (engine->lst_images)
-		ft_free_lst_images(engine->lst_images, engine->mlx_ptr);
+		ft_free_lst_images(&engine->lst_images);
 	if (engine->mlx_ptr)
 	{
 		mlx_destroy_display(engine->mlx_ptr);
