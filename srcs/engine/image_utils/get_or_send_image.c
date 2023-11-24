@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:20:26 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 12:55:56 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:02:53 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ t_image	*ft_get_image(t_list *lst, t_image_id ID)
  *		Bool function returns 0 on success and 1 on error.
  */
 
-bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID)
+bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID,
+							t_point start)
 {
 	t_image	*image;
 
@@ -61,6 +62,6 @@ bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID)
 		return (ft_putstr_fd("Error\nImage with matching ID not found \
 					during render.\n", 2), 1);
 	mlx_put_image_to_window(engine->mlx_ptr, engine->win_ptr,
-		image->img_ptr, 0, 0);
+		image->img_ptr, start.x, start.y);
 	return (0);
 }

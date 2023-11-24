@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 13:43:52 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:05:34 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ typedef enum e_image_id
 	NO_ID = 0,
 	BG_IMAGE_C = 1,
 	BG_IMAGE_F = 2,
-	MAP_IMAGE = 3,
+	MAP_BG = 3,
+	MAP_SQR = 4,
+	PLAYER = 5,
 }	t_image_id;
 
 //***** typesdefs/structs *****//
@@ -143,7 +145,9 @@ bool	ft_add_image(t_list **lst, void *mlx_ptr, t_image_id ID, t_point size);
 void	ft_free_image(void *image_ptr);
 void	ft_free_lst_images(t_list **lst);
 t_image	*ft_get_image(t_list *lst, t_image_id ID);
-bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID);
-bool	ft_create_rect_image(t_engine *engine, t_image_id ID, t_rect rect);
+bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID,
+			t_point start);
+bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
+			t_point size, t_rgb color);
 
 #endif
