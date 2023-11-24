@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 12:38:55 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:44:06 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ bool	ft_prerender(t_engine *engine, t_map_data *map_data, t_player *player)
 {
 	t_image	*image;
 
-	(void) map_data;
-	(void) player;
 	if (0
 		|| ft_add_image(&engine->lst_images, engine->mlx_ptr,
 			BG_IMAGE, (t_point){WIN_X, WIN_Y})
@@ -63,7 +61,6 @@ bool	ft_render(t_engine *engine, t_map_data *map_data, t_player *player)
 {
 	t_image	*image;
 
-	(void) engine;
 	(void) map_data;
 	(void) player;
 	image = ft_get_image(engine->lst_images, BG_IMAGE);
