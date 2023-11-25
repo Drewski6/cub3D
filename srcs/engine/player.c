@@ -6,10 +6,11 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 10:30:08 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:06:45 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "colors.h"
 #include "engine.h"
 #include "mlx.h"
 #include "stdbool.h"
@@ -35,8 +36,24 @@ bool	ft_player_init(t_player *player, t_map_data *map_data)
 	player->pos.y = map_data->start_pos.y + 0.5;
 	player->coord.x = 0;
 	player->coord.y = 0;
-	player->size = map_data->map_block_size / 5;
+	player->size = map_data->map_block_size / 3;
 	return (0);
+}
+
+/*
+ *	***** ft_update_player_coords *****
+ *
+ *	DESCRIPTION:
+ *		Uses the player position (stored as a pair of doubles) and finds
+ *		the relative position on the map to draw the player.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
+void	ft_update_player_coords(t_player *player, int block_size)
+{
+	player->coord.x = (player->pos.x * block_size) - block_size;
+	player->coord.y = (player->pos.y * block_size) - block_size;
 }
 
 /*
@@ -58,11 +75,12 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data, t_player *player)
 	if (!map)
 		return (ft_putstr_fd("Error\nImage with matching ID not found \
 					during prerender.\n", 2), 1);
+	ft_update_player_coords(player, map_data->map_block_size);
 	ft_paint_bucket(map, (t_rect){
 		(t_point){player->coord.x - (player->size / 2),
 		player->coord.y - (player->size / 2)},
 		(t_point){player->coord.x + (player->size / 2),
 		player->coord.y + (player->size / 2)},
-		PLAYER_COLOR});
+		(t_rgb){PLAYER_COLOR_R, PLAYER_COLOR_G, PLAYER_COLOR_B}});
 	return (0);
 }

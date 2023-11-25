@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:22:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 09:53:05 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:02:32 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "cub3D.h"
 #include "ft_printf.h"
 #include "libft.h"
+#include "colors.h"
 
 /*
  *	***** ft_draw_map *****
@@ -46,7 +47,7 @@ bool	ft_draw_map(t_engine *engine, t_map_data *map_data)
 				ft_paint_bucket(map, (t_rect){
 					(t_point){(bs * x) - bs + 1, (bs * y) - bs + 1},
 					(t_point){(bs * x) - 1, (bs * y) - 1},
-					MAP_FG_COLOR});
+					(t_rgb){MAP_FG_COLOR_R, MAP_FG_COLOR_G, MAP_FG_COLOR_B}});
 			x++;
 		}
 		y++;

@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 10:26:57 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:04:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,12 @@
 
 //***** defines *****//
 
-# define WIN_X 1024
-# define WIN_Y 512
-# define WIN_NAME "dpentlan - cub3D"
-# define MAP_SIZE 1000
-# define MAP_ORIG_X 10
-# define MAP_ORIG_Y 10
-# define MAP_BG_COLOR	(t_rgb){40, 40, 40}
-# define MAP_FG_COLOR	(t_rgb){240, 240, 240}
-# define PLAYER_COLOR	(t_rgb){0, 100, 255}
-
-# define HOME_PC
-# ifdef HOME_PC
-#  define ESC			65307
-#  define L_ARROW		65361
-#  define U_ARROW		65362
-#  define R_ARROW		65363
-#  define D_ARROW		65364
-#  define W_KEY			122
-#  define A_KEY			113
-#  define S_KEY			115
-#  define D_KEY			100
-# endif
-
-//# define SCHOOL_PC
-# ifdef SCHOOL_PC
-#  define ESC			0
-#  define L_ARROW		0 
-#  define U_ARROW		0
-#  define R_ARROW		0
-#  define D_ARROW		0
-#  define W_KEY			0
-#  define A_KEY			0
-#  define S_KEY			0
-#  define D_KEY			0
-# endif
+# define WIN_X			1024
+# define WIN_Y			512
+# define WIN_NAME		"dpentlan - cub3D"
+# define MAP_SIZE		1000
+# define MAP_ORIG_X		10
+# define MAP_ORIG_Y		10
 
 //***** enums *****//
 
@@ -145,7 +116,8 @@ void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rect rect);
 		//***** player *****/
 bool	ft_player_init(t_player *player, t_map_data *map_data);
-bool	ft_draw_player(t_engine *engine, t_map_data *map_data, t_player *player);
+bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
+			t_player *player);
 		//***** images *****/
 bool	ft_image_init(t_image *image,
 			void *mlx_ptr, t_image_id ID, t_point size);
