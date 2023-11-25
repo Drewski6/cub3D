@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 10:09:58 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 10:26:57 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MAP_ORIG_Y 10
 # define MAP_BG_COLOR	(t_rgb){40, 40, 40}
 # define MAP_FG_COLOR	(t_rgb){240, 240, 240}
+# define PLAYER_COLOR	(t_rgb){0, 100, 255}
 
 # define HOME_PC
 # ifdef HOME_PC
@@ -98,6 +99,8 @@ typedef struct s_pos
 typedef struct s_player
 {
 	t_pos	pos;
+	t_point	coord;
+	int		size;
 }			t_player;
 
 typedef struct s_image

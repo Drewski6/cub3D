@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 10:09:51 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 10:30:08 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "stdbool.h"
 #include "cub3D.h"
 #include <stdio.h>
+#include "libft.h"
 
 /*
  *	***** ft_player_init *****
@@ -23,12 +24,18 @@
  *		Initialize variables in the player struct.
  *	RETURN:
  *		Bool function returns 0 on success and 1 on error.
+ *	NOTE:
+ *		Function does not return a value other than 0 because it's use in a
+ *		large if statement for the return.
  */
 
 bool	ft_player_init(t_player *player, t_map_data *map_data)
 {
 	player->pos.x = map_data->start_pos.x + 0.5;
 	player->pos.y = map_data->start_pos.y + 0.5;
+	player->coord.x = 0;
+	player->coord.y = 0;
+	player->size = map_data->map_block_size / 5;
 	return (0);
 }
 
@@ -43,9 +50,19 @@ bool	ft_player_init(t_player *player, t_map_data *map_data)
 
 bool	ft_draw_player(t_engine *engine, t_map_data *map_data, t_player *player)
 {
-	(void) engine;
+	t_image	*map;
+
 	(void) map_data;
-	(void) player;
 	printf("player x(%f) y(%f)\n", player->pos.x, player->pos.y);
+	map = ft_get_image(engine->lst_images, MINI_MAP);
+	if (!map)
+		return (ft_putstr_fd("Error\nImage with matching ID not found \
+					during prerender.\n", 2), 1);
+	ft_paint_bucket(map, (t_rect){
+		(t_point){player->coord.x - (player->size / 2),
+		player->coord.y - (player->size / 2)},
+		(t_point){player->coord.x + (player->size / 2),
+		player->coord.y + (player->size / 2)},
+		PLAYER_COLOR});
 	return (0);
 }
