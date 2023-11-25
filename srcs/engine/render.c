@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 08:50:57 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 09:39:16 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ bool	ft_prerender(t_engine *engine, t_map_data *map_data, t_player *player)
 		(t_point){map_data->size.x * map_data->map_block_size,
 		map_data->size.y * map_data->map_block_size},
 		(t_rgb){255, 255, 255})
-		|| ft_create_rect_image(engine, PLAYER, (t_point){10, 10},
+		|| ft_create_rect_image(engine, PLAYER,
+		(t_point){MAP_SIZE / 100, MAP_SIZE / 100},
 		(t_rgb){0, 100, 255})
 	)
 		return (1);
