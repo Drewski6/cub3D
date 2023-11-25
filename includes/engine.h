@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:39:17 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 08:50:09 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 # define WIN_X 1024
 # define WIN_Y 512
 # define WIN_NAME "dpentlan - cub3D"
-# define MAP_X 500
-# define MAP_Y 500
+# define MAP_SIZE 500
 # define MAP_ORIG_X 10
 # define MAP_ORIG_Y 10
 
@@ -141,8 +140,6 @@ int		ft_key_press(int key, void *param);
 		//***** drawing *****/
 void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rect rect);
-void	ft_draw_background(t_image *bg_image, t_rgb *f, t_rgb *c);
-bool	ft_draw_map(t_engine *engine, t_map_data *map_data, t_player *player);
 		//***** player *****/
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 void	ft_draw_player(t_player *player);
@@ -157,5 +154,7 @@ bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID,
 			t_point start);
 bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
 			t_point size, t_rgb color);
+		//***** map *****/
+bool	ft_draw_map(t_engine *engine, t_map_data *map_data);
 
 #endif
