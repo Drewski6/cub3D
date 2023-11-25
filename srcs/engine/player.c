@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:14:59 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 10:09:51 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,14 @@ bool	ft_player_init(t_player *player, t_map_data *map_data)
  *	DESCRIPTION:
  *		Draws the players position on the map for visual representations.
  *	RETURN:
- *		Void function does not return a value.
+ *		Bool function returns 0 on success and 1 on error.
  */
 
-void	ft_draw_player(t_player *player)
+bool	ft_draw_player(t_engine *engine, t_map_data *map_data, t_player *player)
 {
+	(void) engine;
+	(void) map_data;
+	(void) player;
 	printf("player x(%f) y(%f)\n", player->pos.x, player->pos.y);
+	return (0);
 }
