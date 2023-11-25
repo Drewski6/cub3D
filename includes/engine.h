@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 09:39:43 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 09:48:04 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ typedef enum e_image_id
 	NO_ID = 0,
 	BG_IMAGE_C = 1,
 	BG_IMAGE_F = 2,
-	MAP_BG = 3,
-	MAP_SQR = 4,
-	PLAYER = 5,
+	MINI_MAP = 3,
 }	t_image_id;
 
 //***** typesdefs/structs *****//
@@ -131,7 +129,7 @@ typedef struct s_clear
 
 		//***** render *****/
 bool	ft_render(t_engine *engine, t_map_data *map_data, t_player *player);
-bool	ft_prerender(t_engine *engine, t_map_data *map_data, t_player *player);
+bool	ft_prerender(t_engine *engine, t_map_data *map_data);
 		//***** engine *****/
 void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);

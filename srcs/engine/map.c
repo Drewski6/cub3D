@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:22:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 09:35:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 09:46:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	ft_draw_map(t_engine *engine, t_map_data *map_data)
 	int		y;
 	int		bs;
 
-	map = ft_get_image(engine->lst_images, MAP_BG);
+	map = ft_get_image(engine->lst_images, MINI_MAP);
 	if (!map)
 		return (ft_putstr_fd("Error\nImage with matching ID not found \
 					during prerender.\n", 2), 1);
