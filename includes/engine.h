@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:44:56 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:58:29 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ typedef enum e_image_id
 	BG_IMAGE_F = 2,
 	MINI_MAP = 3,
 }	t_image_id;
+
+typedef enum e_direction
+{
+	FORWARD_DIR = 0,
+	BACKWARD_DIR = 1,
+	LEFT_DIR = 2,
+	RIGHT_DIR = 3,
+}	t_direction;
 
 //***** typesdefs/structs *****//
 
@@ -119,7 +127,7 @@ void	ft_paint_bucket(t_image *image, t_rect rect);
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 			t_player *player);
-void	ft_move_player(t_player *player);
+void	ft_move_player(t_player *player, t_direction direction, int block_size);
 		//***** images *****/
 bool	ft_image_init(t_image *image,
 			void *mlx_ptr, t_image_id ID, t_point size);

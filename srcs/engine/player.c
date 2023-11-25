@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:45:28 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 12:07:52 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,19 @@
  *		Void function does not return a value.
  */
 
-void	ft_move_player(t_player *player)
+void	ft_move_player(t_player *player, t_direction direction, int block_size)
 {
-	(void) player;
+	double	distance;
+
+	distance = ((double)block_size / 10) / (double)block_size;
+	if (direction == FORWARD_DIR)
+		player->pos.y = player->pos.y - distance;
+	if (direction == BACKWARD_DIR)
+		player->pos.y = player->pos.y + distance;
+	if (direction == LEFT_DIR)
+		player->pos.x = player->pos.x - distance;
+	if (direction == RIGHT_DIR)
+		player->pos.x = player->pos.x + distance;
 }
 
 /*
