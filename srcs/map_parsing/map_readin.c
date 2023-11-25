@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:43:23 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 08:49:49 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,18 @@ bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 	t_list	*lst_map;
 	size_t	x_len;
 	size_t	y_len;
+	int		biggest;
 
 	if (ft_initial_read_in(&lst_map, fd, line))
 		return (ft_lstclear(&lst_map, ft_lst_free_link), 1);
 	x_len = ft_lst_largest(&lst_map, ft_lst_strlen);
 	y_len = ft_lstsize(lst_map) - 1;
 	map_data->size = (t_point){x_len, y_len};
+	if (map_data->size.x > map_data->size.y)
+		biggest = map_data->size.x;
+	else
+		biggest = map_data->size.y;
+	map_data->map_block_size = MAP_SIZE / biggest;
 	map_data->map = ft_create_blank_map(x_len, y_len);
 	if (!map_data->map)
 		return (ft_lstclear(&lst_map, ft_lst_free_link), 1);

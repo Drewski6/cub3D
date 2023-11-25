@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:43 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:41:39 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 13:23:12 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ typedef struct s_map_data
 	char		**map;
 	t_coord		start_pos;
 	t_point		size;
+	int			map_block_size;
 }				t_map_data;
 
 //***** function declaractions *****//
 
 int		ft_close_cub3d(t_clear *clear);
-bool	ft_hooks_cub3d(t_clear *clear);
 
 #endif
