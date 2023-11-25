@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:37:45 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 13:44:29 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define MAP_SIZE		1000
 # define MAP_ORIG_X		10
 # define MAP_ORIG_Y		10
-# define MOVE_SPEED		1
+# define MOVE_SPEED		10
 
 //***** enums *****//
 
