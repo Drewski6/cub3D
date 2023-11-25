@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:02:08 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 13:37:45 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,11 @@ typedef struct s_clear
 //***** function declarations *****//
 
 		//***** render *****/
-bool	ft_render(t_engine *engine, t_map_data *map_data, t_player *player);
+int		ft_render(t_clear *clear);
 bool	ft_prerender(t_engine *engine, t_map_data *map_data);
 		//***** engine *****/
 void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);
-		//***** keys *****/
-int		ft_key_press(int key, void *param);
 		//***** drawing *****/
 void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rect rect);

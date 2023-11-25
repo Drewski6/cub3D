@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 12:37:07 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 13:41:16 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,22 @@ bool	ft_prerender(t_engine *engine, t_map_data *map_data)
  *	DESCRIPTION:
  *		Parent function for all the drawing functions that need to be called
  *		in order to create a single image.
+ *		Used by mlx_loop_hook which means this function is called everytime
+ *		we are in between key events.
+ *		Essencially this is the refresh.
  *	RETURN:
- *		Bool function returns 0 on success and 1 on error.
+ *		Returns an int as required by mlx.
  */
 
-bool	ft_render(t_engine *engine, t_map_data *map_data, t_player *player)
+int	ft_render(t_clear *clear)
 {
-	(void) map_data;
-	(void) player;
+	t_engine	*engine;
+	t_map_data	*map_data;
+	t_player	*player;
+
+	engine = clear->engine;
+	map_data = clear->map_data;
+	player = clear->player;
 	if (0
 		|| ft_send_image_to_window(engine, engine->lst_images, BG_IMAGE_C,
 			(t_point){0, 0})

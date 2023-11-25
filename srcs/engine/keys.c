@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:35:11 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:55:42 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 13:39:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,21 @@ int	ft_key_press(int key, void *param)
 		ft_printf("Key Press: Down Arrow\n");
 	else if (key == U_ARROW)
 		ft_printf("Key Press: Up Arrow\n");
-	ft_render(clear->engine, clear->map_data, clear->player);
+	return (0);
+}
+
+/*
+ *	***** ft_key_release *****
+ *
+ *	DESCRIPTION:
+ *		Action to take on key release.
+ *	RETURN:
+ *		Return type of int required by mlx.
+ */
+
+int	ft_key_release(int key, void *param)
+{
+	(void) key;
+	(void) param;
 	return (0);
 }

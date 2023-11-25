@@ -6,12 +6,20 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:03:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:03:49 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 13:41:46 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYS_H
 # define KEYS_H
+
+//***** includes *****//
+
+# include "engine.h"
+# include <X11/keysym.h>
+# include <X11/X.h>
+
+//***** defines *****//
 
 # define HOME_PC
 # ifdef HOME_PC
@@ -38,5 +46,11 @@
 #  define S_KEY			0
 #  define D_KEY			0
 # endif
+
+//***** function declaractions *****//
+
+bool	ft_hooks_cub3d(t_clear *clear);
+int		ft_key_press(int key, void *param);
+int		ft_key_release(int key, void *param);
 
 #endif
