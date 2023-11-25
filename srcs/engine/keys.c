@@ -6,13 +6,14 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:35:11 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:04:17 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:46:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "cub3D.h"
 #include "keys.h"
+#include "engine.h"
 
 /*
  *	***** ft_key_press *****
@@ -26,16 +27,19 @@
 
 int	ft_key_press(int key, void *param)
 {
+	t_clear	*clear;
+
+	clear = param;
 	if (key == ESC)
 		ft_close_cub3d(param);
 	else if (key == W_KEY)
-		ft_printf("Key Press: W\n");
+		ft_move_player(clear->player);
 	else if (key == A_KEY)
-		ft_printf("Key Press: A\n");
+		ft_move_player(clear->player);
 	else if (key == S_KEY)
-		ft_printf("Key Press: S\n");
+		ft_move_player(clear->player);
 	else if (key == D_KEY)
-		ft_printf("Key Press: D\n");
+		ft_move_player(clear->player);
 	else if (key == L_ARROW)
 		ft_printf("Key Press: Left Arrow\n");
 	else if (key == R_ARROW)
@@ -44,5 +48,6 @@ int	ft_key_press(int key, void *param)
 		ft_printf("Key Press: Down Arrow\n");
 	else if (key == U_ARROW)
 		ft_printf("Key Press: Up Arrow\n");
+	ft_render(clear->engine, clear->map_data, clear->player);
 	return (0);
 }

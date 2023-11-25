@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:23:45 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:45:28 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,21 @@
 #include "mlx.h"
 #include "stdbool.h"
 #include "cub3D.h"
-#include <stdio.h>
 #include "libft.h"
+
+/*
+ *	***** ft_move_player *****
+ *
+ *	DESCRIPTION:
+ *		Edit the players position varaible.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
+void	ft_move_player(t_player *player)
+{
+	(void) player;
+}
 
 /*
  *	***** ft_player_init *****
@@ -70,7 +83,6 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data, t_player *player)
 	t_image	*map;
 
 	(void) map_data;
-	printf("player x(%f) y(%f)\n", player->pos.x, player->pos.y);
 	map = ft_get_image(engine->lst_images, MINI_MAP);
 	if (!map)
 		return (ft_putstr_fd("Error\nImage with matching ID not found \

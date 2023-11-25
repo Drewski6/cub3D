@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 09:49:10 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:42:07 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	ft_bzero((void *)&map_data, sizeof(map_data));
 	ft_bzero((void *)&engine, sizeof(engine));
 	ft_bzero((void *)&player, sizeof(player));
-	clear = (t_clear){(void *)&engine, (void *)&map_data};
+	clear = (t_clear){(void *)&engine, (void *)&map_data, (void *)&player};
 	if (0
 		|| ft_arg_parse(argc, argv)
 		|| ft_map_data(&map_data, argv[1])
