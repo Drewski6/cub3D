@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 09:47:55 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 09:52:03 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ bool	ft_prerender(t_engine *engine, t_map_data *map_data)
 		map_data->f)
 		|| ft_create_rect_image(engine, MINI_MAP,
 		(t_point){map_data->size.x * map_data->map_block_size,
-		map_data->size.y * map_data->map_block_size},
-		(t_rgb){255, 255, 255})
+		map_data->size.y * map_data->map_block_size}, MAP_BG_COLOR)
 		|| ft_draw_map(engine, map_data)
 	)
 		return (1);

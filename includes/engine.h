@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 09:48:04 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 09:52:53 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define MAP_SIZE 1000
 # define MAP_ORIG_X 10
 # define MAP_ORIG_Y 10
+# define MAP_BG_COLOR	(t_rgb){40, 40, 40}
+# define MAP_FG_COLOR	(t_rgb){240, 240, 240}
 
 # define HOME_PC
 # ifdef HOME_PC

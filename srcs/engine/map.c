@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:22:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 09:46:41 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 09:53:05 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	ft_draw_map(t_engine *engine, t_map_data *map_data)
 				ft_paint_bucket(map, (t_rect){
 					(t_point){(bs * x) - bs + 1, (bs * y) - bs + 1},
 					(t_point){(bs * x) - 1, (bs * y) - 1},
-					(t_rgb){0, 0, 0}});
+					MAP_FG_COLOR});
 			x++;
 		}
 		y++;
