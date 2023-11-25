@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:06:45 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 11:23:45 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data, t_player *player)
 		player->coord.y - (player->size / 2)},
 		(t_point){player->coord.x + (player->size / 2),
 		player->coord.y + (player->size / 2)},
-		(t_rgb){PLAYER_COLOR_R, PLAYER_COLOR_G, PLAYER_COLOR_B}});
+		(t_rgb){PLAYER_R, PLAYER_G, PLAYER_B}});
 	return (0);
 }
