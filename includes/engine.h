@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:58:29 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 13:02:08 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define MAP_SIZE		1000
 # define MAP_ORIG_X		10
 # define MAP_ORIG_Y		10
+# define MOVE_SPEED		1
 
 //***** enums *****//
 
@@ -123,6 +124,7 @@ int		ft_key_press(int key, void *param);
 		//***** drawing *****/
 void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rect rect);
+void	ft_px_put_rect(t_engine *engine, t_rect rect);
 		//***** player *****/
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 bool	ft_draw_player(t_engine *engine, t_map_data *map_data,

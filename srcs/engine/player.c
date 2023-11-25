@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 12:07:52 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/25 13:01:55 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_move_player(t_player *player, t_direction direction, int block_size)
 {
 	double	distance;
 
-	distance = ((double)block_size / 10) / (double)block_size;
+	distance = ((double)block_size / MOVE_SPEED) / (double)block_size;
 	if (direction == FORWARD_DIR)
 		player->pos.y = player->pos.y - distance;
 	if (direction == BACKWARD_DIR)
@@ -98,11 +98,11 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data, t_player *player)
 		return (ft_putstr_fd("Error\nImage with matching ID not found \
 					during prerender.\n", 2), 1);
 	ft_update_player_coords(player, map_data->map_block_size);
-	ft_paint_bucket(map, (t_rect){
-		(t_point){player->coord.x - (player->size / 2),
-		player->coord.y - (player->size / 2)},
-		(t_point){player->coord.x + (player->size / 2),
-		player->coord.y + (player->size / 2)},
+	ft_px_put_rect(engine, (t_rect){
+		(t_point){MAP_ORIG_X + player->coord.x - (player->size / 2),
+		MAP_ORIG_Y + player->coord.y - (player->size / 2)},
+		(t_point){MAP_ORIG_X + player->coord.x + (player->size / 2),
+		MAP_ORIG_Y + player->coord.y + (player->size / 2)},
 		(t_rgb){PLAYER_R, PLAYER_G, PLAYER_B}});
 	return (0);
 }
