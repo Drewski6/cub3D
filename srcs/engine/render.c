@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:41:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:51:05 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	ft_render(t_clear *clear)
 		|| ft_send_image_to_window(engine, engine->lst_images, MINI_MAP,
 			(t_point){MAP_ORIG_X, MAP_ORIG_Y})
 		|| ft_draw_player(engine, map_data, player)
+		|| ft_bresenhams_line(engine, (t_point){0, 0}, player->coord,
+			ft_color_to_int((t_rgb){255, 255, 0}))
 	)
 		return (1);
 	return (0);

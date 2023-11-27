@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:44:29 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/27 22:16:56 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ bool	ft_engine_init(t_engine *engine);
 void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rect rect);
 void	ft_px_put_rect(t_engine *engine, t_rect rect);
+int		ft_color_to_int(t_rgb color);
+bool	ft_bresenhams_line(t_engine *engine,
+			t_point from, t_point to, int color);
 		//***** player *****/
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
