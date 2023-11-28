@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/28 18:21:08 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:31:06 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "cub3D.h"
 #include "libft.h"
 #include "math.h"
+#include <stdio.h>
 
 /*
  *	***** ft_rotate_player *****

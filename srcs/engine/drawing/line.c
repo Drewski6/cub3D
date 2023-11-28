@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:24:28 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/28 09:02:17 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:38:48 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,6 @@
 #include "math.h"
 #include "ft_printf.h"
 #include <stdio.h>
-
-/*
- *	***** ft_pixel_in_bounds *****
- *
- *	DESCRIPTION:
- *		Checks if a pixel is within the boundaries of the screen before drawing
- *		it.
- *	RETURN:
- *		Bool function returns 0 on success and 1 on error.
- */
-
-bool	ft_pixel_in_bounds(t_point *point)
-{
-	if (point->x < 0 || point->x > WIN_X)
-		return (1);
-	if (point->y < 0 || point->y > WIN_Y)
-		return (1);
-	return (0);
-}
 
 /*
  *	***** ft_bresenhams_line *****
@@ -55,8 +36,6 @@ bool	ft_bresenhams_line(t_engine *engine,
 	double	pixel_x;
 	double	pixel_y;
 
-	if (ft_pixel_in_bounds(&from) || ft_pixel_in_bounds(&to))
-		return (0);
 	delta_x = to.x - from.x;
 	delta_y = to.y - from.y;
 	px_count = sqrt((delta_x * delta_x) + (delta_y * delta_y));
