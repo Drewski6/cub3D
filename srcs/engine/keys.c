@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:35:11 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:39:11 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:18:56 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,18 @@
 int	ft_key_press(int key, void *param)
 {
 	t_clear	*clear;
-	int		bs;
 
 	clear = param;
-	bs = clear->map_data->map_block_size;
 	if (key == ESC)
 		ft_close_cub3d(param);
 	else if (key == W_KEY)
-		ft_move_player(clear->player, FORWARD_DIR, bs);
+		ft_move_player(clear->player, FORWARD_DIR);
 	else if (key == A_KEY)
-		ft_move_player(clear->player, LEFT_DIR, bs);
+		ft_rotate_player(clear->player, LEFT_DIR);
 	else if (key == S_KEY)
-		ft_move_player(clear->player, BACKWARD_DIR, bs);
+		ft_move_player(clear->player, BACKWARD_DIR);
 	else if (key == D_KEY)
-		ft_move_player(clear->player, RIGHT_DIR, bs);
+		ft_rotate_player(clear->player, RIGHT_DIR);
 	else if (key == L_ARROW)
 		ft_printf("Key Press: Left Arrow\n");
 	else if (key == R_ARROW)

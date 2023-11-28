@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/28 10:29:46 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:20:22 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # define MAP_SIZE		1000
 # define MAP_ORIG_X		10
 # define MAP_ORIG_Y		10
-# define MOVE_SPEED		10
+# define MOVE_SPEED		0.1
+# define PI				3.1415926535
 
 //***** enums *****//
 
@@ -81,6 +82,8 @@ typedef struct s_player
 	t_pos	pos;
 	t_point	coord;
 	int		size;
+	t_pos	delta;
+	double	angle;
 }			t_player;
 
 typedef struct s_image
@@ -130,7 +133,8 @@ bool	ft_bresenhams_line(t_engine *engine,
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 			t_player *player);
-void	ft_move_player(t_player *player, t_direction direction, int block_size);
+void	ft_move_player(t_player *player, t_direction direction);
+void	ft_rotate_player(t_player *player, t_direction direction);
 bool	ft_draw_rays(t_engine *engine, t_player *player);
 		//***** images *****/
 bool	ft_image_init(t_image *image,
