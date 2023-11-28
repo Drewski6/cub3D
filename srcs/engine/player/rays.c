@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/28 18:37:44 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/28 18:41:47 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ bool	ft_dir_ray(t_engine *engine, t_player *player)
 	ft_bresenhams_line(engine,
 		(t_point){player->coord.x + player->size,
 		player->coord.y + player->size},
-		(t_point){(player->coord.x + player->size) + player->delta.x * 1000,
-		(player->coord.y + player->size) + player->delta.y * 1000},
+		(t_point){(player->coord.x + player->size) + player->delta.x * 150,
+		(player->coord.y + player->size) + player->delta.y * 150},
 		ft_color_to_int((t_rgb){PLAYER_R, PLAYER_G, PLAYER_B}));
 	return (0);
 }
