@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/27 22:16:56 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:29:46 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ bool	ft_player_init(t_player *player, t_map_data *map_data);
 bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 			t_player *player);
 void	ft_move_player(t_player *player, t_direction direction, int block_size);
+bool	ft_draw_rays(t_engine *engine, t_player *player);
 		//***** images *****/
 bool	ft_image_init(t_image *image,
 			void *mlx_ptr, t_image_id ID, t_point size);

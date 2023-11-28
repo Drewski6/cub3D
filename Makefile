@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/27 21:24:46 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/28 10:24:09 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC 			=	main/close.c \
 					engine/init_free_engine.c \
 					engine/keys.c \
 					engine/map.c \
-					engine/player.c \
+					engine/player/player.c \
+					engine/player/rays.c \
 					engine/render.c \
 					debug/map_debug.c \
 
