@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/29 13:20:07 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:30:53 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,20 @@
 #include <stdio.h>
 #include "libft.h"
 
+/*
+ *	***** ft_distance *****
+ *
+ *	DESCRIPTION:
+ *		Calculate the distance between two points using the pythagorean theorm.
+ *	RETURN:
+ *		Returns as a double the distance between two points.
+ */
+
 double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y)
 {
-	return (sqrt(((pt2x - pt1x) * (pt2x - pt1x)) + ((pt2y - pt1y) * (pt2y - pt1y))));
+	return (
+		sqrt(((pt2x - pt1x) * (pt2x - pt1x))
+			+ ((pt2y - pt1y) * (pt2y - pt1y))));
 }
 
 t_ray	ft_vertical_line_check(t_player *player, t_map_data *map_data)
@@ -48,13 +59,8 @@ t_ray	ft_vertical_line_check(t_player *player, t_map_data *map_data)
 			negtan = 100;
 		if (negtan < -100)
 			negtan = -100;
-		printf("*************************************************\n");
-		printf("ray.angle: %f\tnegtan: %f\n", ray.angle, negtan);
-		printf("ray be:\ta(%f)\tcx(%f) cy(%f)\n\t\t\tox(%f) oy(%f)\n\n",
-			ray.angle, ray.coord_x, ray.coord_y, ray.offset_x, ray.offset_y);
 		if (ray.angle > (PI / 2) && ray.angle < (3 * PI / 2)) // looking left
 		{
-			printf("ray.angle > (PI / 2) && ray.angle < (3 * PI / 2)\n");
 			ray.coord_x = player->coord.x / 30 * 30 + 0.0001;
 			ray.coord_y = (player->coord.x - ray.coord_x) * negtan + player->coord.y;
 			ray.offset_x = -map_data->map_block_size;
@@ -62,7 +68,6 @@ t_ray	ft_vertical_line_check(t_player *player, t_map_data *map_data)
 		}
 		if (ray.angle < (PI / 2) || ray.angle > (3 * PI / 2)) // looking left
 		{
-			printf("ray.angle < (PI / 2) || ray.angle > (3 * PI / 2)\n");
 			ray.coord_x = player->coord.x / 30 * 30 + 30;
 			ray.coord_y = (player->coord.x - ray.coord_x) * negtan + player->coord.y;
 			ray.offset_x = map_data->map_block_size;
@@ -98,9 +103,6 @@ t_ray	ft_vertical_line_check(t_player *player, t_map_data *map_data)
 			{
 				ray.dist_from_player = ft_distance(player->coord.x,
 						player->coord.y, ray.coord_x, ray.coord_y);
-				printf("fail: map: x(%d) y(%d)\n", map_x, map_y);
-				printf("player: x(%d) y(%d) ray: x(%f) y(%f)\n", player->coord.x,
-					player->coord.y, ray.coord_x, ray.coord_y);
 				break ;
 			}
 			if (map_data->map[map_y][map_x] == '1')
@@ -117,10 +119,6 @@ t_ray	ft_vertical_line_check(t_player *player, t_map_data *map_data)
 			}
 		}
 		num_rays--;
-		printf("ray af:\ta(%f)\tcx(%f) cy(%f)\n\t\t\tox(%f) oy(%f)\n\n",
-			ray.angle, ray.coord_x, ray.coord_y, ray.offset_x, ray.offset_y);
-		printf("player:\tcx(%d) cy(%d)\n", player->coord.x, player->coord.y);
-		printf("*************************************************\n");
 	}
 	return (ray);
 }
@@ -160,10 +158,6 @@ t_ray	ft_horizontal_line_check(t_player *player, t_map_data *map_data)
 			arctan = 100;
 		if (arctan < -100)
 			arctan = -100;
-		printf("*************************************************\n");
-		printf("ray.angle: %f\tarctan: %f\n", ray.angle, arctan);
-		printf("ray be:\ta(%f)\tcx(%f) cy(%f)\n\t\t\tox(%f) oy(%f)\n\n",
-			ray.angle, ray.coord_x, ray.coord_y, ray.offset_x, ray.offset_y);
 		if (ray.angle > PI) // looking up
 		{
 			ray.coord_y = player->coord.y / 30 * 30 + 0.0001;
@@ -208,9 +202,6 @@ t_ray	ft_horizontal_line_check(t_player *player, t_map_data *map_data)
 			{
 				ray.dist_from_player = ft_distance(player->coord.x,
 						player->coord.y, ray.coord_x, ray.coord_y);
-				printf("fail: map: x(%d) y(%d)\n", map_x, map_y);
-				printf("player: x(%d) y(%d) ray: x(%f) y(%f)\n", player->coord.x,
-					player->coord.y, ray.coord_x, ray.coord_y);
 				break ;
 			}
 			if (map_data->map[map_y][map_x] == '1')
@@ -227,10 +218,6 @@ t_ray	ft_horizontal_line_check(t_player *player, t_map_data *map_data)
 			}
 		}
 		num_rays--;
-		printf("ray af:\ta(%f)\tcx(%f) cy(%f)\n\t\t\tox(%f) oy(%f)\n\n",
-			ray.angle, ray.coord_x, ray.coord_y, ray.offset_x, ray.offset_y);
-		printf("player:\tcx(%d) cy(%d)\n", player->coord.x, player->coord.y);
-		printf("*************************************************\n");
 	}
 	return (ray);
 }
@@ -268,43 +255,27 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 {
 	t_ray	h_ray;
 	t_ray	v_ray;
-	t_ray	ray;
+	t_ray	fin_ray;
 
-	ft_bzero(&h_ray, sizeof(ray));
-	ft_bzero(&v_ray, sizeof(ray));
-	ft_bzero(&ray, sizeof(ray));
+	ft_bzero(&h_ray, sizeof(h_ray));
+	ft_bzero(&v_ray, sizeof(v_ray));
+	ft_bzero(&fin_ray, sizeof(fin_ray));
 	h_ray = ft_horizontal_line_check(player, map_data);
 	v_ray = ft_vertical_line_check(player, map_data);
-	printf("h_ray dist: %f\n", h_ray.dist_from_player);
-	printf("v_ray dist: %f\n", v_ray.dist_from_player);
 	if (h_ray.dist_from_player < v_ray.dist_from_player)
 	{
-		ray.coord_x = h_ray.coord_x;
-		ray.coord_y = h_ray.coord_y;
+		fin_ray.coord_x = h_ray.coord_x;
+		fin_ray.coord_y = h_ray.coord_y;
 	}
 	else
 	{
-		ray.coord_x = v_ray.coord_x;
-		ray.coord_y = v_ray.coord_y;
+		fin_ray.coord_x = v_ray.coord_x;
+		fin_ray.coord_y = v_ray.coord_y;
 	}
 	ft_bresenhams_line(engine,
-		(t_point){player->coord.x + MAP_ORIG_X,
-		player->coord.y + MAP_ORIG_Y},
-		(t_point){ray.coord_x + MAP_ORIG_X,
-		ray.coord_y + MAP_ORIG_Y},
-		ft_color_to_int((t_rgb){255, 0, 0}));
-	// ft_bresenhams_line(engine,
-	// 	(t_point){player->coord.x + MAP_ORIG_X,
-	// 	player->coord.y + MAP_ORIG_Y},
-	// 	(t_point){h_ray.coord_x + MAP_ORIG_X,
-	// 	h_ray.coord_y + MAP_ORIG_Y},
-	// 	ft_color_to_int((t_rgb){0, 255, 0}));
-	// ft_bresenhams_line(engine,
-	// 	(t_point){player->coord.x + MAP_ORIG_X,
-	// 	player->coord.y + MAP_ORIG_Y},
-	// 	(t_point){v_ray.coord_x + MAP_ORIG_X,
-	// 	v_ray.coord_y + MAP_ORIG_Y},
-	// 	ft_color_to_int((t_rgb){0, 0, 255}));
+		(t_point){player->coord.x + MAP_ORIG_X, player->coord.y + MAP_ORIG_Y},
+		(t_point){fin_ray.coord_x + MAP_ORIG_X, fin_ray.coord_y + MAP_ORIG_Y},
+		ft_color_to_int((t_rgb){255, 255, 0}));
 	ft_dir_ray(engine, player);
 	return (0);
 }
