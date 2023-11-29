@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/29 15:47:10 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:01:55 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,39 @@ t_ray	ft_horizontal_line_check(t_player *player, t_map_data *map_data)
 }
 
 /*
+ *	***** ft_draw_one_ray *****
+ *
+ *	DESCRIPTION:
+ *		Common function for returning the information for one ray.
+ *	RETURN:
+ *		Returns a t_point struct which is two integer values of the coordinates
+ *		where the ray should end.
+ *		Player position should be the starting point.
+ */
+
+t_point	ft_draw_one_ray(t_player *player,
+					t_map_data *map_data, int ray_num)
+{
+	t_full_ray	ray;
+
+	(void) ray_num;
+	ft_bzero(&ray, sizeof(t_full_ray));
+	ray.h_ray = ft_horizontal_line_check(player, map_data);
+	ray.v_ray = ft_vertical_line_check(player, map_data);
+	if (ray.h_ray.dist_from_player < ray.v_ray.dist_from_player)
+	{
+		ray.final.x = ray.h_ray.coord_x + MAP_ORIG_X;
+		ray.final.y = ray.h_ray.coord_y + MAP_ORIG_Y;
+	}
+	else
+	{
+		ray.final.x = ray.v_ray.coord_x + MAP_ORIG_X;
+		ray.final.y = ray.v_ray.coord_y + MAP_ORIG_Y;
+	}
+	return (ray.final);
+}
+
+/*
  *	***** ft_dir_ray *****
  *
  *	DESCRIPTION:
@@ -246,33 +279,6 @@ bool	ft_dir_ray(t_engine *engine, t_player *player)
 		(player->coord.y + player->size) + player->delta.y * 150},
 		ft_color_to_int((t_rgb){PLAYER_R, PLAYER_G, PLAYER_B}));
 	return (0);
-}
-
-t_point	ft_draw_one_ray(t_player *player,
-					t_map_data *map_data, int ray_num)
-{
-	t_ray	h_ray;
-	t_ray	v_ray;
-	t_ray	fin_ray;
-
-	(void) ray_num;
-	ft_bzero(&h_ray, sizeof(h_ray));
-	ft_bzero(&v_ray, sizeof(v_ray));
-	ft_bzero(&fin_ray, sizeof(fin_ray));
-	h_ray = ft_horizontal_line_check(player, map_data);
-	v_ray = ft_vertical_line_check(player, map_data);
-	if (h_ray.dist_from_player < v_ray.dist_from_player)
-	{
-		fin_ray.coord_x = h_ray.coord_x;
-		fin_ray.coord_y = h_ray.coord_y;
-	}
-	else
-	{
-		fin_ray.coord_x = v_ray.coord_x;
-		fin_ray.coord_y = v_ray.coord_y;
-	}
-	return ((t_point){fin_ray.coord_x + MAP_ORIG_X,
-		fin_ray.coord_y + MAP_ORIG_Y});
 }
 
 /*

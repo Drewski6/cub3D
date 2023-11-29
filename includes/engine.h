@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/29 15:41:28 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:55:06 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ typedef struct s_ray
 	double	angle;
 	double	dist_from_player;
 }		t_ray;
+
+typedef struct s_full_ray
+{
+	t_point	final;
+	t_ray	h_ray;
+	t_ray	v_ray;
+}			t_full_ray;
 
 typedef struct s_player
 {
