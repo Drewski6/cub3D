@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/28 18:20:22 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:50:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ typedef struct s_pos
 	double	y;
 }			t_pos;
 
+typedef struct s_ray
+{
+	double	coord_x;
+	double	coord_y;
+	double	offset_x;
+	double	offset_y;
+	double	angle;
+	double	dist_from_player;
+}		t_ray;
+
 typedef struct s_player
 {
 	t_pos	pos;
@@ -135,7 +145,7 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 			t_player *player);
 void	ft_move_player(t_player *player, t_direction direction);
 void	ft_rotate_player(t_player *player, t_direction direction);
-bool	ft_draw_rays(t_engine *engine, t_player *player);
+bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data);
 		//***** images *****/
 bool	ft_image_init(t_image *image,
 			void *mlx_ptr, t_image_id ID, t_point size);
