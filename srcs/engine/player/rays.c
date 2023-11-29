@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/29 13:08:38 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:20:07 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ t_ray	ft_vertical_line_check(t_player *player, t_map_data *map_data)
 			}
 			if (map_y < 0 || map_x < 0 || map_y > map_data->size.y || map_x > map_data->size.x)
 			{
+				ray.dist_from_player = ft_distance(player->coord.x,
+						player->coord.y, ray.coord_x, ray.coord_y);
 				printf("fail: map: x(%d) y(%d)\n", map_x, map_y);
+				printf("player: x(%d) y(%d) ray: x(%f) y(%f)\n", player->coord.x,
+					player->coord.y, ray.coord_x, ray.coord_y);
 				break ;
 			}
 			if (map_data->map[map_y][map_x] == '1')
@@ -202,7 +206,11 @@ t_ray	ft_horizontal_line_check(t_player *player, t_map_data *map_data)
 			}
 			if (map_y < 0 || map_x < 0 || map_y > map_data->size.y || map_x > map_data->size.x)
 			{
+				ray.dist_from_player = ft_distance(player->coord.x,
+						player->coord.y, ray.coord_x, ray.coord_y);
 				printf("fail: map: x(%d) y(%d)\n", map_x, map_y);
+				printf("player: x(%d) y(%d) ray: x(%f) y(%f)\n", player->coord.x,
+					player->coord.y, ray.coord_x, ray.coord_y);
 				break ;
 			}
 			if (map_data->map[map_y][map_x] == '1')
@@ -285,6 +293,18 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 		(t_point){ray.coord_x + MAP_ORIG_X,
 		ray.coord_y + MAP_ORIG_Y},
 		ft_color_to_int((t_rgb){255, 0, 0}));
+	// ft_bresenhams_line(engine,
+	// 	(t_point){player->coord.x + MAP_ORIG_X,
+	// 	player->coord.y + MAP_ORIG_Y},
+	// 	(t_point){h_ray.coord_x + MAP_ORIG_X,
+	// 	h_ray.coord_y + MAP_ORIG_Y},
+	// 	ft_color_to_int((t_rgb){0, 255, 0}));
+	// ft_bresenhams_line(engine,
+	// 	(t_point){player->coord.x + MAP_ORIG_X,
+	// 	player->coord.y + MAP_ORIG_Y},
+	// 	(t_point){v_ray.coord_x + MAP_ORIG_X,
+	// 	v_ray.coord_y + MAP_ORIG_Y},
+	// 	ft_color_to_int((t_rgb){0, 0, 255}));
 	ft_dir_ray(engine, player);
 	return (0);
 }
