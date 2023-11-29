@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/29 13:33:33 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:47:10 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,21 +248,14 @@ bool	ft_dir_ray(t_engine *engine, t_player *player)
 	return (0);
 }
 
-/*
- *	***** ft_draw_rays *****
- *
- *	DESCRIPTION:
- *		Draw function for the player's rays on the map.
- *	RETURN:
- *		Bool function returns 0 on success and 1 on error.
- */
-
-bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
+t_point	ft_draw_one_ray(t_player *player,
+					t_map_data *map_data, int ray_num)
 {
 	t_ray	h_ray;
 	t_ray	v_ray;
 	t_ray	fin_ray;
 
+	(void) ray_num;
 	ft_bzero(&h_ray, sizeof(h_ray));
 	ft_bzero(&v_ray, sizeof(v_ray));
 	ft_bzero(&fin_ray, sizeof(fin_ray));
@@ -278,10 +271,35 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 		fin_ray.coord_x = v_ray.coord_x;
 		fin_ray.coord_y = v_ray.coord_y;
 	}
-	ft_bresenhams_line(engine,
-		(t_point){player->coord.x + MAP_ORIG_X, player->coord.y + MAP_ORIG_Y},
-		(t_point){fin_ray.coord_x + MAP_ORIG_X, fin_ray.coord_y + MAP_ORIG_Y},
-		ft_color_to_int((t_rgb){255, 255, 0}));
+	return ((t_point){fin_ray.coord_x + MAP_ORIG_X,
+		fin_ray.coord_y + MAP_ORIG_Y});
+}
+
+/*
+ *	***** ft_draw_rays *****
+ *
+ *	DESCRIPTION:
+ *		Draw function for the player's rays on the map.
+ *	RETURN:
+ *		Bool function returns 0 on success and 1 on error.
+ */
+
+bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
+{
+	int	i;
+	int	num_rays;
+
+	i = 0;
+	num_rays = 1;
+	while (i < num_rays)
+	{
+		ft_bresenhams_line(engine,
+			(t_point){player->coord.x + MAP_ORIG_X,
+			player->coord.y + MAP_ORIG_Y},
+			ft_draw_one_ray(player, map_data, i),
+			ft_color_to_int((t_rgb){255, 255, 0}));
+		i++;
+	}
 	ft_dir_ray(engine, player);
 	return (0);
 }

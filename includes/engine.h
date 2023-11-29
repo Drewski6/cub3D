@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/29 12:50:11 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:41:28 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MAP_ORIG_Y		10
 # define MOVE_SPEED		0.1
 # define PI				3.1415926535
+# define RAD			0.0174533
 
 //***** enums *****//
 
