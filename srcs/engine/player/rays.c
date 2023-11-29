@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/29 13:30:53 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:33:33 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,19 @@ t_ray	ft_vertical_line_check(t_player *player, t_map_data *map_data)
 			negtan = 100;
 		if (negtan < -100)
 			negtan = -100;
-		if (ray.angle > (PI / 2) && ray.angle < (3 * PI / 2)) // looking left
+		if (ray.angle > (PI / 2) && ray.angle < (3 * PI / 2))
 		{
 			ray.coord_x = player->coord.x / 30 * 30 + 0.0001;
-			ray.coord_y = (player->coord.x - ray.coord_x) * negtan + player->coord.y;
+			ray.coord_y = (player->coord.x - ray.coord_x)
+				* negtan + player->coord.y;
 			ray.offset_x = -map_data->map_block_size;
 			ray.offset_y = -ray.offset_x * negtan;
 		}
-		if (ray.angle < (PI / 2) || ray.angle > (3 * PI / 2)) // looking left
+		if (ray.angle < (PI / 2) || ray.angle > (3 * PI / 2))
 		{
 			ray.coord_x = player->coord.x / 30 * 30 + 30;
-			ray.coord_y = (player->coord.x - ray.coord_x) * negtan + player->coord.y;
+			ray.coord_y = (player->coord.x - ray.coord_x)
+				* negtan + player->coord.y;
 			ray.offset_x = map_data->map_block_size;
 			ray.offset_y = -ray.offset_x * negtan;
 		}
@@ -89,17 +91,18 @@ t_ray	ft_vertical_line_check(t_player *player, t_map_data *map_data)
 		}
 		while (depth_of_field < max_dof)
 		{
-			if (ray.angle > (PI / 2) && ray.angle < (3 * PI / 2)) // looking left
+			if (ray.angle > (PI / 2) && ray.angle < (3 * PI / 2))
 			{
 				map_y = (ray.coord_y + 30) / 30;
 				map_x = (ray.coord_x) / 30;
 			}
-			if (ray.angle < (PI / 2) || ray.angle > (3 * PI / 2)) // looking left
+			if (ray.angle < (PI / 2) || ray.angle > (3 * PI / 2))
 			{
 				map_y = (ray.coord_y + 30) / 30;
 				map_x = (ray.coord_x + 30) / 30;
 			}
-			if (map_y < 0 || map_x < 0 || map_y > map_data->size.y || map_x > map_data->size.x)
+			if (map_y < 0 || map_x < 0
+				|| map_y > map_data->size.y || map_x > map_data->size.x)
 			{
 				ray.dist_from_player = ft_distance(player->coord.x,
 						player->coord.y, ray.coord_x, ray.coord_y);
@@ -158,17 +161,19 @@ t_ray	ft_horizontal_line_check(t_player *player, t_map_data *map_data)
 			arctan = 100;
 		if (arctan < -100)
 			arctan = -100;
-		if (ray.angle > PI) // looking up
+		if (ray.angle > PI)
 		{
 			ray.coord_y = player->coord.y / 30 * 30 + 0.0001;
-			ray.coord_x = (player->coord.y - ray.coord_y) * arctan + player->coord.x;
+			ray.coord_x = (player->coord.y - ray.coord_y)
+				* arctan + player->coord.x;
 			ray.offset_y = -map_data->map_block_size;
 			ray.offset_x = -ray.offset_y * arctan;
 		}
-		if (ray.angle < PI) // looking down
+		if (ray.angle < PI)
 		{
 			ray.coord_y = player->coord.y / 30 * 30 + 30;
-			ray.coord_x = (player->coord.y - ray.coord_y) * arctan + player->coord.x;
+			ray.coord_x = (player->coord.y - ray.coord_y)
+				* arctan + player->coord.x;
 			ray.offset_y = map_data->map_block_size;
 			ray.offset_x = -ray.offset_y * arctan;
 		}
@@ -198,7 +203,8 @@ t_ray	ft_horizontal_line_check(t_player *player, t_map_data *map_data)
 				map_y = (ray.coord_y + 30) / 30;
 				map_x = (ray.coord_x + 30) / 30;
 			}
-			if (map_y < 0 || map_x < 0 || map_y > map_data->size.y || map_x > map_data->size.x)
+			if (map_y < 0 || map_x < 0 || map_y > map_data->size.y
+				|| map_x > map_data->size.x)
 			{
 				ray.dist_from_player = ft_distance(player->coord.x,
 						player->coord.y, ray.coord_x, ray.coord_y);
