@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 17:00:23 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:50:54 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_init_ray(t_player *player, t_ray *ray, int ray_num)
 
 	ray->dist_from_player = 1000000;
 	fov = FOV;
-	offset = fov * 2;
+	offset = fov * 4;
 	ray->angle = player->angle + ((ray_num - offset) * (RADS_PER_DEG / 4));
 	if (ray->angle > (2 * PI))
 		ray->angle -= (2 * PI);
@@ -152,15 +152,20 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 	int		v_offset;
 
 	ray_num = 0;
-	h_offset = WIN_X / 240;
+	h_offset = WIN_X / 400;
 	ft_bzero(&ray, sizeof(t_ray));
-	while (ray_num < 270)
+	while (ray_num < 400)
 	{
 		ft_draw_one_ray(player, map_data, &ray, ray_num);
 		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
 		if (vert_bar_height > WIN_Y)
 			vert_bar_height = WIN_Y;
 		v_offset = WIN_Y / 2 - (vert_bar_height / 2);
+		// ft_bresenhams_line(engine,
+		// 	(t_point){player->coord.x + MAP_ORIG_X,
+		// 	player->coord.y + MAP_ORIG_Y},
+		// 	(t_point){ray.coord_x, ray.coord_y},
+		// 	ft_color_to_int((t_rgb){0, 255, 0}));
 		ft_px_put_rect(engine,
 			(t_rect){(t_point){h_offset * ray_num, v_offset},
 			(t_point){(h_offset * ray_num) + h_offset,
