@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:11:05 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:41:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int	ft_render(t_clear *clear)
 			(t_point){0, 0})
 		|| ft_send_image_to_window(engine, engine->lst_images, BG_IMAGE_F,
 			(t_point){0, WIN_Y / 2})
-		|| ft_draw_rays(engine, player, map_data)
 		|| ft_send_image_to_window(engine, engine->lst_images, MINI_MAP,
 			(t_point){MAP_ORIG_X, MAP_ORIG_Y})
+		|| ft_draw_rays(engine, player, map_data)
 		|| ft_draw_player(engine, map_data, player)
 	)
 		return (1);
