@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:01:55 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:38:44 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,37 @@
 #include "stdbool.h"
 #include "cub3D.h"
 #include "libft.h"
+#include "math.h"
+#include <stdio.h>
+
+/*
+ *	***** ft_rotate_player *****
+ *
+ *	DESCRIPTION:
+ *		Changes the player's angle of rotation and sets the new player delta.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
+void	ft_rotate_player(t_player *player, t_direction direction)
+{
+	if (direction == LEFT_DIR)
+	{
+		player->angle -= 0.1;
+		if (player->angle < 0)
+			player->angle += 2 * PI;
+		player->delta.x = cos(player->angle) * MOVE_SPEED;
+		player->delta.y = sin(player->angle) * MOVE_SPEED;
+	}
+	if (direction == RIGHT_DIR)
+	{
+		player->angle += 0.1;
+		if (player->angle > 2 * PI)
+			player->angle -= 2 * PI;
+		player->delta.x = cos(player->angle) * MOVE_SPEED;
+		player->delta.y = sin(player->angle) * MOVE_SPEED;
+	}
+}
 
 /*
  *	***** ft_move_player *****
@@ -26,19 +57,18 @@
  *		Void function does not return a value.
  */
 
-void	ft_move_player(t_player *player, t_direction direction, int block_size)
+void	ft_move_player(t_player *player, t_direction direction)
 {
-	double	distance;
-
-	distance = ((double)block_size / MOVE_SPEED) / (double)block_size;
 	if (direction == FORWARD_DIR)
-		player->pos.y = player->pos.y - distance;
+	{
+		player->pos.x += player->delta.x;
+		player->pos.y += player->delta.y;
+	}
 	if (direction == BACKWARD_DIR)
-		player->pos.y = player->pos.y + distance;
-	if (direction == LEFT_DIR)
-		player->pos.x = player->pos.x - distance;
-	if (direction == RIGHT_DIR)
-		player->pos.x = player->pos.x + distance;
+	{
+		player->pos.x -= player->delta.x;
+		player->pos.y -= player->delta.y;
+	}
 }
 
 /*
@@ -60,6 +90,9 @@ bool	ft_player_init(t_player *player, t_map_data *map_data)
 	player->coord.x = 0;
 	player->coord.y = 0;
 	player->size = map_data->map_block_size / 3;
+	player->delta.x = cos(player->angle) * MOVE_SPEED;
+	player->delta.y = sin(player->angle) * MOVE_SPEED;
+	player->angle = 0;
 	return (0);
 }
 

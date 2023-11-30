@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:44:29 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 10:29:08 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@
 # define MAP_SIZE		1000
 # define MAP_ORIG_X		10
 # define MAP_ORIG_Y		10
-# define MOVE_SPEED		10
+# define MOVE_SPEED		0.1
+# define PI				3.1415926535
+# define RADS_PER_DEG	0.0174533
+# define FOV			60
 
 //***** enums *****//
 
@@ -76,11 +79,30 @@ typedef struct s_pos
 	double	y;
 }			t_pos;
 
+typedef struct s_ray
+{
+	double	coord_x;
+	double	coord_y;
+	double	offset_x;
+	double	offset_y;
+	double	angle;
+	double	dist_from_player;
+}		t_ray;
+
+typedef struct s_full_ray
+{
+	t_point	final;
+	t_ray	h_ray;
+	t_ray	v_ray;
+}			t_full_ray;
+
 typedef struct s_player
 {
 	t_pos	pos;
 	t_point	coord;
 	int		size;
+	t_pos	delta;
+	double	angle;
 }			t_player;
 
 typedef struct s_image
@@ -123,11 +145,21 @@ bool	ft_engine_init(t_engine *engine);
 void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rect rect);
 void	ft_px_put_rect(t_engine *engine, t_rect rect);
+int		ft_color_to_int(t_rgb color);
+bool	ft_bresenhams_line(t_engine *engine,
+			t_point from, t_point to, int color);
 		//***** player *****/
 bool	ft_player_init(t_player *player, t_map_data *map_data);
 bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 			t_player *player);
-void	ft_move_player(t_player *player, t_direction direction, int block_size);
+void	ft_move_player(t_player *player, t_direction direction);
+void	ft_rotate_player(t_player *player, t_direction direction);
+bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data);
+void	ft_horiz_check(t_player *player, t_map_data *map_data, t_ray *h_ray,
+			int max_dof);
+void	ft_vert_check(t_player *player, t_map_data *map_data, t_ray *v_ray,
+			int max_dof);
+double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y);
 		//***** images *****/
 bool	ft_image_init(t_image *image,
 			void *mlx_ptr, t_image_id ID, t_point size);
