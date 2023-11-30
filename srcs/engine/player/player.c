@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/29 09:38:44 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:47:55 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 void	ft_rotate_player(t_player *player, t_direction direction)
 {
-	if (direction == LEFT_DIR)
+	if (direction == TURN_LEFT)
 	{
 		player->angle -= 0.1;
 		if (player->angle < 0)
@@ -38,7 +38,7 @@ void	ft_rotate_player(t_player *player, t_direction direction)
 		player->delta.x = cos(player->angle) * MOVE_SPEED;
 		player->delta.y = sin(player->angle) * MOVE_SPEED;
 	}
-	if (direction == RIGHT_DIR)
+	if (direction == TURN_RIGHT)
 	{
 		player->angle += 0.1;
 		if (player->angle > 2 * PI)
@@ -68,6 +68,16 @@ void	ft_move_player(t_player *player, t_direction direction)
 	{
 		player->pos.x -= player->delta.x;
 		player->pos.y -= player->delta.y;
+	}
+	if (direction == LEFT_DIR)
+	{
+		player->pos.x -= MOVE_SPEED * -sin(player->angle);
+		player->pos.y -= MOVE_SPEED * cos(player->angle);
+	}
+	if (direction == RIGHT_DIR)
+	{
+		player->pos.x += MOVE_SPEED * -sin(player->angle);
+		player->pos.y += MOVE_SPEED * cos(player->angle);
 	}
 }
 

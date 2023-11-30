@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 10:29:08 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:01:23 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef enum e_direction
 	BACKWARD_DIR = 1,
 	LEFT_DIR = 2,
 	RIGHT_DIR = 3,
+	TURN_LEFT = 4,
+	TURN_RIGHT = 5,
 }	t_direction;
 
 //***** typesdefs/structs *****//
