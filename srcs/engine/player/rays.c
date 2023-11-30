@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 16:07:39 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:09:20 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 		v_offset = WIN_Y / 2 - (vert_bar_height / 2);
 		ft_px_put_rect(engine,
 			(t_rect){(t_point){h_offset * ray_num, v_offset},
-			(t_point){(h_offset * ray_num) + h_offset - 1,
+			(t_point){(h_offset * ray_num) + h_offset,
 			vert_bar_height + v_offset}, ray.color,
 		});
 		ray_num++;
