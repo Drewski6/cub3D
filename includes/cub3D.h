@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:43 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 12:50:23 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:27:36 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_map_data
 	t_coord		start_pos;
 	t_point		size;
 	int			bs;
+	char		start_ori;
 }				t_map_data;
 
 //***** function declaractions *****//

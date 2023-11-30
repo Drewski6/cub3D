@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 00:01:06 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:28:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ bool	ft_map_at_least_one_start(t_map_data *map_data)
 			map_data->start_pos.y = y;
 			map_data->start_pos.source = 0;
 			map_data->start_pos.neighbors = 0;
+			map_data->start_ori = *nsew;
 			return (0);
 		}
 		y++;
