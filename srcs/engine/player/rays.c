@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:23:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:47:57 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,9 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
 	t_ray		v_ray;
 	int			max_dof;
 
+	max_dof = map_data->size.y;
 	if (map_data->size.x > map_data->size.y)
 		max_dof = map_data->size.x;
-	else
-		max_dof = map_data->size.y;
 	ft_init_ray(player, &h_ray, ray_num);
 	ft_init_ray(player, &v_ray, ray_num);
 	ft_horiz_check(player, map_data, &h_ray, max_dof);
@@ -87,13 +86,15 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
 	{
 		ray->coord_x = h_ray.coord_x + MAP_ORIG_X;
 		ray->coord_y = h_ray.coord_y + MAP_ORIG_Y;
-		ray->dist_from_player = h_ray.dist_from_player;
+		ray->dist_from_player = ft_fix_fisheye(player->angle,
+				h_ray.angle, h_ray.dist_from_player);
 	}
 	else
 	{
 		ray->coord_x = v_ray.coord_x + MAP_ORIG_X;
 		ray->coord_y = v_ray.coord_y + MAP_ORIG_Y;
-		ray->dist_from_player = v_ray.dist_from_player;
+		ray->dist_from_player = ft_fix_fisheye(player->angle,
+				v_ray.angle, v_ray.dist_from_player);
 	}
 }
 
@@ -148,19 +149,12 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
 		if (vert_bar_height > WIN_Y)
 			vert_bar_height = WIN_Y;
-		v_offset = WIN_Y/2 - (vert_bar_height / 2);
+		v_offset = WIN_Y / 2 - (vert_bar_height / 2);
 		ft_px_put_rect(engine,
-			(t_rect){
-			(t_point){h_offset * ray_num, v_offset},
-			(t_point){(h_offset * ray_num) + h_offset - 1, vert_bar_height + v_offset},
-			(t_rgb){255, 255, 255},
+			(t_rect){(t_point){h_offset * ray_num, v_offset},
+			(t_point){(h_offset * ray_num) + h_offset - 1,
+			vert_bar_height + v_offset}, (t_rgb){255, 255, 255},
 		});
-		//printf("ray_num: %d\tvert_bar_height: %d\n", ray_num, vert_bar_height);
-		// ft_bresenhams_line(engine,
-		// 	(t_point){player->coord.x + MAP_ORIG_X,
-		// 	player->coord.y + MAP_ORIG_Y},
-		// 	(t_point){ray.coord_x, ray.coord_y},
-		// 	ft_color_to_int((t_rgb){0, 255, 0}));
 		ray_num++;
 	}
 	ft_dir_ray(engine, player, map_data);
