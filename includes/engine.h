@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:36:17 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:57:40 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIN_X			1600
 # define WIN_Y			800
 # define WIN_NAME		"dpentlan - cub3D"
-# define MAP_SIZE		1500
+# define MAP_SIZE		400
 # define MAP_ORIG_X		10
 # define MAP_ORIG_Y		10
 # define MOVE_SPEED		0.1
@@ -89,6 +89,7 @@ typedef struct s_ray
 	double	offset_y;
 	double	angle;
 	double	dist_from_player;
+	t_rgb	color;
 }		t_ray;
 
 typedef struct s_player
@@ -155,6 +156,8 @@ void	ft_horiz_check(t_player *player, t_map_data *map_data, t_ray *h_ray,
 void	ft_vert_check(t_player *player, t_map_data *map_data, t_ray *v_ray,
 			int max_dof);
 double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y);
+void	ft_update_player_coords(t_player *player, int block_size);
+double	ft_fix_fisheye(double player_angle, double ray_angle, double dist);
 		//***** images *****/
 bool	ft_image_init(t_image *image,
 			void *mlx_ptr, t_image_id ID, t_point size);

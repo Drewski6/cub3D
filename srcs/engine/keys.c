@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:35:11 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 11:03:05 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:01:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_key_press(int key, void *param)
 		ft_rotate_player(clear->player, TURN_LEFT);
 	else if (key == R_ARROW)
 		ft_rotate_player(clear->player, TURN_RIGHT);
+	ft_render(clear);
 	return (0);
 }
 

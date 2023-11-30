@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:13:20 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:09:20 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,6 @@
 #include "cub3D.h"
 #include <stdio.h>
 #include "libft.h"
-
-/*
- *	***** ft_distance *****
- *
- *	DESCRIPTION:
- *		Calculate the distance between two points using the pythagorean theorm.
- *	RETURN:
- *		Returns as a double the distance between two points.
- */
-
-double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y)
-{
-	return (
-		sqrt(((pt2x - pt1x) * (pt2x - pt1x))
-			+ ((pt2y - pt1y) * (pt2y - pt1y))));
-}
 
 /*
  *	***** ft_set_ray_angles *****
@@ -58,6 +42,36 @@ void	ft_init_ray(t_player *player, t_ray *ray, int ray_num)
 }
 
 /*
+ *	***** ft_set_return_ray_values *****
+ *
+ *	DESCRIPTION:
+ *		desc
+ *	RETURN:
+ *		ret
+ */
+
+void	ft_set_return_ray_values(t_player *player, t_ray *ray,
+							t_ray *h_ray, t_ray *v_ray)
+{
+	if (h_ray->dist_from_player < v_ray->dist_from_player)
+	{
+		ray->coord_x = h_ray->coord_x + MAP_ORIG_X;
+		ray->coord_y = h_ray->coord_y + MAP_ORIG_Y;
+		ray->dist_from_player = ft_fix_fisheye(player->angle,
+				h_ray->angle, h_ray->dist_from_player);
+		ray->color = (t_rgb){255, 255, 255};
+	}
+	else
+	{
+		ray->coord_x = v_ray->coord_x + MAP_ORIG_X;
+		ray->coord_y = v_ray->coord_y + MAP_ORIG_Y;
+		ray->dist_from_player = ft_fix_fisheye(player->angle,
+				v_ray->angle, v_ray->dist_from_player);
+		ray->color = (t_rgb){200, 200, 200};
+	}
+}
+
+/*
  *	***** ft_draw_one_ray *****
  *
  *	DESCRIPTION:
@@ -75,26 +89,16 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
 	t_ray		v_ray;
 	int			max_dof;
 
+	max_dof = map_data->size.y;
 	if (map_data->size.x > map_data->size.y)
 		max_dof = map_data->size.x;
-	else
-		max_dof = map_data->size.y;
+	ft_bzero(&h_ray, sizeof(t_ray));
+	ft_bzero(&v_ray, sizeof(t_ray));
 	ft_init_ray(player, &h_ray, ray_num);
 	ft_init_ray(player, &v_ray, ray_num);
 	ft_horiz_check(player, map_data, &h_ray, max_dof);
 	ft_vert_check(player, map_data, &v_ray, max_dof);
-	if (h_ray.dist_from_player < v_ray.dist_from_player)
-	{
-		ray->coord_x = h_ray.coord_x + MAP_ORIG_X;
-		ray->coord_y = h_ray.coord_y + MAP_ORIG_Y;
-		ray->dist_from_player = h_ray.dist_from_player;
-	}
-	else
-	{
-		ray->coord_x = v_ray.coord_x + MAP_ORIG_X;
-		ray->coord_y = v_ray.coord_y + MAP_ORIG_Y;
-		ray->dist_from_player = v_ray.dist_from_player;
-	}
+	ft_set_return_ray_values(player, ray, &h_ray, &v_ray);
 }
 
 /*
@@ -135,17 +139,25 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 {
 	int		ray_num;
 	t_ray	ray;
+	int		vert_bar_height;
+	int		h_offset;
+	int		v_offset;
 
 	ray_num = 0;
+	h_offset = WIN_X / FOV;
 	ft_bzero(&ray, sizeof(t_ray));
-	while (ray_num < FOV)
+	while (ray_num < FOV + 2)
 	{
 		ft_draw_one_ray(player, map_data, &ray, ray_num);
-		ft_bresenhams_line(engine,
-			(t_point){player->coord.x + MAP_ORIG_X,
-			player->coord.y + MAP_ORIG_Y},
-			(t_point){ray.coord_x, ray.coord_y},
-			ft_color_to_int((t_rgb){0, 255, 0}));
+		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
+		if (vert_bar_height > WIN_Y)
+			vert_bar_height = WIN_Y;
+		v_offset = WIN_Y / 2 - (vert_bar_height / 2);
+		ft_px_put_rect(engine,
+			(t_rect){(t_point){h_offset * ray_num, v_offset},
+			(t_point){(h_offset * ray_num) + h_offset,
+			vert_bar_height + v_offset}, ray.color,
+		});
 		ray_num++;
 	}
 	ft_dir_ray(engine, player, map_data);
