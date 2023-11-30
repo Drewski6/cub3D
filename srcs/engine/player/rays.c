@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:54:59 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:59:48 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
 		ray->coord_y = h_ray->coord_y + MAP_ORIG_Y;
 		ray->dist_from_player = ft_fix_fisheye(player->angle,
 				h_ray->angle, h_ray->dist_from_player);
+		ray->color = (t_rgb){255, 255, 255};
 	}
 	else
 	{
@@ -82,6 +83,7 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
 		ray->coord_y = v_ray->coord_y + MAP_ORIG_Y;
 		ray->dist_from_player = ft_fix_fisheye(player->angle,
 				v_ray->angle, v_ray->dist_from_player);
+		ray->color = (t_rgb){200, 200, 200};
 	}
 }
 
@@ -170,7 +172,7 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 		ft_px_put_rect(engine,
 			(t_rect){(t_point){h_offset * ray_num, v_offset},
 			(t_point){(h_offset * ray_num) + h_offset - 1,
-			vert_bar_height + v_offset}, (t_rgb){255, 255, 255},
+			vert_bar_height + v_offset}, ray.color,
 		});
 		ray_num++;
 	}
