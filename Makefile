@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/11/28 10:24:09 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/11/30 09:01:31 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRC 			=	main/close.c \
 					engine/map.c \
 					engine/player/player.c \
 					engine/player/rays.c \
+					engine/player/vert_rays.c \
+					engine/player/horiz_rays.c \
 					engine/render.c \
 					debug/map_debug.c \
 
