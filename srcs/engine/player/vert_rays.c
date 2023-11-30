@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:42:37 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 12:52:26 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:39:47 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,11 @@ void	ft_vert_looking_right(t_player *player,
 
 void	ft_vert_looking_up_down(t_player *player, t_ray *v_ray, int bs)
 {
+	v_ray->coord_x = player->coord.x;
 	if (v_ray->angle == (PI / 2))
-	{
-		v_ray->coord_x = player->coord.x / bs * bs + bs;
-		v_ray->coord_y = player->coord.y;
-	}
+		v_ray->coord_y = player->coord.y / bs * bs + bs;
 	if (v_ray->angle == (3 * PI / 2))
-	{
-		v_ray->coord_x = player->coord.x;
 		v_ray->coord_y = player->coord.y / bs * bs;
-	}
 	v_ray->offset_x = bs;
 	v_ray->offset_y = 0;
 }
