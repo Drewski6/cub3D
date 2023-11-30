@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:38:17 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 10:43:04 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:52:46 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 void	ft_horiz_looking_up(t_player *player,
 						t_ray *h_ray, int bs, double arctan)
 {
-	h_ray->coord_y = player->coord.y / 30 * 30 + 0.0001;
+	h_ray->coord_y = player->coord.y / bs * bs + 0.0001;
 	h_ray->coord_x = (player->coord.y - h_ray->coord_y)
 		* arctan + player->coord.x;
 	h_ray->offset_y = -bs;
@@ -50,7 +50,7 @@ void	ft_horiz_looking_up(t_player *player,
 void	ft_horiz_looking_down(t_player *player,
 						t_ray *h_ray, int bs, double arctan)
 {
-	h_ray->coord_y = player->coord.y / 30 * 30 + 30;
+	h_ray->coord_y = player->coord.y / bs * bs + 30;
 	h_ray->coord_x = (player->coord.y - h_ray->coord_y)
 		* arctan + player->coord.x;
 	h_ray->offset_y = bs;
@@ -68,15 +68,15 @@ void	ft_horiz_looking_down(t_player *player,
  *		Void function does not return a value.
  */
 
-void	ft_horiz_looking_across(t_player *player, t_ray *h_ray)
+void	ft_horiz_looking_across(t_player *player, t_ray *h_ray, int bs)
 {
 	h_ray->coord_y = player->coord.y;
 	if (h_ray->angle == 0)
-		h_ray->coord_x = player->coord.x / 30 * 30 + 30;
+		h_ray->coord_x = player->coord.x / bs * bs + bs;
 	if (h_ray->angle == PI)
-		h_ray->coord_x = player->coord.x / 30 * 30;
+		h_ray->coord_x = player->coord.x / bs * bs;
 	h_ray->offset_y = 0;
-	h_ray->offset_x = 30;
+	h_ray->offset_x = bs;
 }
 
 /*
@@ -101,11 +101,11 @@ void	ft_horiz_dof(t_player *player, t_map_data *map_data, t_ray *h_ray,
 	dof = 0;
 	while (dof < max_dof)
 	{
-		map_x = (h_ray->coord_x + 30) / 30;
+		map_x = (h_ray->coord_x + map_data->bs) / map_data->bs;
 		if (h_ray->angle > PI)
-			map_y = (h_ray->coord_y) / 30;
+			map_y = (h_ray->coord_y) / map_data->bs;
 		if (h_ray->angle < PI)
-			map_y = (h_ray->coord_y + 30) / 30;
+			map_y = (h_ray->coord_y + map_data->bs) / map_data->bs;
 		if (map_y < 0 || map_x < 0
 			|| map_y > map_data->size.y || map_x > map_data->size.x
 			|| map_data->map[map_y][map_x] == '1')
@@ -143,11 +143,11 @@ void	ft_horiz_check(t_player *player, t_map_data *map_data, t_ray *h_ray,
 	if (arctan < -100)
 		arctan = -100;
 	if (h_ray->angle > PI)
-		ft_horiz_looking_up(player, h_ray, map_data->map_block_size, arctan);
+		ft_horiz_looking_up(player, h_ray, map_data->bs, arctan);
 	if (h_ray->angle < PI)
-		ft_horiz_looking_down(player, h_ray, map_data->map_block_size, arctan);
+		ft_horiz_looking_down(player, h_ray, map_data->bs, arctan);
 	if (h_ray->angle == 0 || h_ray->angle == PI)
-		ft_horiz_looking_across(player, h_ray);
+		ft_horiz_looking_across(player, h_ray, map_data->bs);
 	ft_horiz_dof(player, map_data, h_ray, max_dof);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 11:47:55 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:51:46 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ bool	ft_player_init(t_player *player, t_map_data *map_data)
 	player->pos.y = map_data->start_pos.y + 0.5;
 	player->coord.x = 0;
 	player->coord.y = 0;
-	player->size = map_data->map_block_size / 3;
+	player->size = map_data->bs / 3;
 	player->delta.x = cos(player->angle) * MOVE_SPEED;
 	player->delta.y = sin(player->angle) * MOVE_SPEED;
 	player->angle = 0;
@@ -140,7 +140,7 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data, t_player *player)
 	if (!map)
 		return (ft_putstr_fd("Error\nImage with matching ID not found \
 					during prerender.\n", 2), 1);
-	ft_update_player_coords(player, map_data->map_block_size);
+	ft_update_player_coords(player, map_data->bs);
 	ft_px_put_rect(engine, (t_rect){
 		(t_point){MAP_ORIG_X + player->coord.x - (player->size / 2),
 		MAP_ORIG_Y + player->coord.y - (player->size / 2)},

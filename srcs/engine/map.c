@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:22:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 11:26:17 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:51:20 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ bool	ft_draw_map(t_engine *engine, t_map_data *map_data)
 		{
 			if (map_data->map[y][x] == '1')
 				ft_draw_map_block((t_rgb){MAP_FG_1_R, MAP_FG_1_G, MAP_FG_1_B},
-					map, map_data->map_block_size, (t_point){x, y});
+					map, map_data->bs, (t_point){x, y});
 			else if (map_data->map[y][x] != ' ')
 				ft_draw_map_block((t_rgb){MAP_FG_0_R, MAP_FG_0_G, MAP_FG_0_B},
-					map, map_data->map_block_size, (t_point){x, y});
+					map, map_data->bs, (t_point){x, y});
 			x++;
 		}
 		y++;

@@ -6,13 +6,14 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:42:37 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 09:14:26 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:52:26 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "cub3D.h"
 #include "math.h"
+#include <stdio.h>
 
 /*
  *	***** ft_vert_looking_left *****
@@ -28,7 +29,7 @@
 void	ft_vert_looking_left(t_player *player,
 						t_ray *v_ray, int bs, double negtan)
 {
-	v_ray->coord_x = player->coord.x / 30 * 30 + 0.0001;
+	v_ray->coord_x = player->coord.x / bs * bs + 0.0001;
 	v_ray->coord_y = (player->coord.x - v_ray->coord_x)
 		* negtan + player->coord.y;
 	v_ray->offset_x = -bs;
@@ -49,7 +50,7 @@ void	ft_vert_looking_left(t_player *player,
 void	ft_vert_looking_right(t_player *player,
 						t_ray *v_ray, int bs, double negtan)
 {
-	v_ray->coord_x = player->coord.x / 30 * 30 + 30;
+	v_ray->coord_x = player->coord.x / bs * bs + bs;
 	v_ray->coord_y = (player->coord.x - v_ray->coord_x)
 		* negtan + player->coord.y;
 	v_ray->offset_x = bs;
@@ -67,19 +68,19 @@ void	ft_vert_looking_right(t_player *player,
  *		Void function does not return a value.
  */
 
-void	ft_vert_looking_up_down(t_player *player, t_ray *v_ray)
+void	ft_vert_looking_up_down(t_player *player, t_ray *v_ray, int bs)
 {
 	if (v_ray->angle == (PI / 2))
 	{
-		v_ray->coord_x = player->coord.x / 30 * 30 + 30;
+		v_ray->coord_x = player->coord.x / bs * bs + bs;
 		v_ray->coord_y = player->coord.y;
 	}
 	if (v_ray->angle == (3 * PI / 2))
 	{
 		v_ray->coord_x = player->coord.x;
-		v_ray->coord_y = player->coord.y / 30 * 30;
+		v_ray->coord_y = player->coord.y / bs * bs;
 	}
-	v_ray->offset_x = 30;
+	v_ray->offset_x = bs;
 	v_ray->offset_y = 0;
 }
 
@@ -105,11 +106,11 @@ void	ft_vert_dof(t_player *player, t_map_data *map_data, t_ray *v_ray,
 	dof = 0;
 	while (dof < max_dof)
 	{
-		map_y = (v_ray->coord_y + 30) / 30;
+		map_y = (v_ray->coord_y + map_data->bs) / map_data->bs;
 		if (v_ray->angle > (PI / 2) && v_ray->angle < (3 * PI / 2))
-			map_x = (v_ray->coord_x) / 30;
+			map_x = (v_ray->coord_x) / map_data->bs;
 		if (v_ray->angle < (PI / 2) || v_ray->angle > (3 * PI / 2))
-			map_x = (v_ray->coord_x + 30) / 30;
+			map_x = (v_ray->coord_x + map_data->bs) / map_data->bs;
 		if (map_y < 0 || map_x < 0
 			|| map_y > map_data->size.y || map_x > map_data->size.x
 			|| map_data->map[map_y][map_x] == '1')
@@ -147,11 +148,11 @@ void	ft_vert_check(t_player *player, t_map_data *map_data, t_ray *v_ray,
 	if (negtan < -100)
 		negtan = -100;
 	if (v_ray->angle > (PI / 2) && v_ray->angle < (3 * PI / 2))
-		ft_vert_looking_left(player, v_ray, map_data->map_block_size, negtan);
+		ft_vert_looking_left(player, v_ray, map_data->bs, negtan);
 	if (v_ray->angle < (PI / 2) || v_ray->angle > (3 * PI / 2))
-		ft_vert_looking_right(player, v_ray, map_data->map_block_size, negtan);
+		ft_vert_looking_right(player, v_ray, map_data->bs, negtan);
 	if (v_ray->angle == (PI / 2) || v_ray->angle == (3 * PI / 2))
-		ft_vert_looking_up_down(player, v_ray);
+		ft_vert_looking_up_down(player, v_ray, map_data->bs);
 	ft_vert_dof(player, map_data, v_ray, max_dof);
 	return ;
 }
