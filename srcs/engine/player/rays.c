@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 09:04:18 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 10:05:16 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,27 @@ double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y)
 }
 
 /*
- *	***** ft_line_check *****
+ *	***** ft_set_ray_angles *****
  *
  *	DESCRIPTION:
- *		Sets up both h_ray and v_ray and sends them to their corresponding
- *		checker functions for evaluation.
+ *		Sets the ray's angle according to how large the field of view is set.
  *	RETURN:
  *		Void function does not return a value.
  */
 
-void	ft_line_check(t_player *player, t_map_data *map_data, t_full_ray *ray)
+void	ft_set_ray_angles(t_player *player, t_full_ray *ray, int ray_num)
 {
-	int	max_dof;
+	double	fov;
+	double	offset;
 
-	if (map_data->size.x > map_data->size.y)
-		max_dof = map_data->size.x;
-	else
-		max_dof = map_data->size.y;
-	ray->h_ray.angle = player->angle;
-	ray->h_ray.dist_from_player = 1000000;
-	ray->v_ray.angle = player->angle;
-	ray->v_ray.dist_from_player = 1000000;
-	ft_horiz_check(player, map_data, &ray->h_ray, max_dof);
-	ft_vert_check(player, map_data, &ray->v_ray, max_dof);
+	fov = FOV;
+	offset = fov / 2;
+	ray->h_ray.angle = player->angle + ((ray_num - offset) * RADS_PER_DEG);
+	if (ray->h_ray.angle > (2 * PI))
+		ray->h_ray.angle -= (2 * PI);
+	ray->v_ray.angle = player->angle + ((ray_num - offset) * RADS_PER_DEG);
+	if (ray->v_ray.angle > (2 * PI))
+		ray->v_ray.angle -= (2 * PI);
 }
 
 /*
@@ -74,10 +72,18 @@ t_point	ft_draw_one_ray(t_player *player,
 					t_map_data *map_data, int ray_num)
 {
 	t_full_ray	ray;
+	int			max_dof;
 
-	(void) ray_num;
 	ft_bzero(&ray, sizeof(t_full_ray));
-	ft_line_check(player, map_data, &ray);
+	if (map_data->size.x > map_data->size.y)
+		max_dof = map_data->size.x;
+	else
+		max_dof = map_data->size.y;
+	ft_set_ray_angles(player, &ray, ray_num);
+	ray.h_ray.dist_from_player = 1000000;
+	ray.v_ray.dist_from_player = 1000000;
+	ft_horiz_check(player, map_data, &ray.h_ray, max_dof);
+	ft_vert_check(player, map_data, &ray.v_ray, max_dof);
 	if (ray.h_ray.dist_from_player < ray.v_ray.dist_from_player)
 	{
 		ray.final.x = ray.h_ray.coord_x + MAP_ORIG_X;
@@ -123,19 +129,17 @@ bool	ft_dir_ray(t_engine *engine, t_player *player)
 
 bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 {
-	int	i;
-	int	num_rays;
+	int	ray_num;
 
-	i = 0;
-	num_rays = 1;
-	while (i < num_rays)
+	ray_num = 0;
+	while (ray_num < FOV)
 	{
 		ft_bresenhams_line(engine,
 			(t_point){player->coord.x + MAP_ORIG_X,
 			player->coord.y + MAP_ORIG_Y},
-			ft_draw_one_ray(player, map_data, i),
+			ft_draw_one_ray(player, map_data, ray_num),
 			ft_color_to_int((t_rgb){255, 255, 0}));
-		i++;
+		ray_num++;
 	}
 	ft_dir_ray(engine, player);
 	return (0);
