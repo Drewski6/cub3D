@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:59:48 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:07:39 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,6 @@
 #include "cub3D.h"
 #include <stdio.h>
 #include "libft.h"
-
-/*
- *	***** ft_distance *****
- *
- *	DESCRIPTION:
- *		Calculate the distance between two points using the pythagorean theorm.
- *	RETURN:
- *		Returns as a double the distance between two points.
- */
-
-double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y)
-{
-	return (
-		sqrt(((pt2x - pt1x) * (pt2x - pt1x))
-			+ ((pt2y - pt1y) * (pt2y - pt1y))));
-}
 
 /*
  *	***** ft_set_ray_angles *****
