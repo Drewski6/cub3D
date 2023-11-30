@@ -6,13 +6,24 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:42:37 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 09:03:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:14:26 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "cub3D.h"
 #include "math.h"
+
+/*
+ *	***** ft_vert_looking_left *****
+ *
+ *	DESCRIPTION:
+ *		Check for when the player's angle is towards the left of the screen.
+ *		Finds the ray coordinate (intersection coordinate with first gridline),
+ *		then finds the offset (how much to add for each gridsquare).
+ *	RETURN:
+ *		Void function does not return a value.
+ */
 
 void	ft_vert_looking_left(t_player *player,
 						t_ray *v_ray, int bs, double negtan)
@@ -24,6 +35,17 @@ void	ft_vert_looking_left(t_player *player,
 	v_ray->offset_y = -v_ray->offset_x * negtan;
 }
 
+/*
+ *	***** ft_vert_looking_right *****
+ *
+ *	DESCRIPTION:
+ *		Check for when the player's angle is towards the right of the screen.
+ *		Finds the ray coordinate (intersection coordinate with first gridline),
+ *		then finds the offset (how much to add for each gridsquare).
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
 void	ft_vert_looking_right(t_player *player,
 						t_ray *v_ray, int bs, double negtan)
 {
@@ -33,6 +55,17 @@ void	ft_vert_looking_right(t_player *player,
 	v_ray->offset_x = bs;
 	v_ray->offset_y = -v_ray->offset_x * negtan;
 }
+
+/*
+ *	***** ft_vert_looking_up_down *****
+ *
+ *	DESCRIPTION:
+ *		Performs check for when player is looking directly up and down.
+ *		This is not common since we are using floats and the precision usually 
+ *		prevents us from looking directly up and down so mostly this is an edgecase.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
 
 void	ft_vert_looking_up_down(t_player *player, t_ray *v_ray)
 {
@@ -49,6 +82,18 @@ void	ft_vert_looking_up_down(t_player *player, t_ray *v_ray)
 	v_ray->offset_x = 30;
 	v_ray->offset_y = 0;
 }
+
+/*
+ *	***** ft_vert_dof *****
+ *
+ *	DESCRIPTION:
+ *		Uses the ray's offset values to increase the ray coordinates based on if a 
+ *		wall is present in the grid block or not.
+ *	RETURN:
+ *		Function returns when a wall is encountered or loop meets 
+ *		max depth of field.
+ *		Void function does not return a value.
+ */
 
 void	ft_vert_dof(t_player *player, t_map_data *map_data, t_ray *v_ray,
 				int max_dof)
@@ -78,6 +123,18 @@ void	ft_vert_dof(t_player *player, t_map_data *map_data, t_ray *v_ray,
 		dof += 1;
 	}
 }
+
+/*
+ *	***** ft_vert_check *****
+ *
+ *	DESCRIPTION:
+ *		Performs the checks for the vertical intersections.
+ *		First finds the intersection with the first gridline,
+ *		then finds the offset (size of a grid square),
+ *		then looks until a wall is seen.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
 
 void	ft_vert_check(t_player *player, t_map_data *map_data, t_ray *v_ray,
 				int max_dof)
