@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 12:31:18 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:07:16 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,16 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
 	{
 		ray->coord_x = h_ray.coord_x + MAP_ORIG_X;
 		ray->coord_y = h_ray.coord_y + MAP_ORIG_Y;
+		// ray->coord_x = h_ray.coord_x;
+		// ray->coord_y = h_ray.coord_y;
 		ray->dist_from_player = h_ray.dist_from_player;
 	}
 	else
 	{
 		ray->coord_x = v_ray.coord_x + MAP_ORIG_X;
 		ray->coord_y = v_ray.coord_y + MAP_ORIG_Y;
+		// ray->coord_x = v_ray.coord_x;
+		// ray->coord_y = v_ray.coord_y;
 		ray->dist_from_player = v_ray.dist_from_player;
 	}
 }
@@ -109,11 +113,15 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
 
 bool	ft_dir_ray(t_engine *engine, t_player *player)
 {
+	double	x_start;
+	double	y_start;
+
+	x_start = player->coord.x + MAP_ORIG_X;
+	y_start = player->coord.y + MAP_ORIG_Y;
 	ft_bresenhams_line(engine,
-		(t_point){player->coord.x + player->size,
-		player->coord.y + player->size},
-		(t_point){(player->coord.x + player->size) + player->delta.x * 150,
-		(player->coord.y + player->size) + player->delta.y * 150},
+		(t_point){x_start, y_start},
+		(t_point){x_start + player->delta.x * 150,
+		y_start + player->delta.y * 150},
 		ft_color_to_int((t_rgb){PLAYER_R, PLAYER_G, PLAYER_B}));
 	return (0);
 }
