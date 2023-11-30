@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 14:02:10 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:10:35 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ void	ft_horiz_check(t_player *player, t_map_data *map_data, t_ray *h_ray,
 void	ft_vert_check(t_player *player, t_map_data *map_data, t_ray *v_ray,
 			int max_dof);
 double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y);
+void	ft_update_player_coords(t_player *player, int block_size);
 		//***** images *****/
 bool	ft_image_init(t_image *image,
 			void *mlx_ptr, t_image_id ID, t_point size);

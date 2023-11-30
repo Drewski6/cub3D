@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:16:49 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:33:33 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:02:10 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 bool	ft_hooks_cub3d(t_clear *clear)
 {
 	if (0
-		|| !mlx_loop_hook(clear->engine->mlx_ptr, &ft_render, (void *)clear)
+		//|| !mlx_loop_hook(clear->engine->mlx_ptr, &ft_render, (void *)clear)
+		|| !mlx_loop_hook(clear->engine->mlx_ptr, NULL, (void *)clear)
 		|| !mlx_hook(clear->engine->win_ptr, KeyPress, 1L << 0,
 			ft_key_press, clear)
 		|| !mlx_hook(clear->engine->win_ptr, KeyRelease, 1L << 1,

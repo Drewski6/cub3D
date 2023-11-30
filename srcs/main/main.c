@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:37:55 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:03:52 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(int argc, char **argv)
 		return (ft_free_map_data(&map_data), ft_free_engine(&engine), 1);
 	if (ft_hooks_cub3d(&clear))
 		return (ft_free_map_data(&map_data), ft_free_engine(&engine), 1);
+	ft_render(&clear);
 	debug_print_map_data(&map_data);
 	mlx_loop(engine.mlx_ptr);
 	return (ft_free_map_data(&map_data), ft_free_engine(&engine), 0);
