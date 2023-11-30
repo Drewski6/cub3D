@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:42:37 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:39:47 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:05:15 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,12 @@ void	ft_vert_dof(t_player *player, t_map_data *map_data, t_ray *v_ray,
 		map_y = (v_ray->coord_y + map_data->bs) / map_data->bs;
 		if (v_ray->angle > (PI / 2) && v_ray->angle < (3 * PI / 2))
 			map_x = (v_ray->coord_x) / map_data->bs;
-		if (v_ray->angle < (PI / 2) || v_ray->angle > (3 * PI / 2))
+		else if (v_ray->angle < (PI / 2) || v_ray->angle > (3 * PI / 2))
 			map_x = (v_ray->coord_x + map_data->bs) / map_data->bs;
-		if (map_y < 0 || map_x < 0
-			|| map_y > map_data->size.y || map_x > map_data->size.x
-			|| map_data->map[map_y][map_x] == '1')
+		else
+			map_x = v_ray->coord_x / map_data->bs;
+		if (map_y < 0 || map_x < 0 || map_y > map_data->size.y
+			|| map_x > map_data->size.x || map_data->map[map_y][map_x] == '1')
 		{
 			v_ray->dist_from_player = ft_distance(player->coord.x,
 					player->coord.y, v_ray->coord_x, v_ray->coord_y);
