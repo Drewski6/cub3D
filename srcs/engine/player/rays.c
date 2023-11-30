@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:47:57 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:54:59 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,34 @@ void	ft_init_ray(t_player *player, t_ray *ray, int ray_num)
 }
 
 /*
+ *	***** ft_set_return_ray_values *****
+ *
+ *	DESCRIPTION:
+ *		desc
+ *	RETURN:
+ *		ret
+ */
+
+void	ft_set_return_ray_values(t_player *player, t_ray *ray,
+							t_ray *h_ray, t_ray *v_ray)
+{
+	if (h_ray->dist_from_player < v_ray->dist_from_player)
+	{
+		ray->coord_x = h_ray->coord_x + MAP_ORIG_X;
+		ray->coord_y = h_ray->coord_y + MAP_ORIG_Y;
+		ray->dist_from_player = ft_fix_fisheye(player->angle,
+				h_ray->angle, h_ray->dist_from_player);
+	}
+	else
+	{
+		ray->coord_x = v_ray->coord_x + MAP_ORIG_X;
+		ray->coord_y = v_ray->coord_y + MAP_ORIG_Y;
+		ray->dist_from_player = ft_fix_fisheye(player->angle,
+				v_ray->angle, v_ray->dist_from_player);
+	}
+}
+
+/*
  *	***** ft_draw_one_ray *****
  *
  *	DESCRIPTION:
@@ -78,24 +106,13 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
 	max_dof = map_data->size.y;
 	if (map_data->size.x > map_data->size.y)
 		max_dof = map_data->size.x;
+	ft_bzero(&h_ray, sizeof(t_ray));
+	ft_bzero(&v_ray, sizeof(t_ray));
 	ft_init_ray(player, &h_ray, ray_num);
 	ft_init_ray(player, &v_ray, ray_num);
 	ft_horiz_check(player, map_data, &h_ray, max_dof);
 	ft_vert_check(player, map_data, &v_ray, max_dof);
-	if (h_ray.dist_from_player < v_ray.dist_from_player)
-	{
-		ray->coord_x = h_ray.coord_x + MAP_ORIG_X;
-		ray->coord_y = h_ray.coord_y + MAP_ORIG_Y;
-		ray->dist_from_player = ft_fix_fisheye(player->angle,
-				h_ray.angle, h_ray.dist_from_player);
-	}
-	else
-	{
-		ray->coord_x = v_ray.coord_x + MAP_ORIG_X;
-		ray->coord_y = v_ray.coord_y + MAP_ORIG_Y;
-		ray->dist_from_player = ft_fix_fisheye(player->angle,
-				v_ray.angle, v_ray.dist_from_player);
-	}
+	ft_set_return_ray_values(player, ray, &h_ray, &v_ray);
 }
 
 /*
