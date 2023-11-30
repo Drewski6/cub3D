@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:07:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:10:28 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,12 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
 	{
 		ray->coord_x = h_ray.coord_x + MAP_ORIG_X;
 		ray->coord_y = h_ray.coord_y + MAP_ORIG_Y;
-		// ray->coord_x = h_ray.coord_x;
-		// ray->coord_y = h_ray.coord_y;
 		ray->dist_from_player = h_ray.dist_from_player;
 	}
 	else
 	{
 		ray->coord_x = v_ray.coord_x + MAP_ORIG_X;
 		ray->coord_y = v_ray.coord_y + MAP_ORIG_Y;
-		// ray->coord_x = v_ray.coord_x;
-		// ray->coord_y = v_ray.coord_y;
 		ray->dist_from_player = v_ray.dist_from_player;
 	}
 }

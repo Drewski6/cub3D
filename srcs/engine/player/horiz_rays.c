@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:38:17 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 12:52:46 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:09:36 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_horiz_looking_up(t_player *player,
 void	ft_horiz_looking_down(t_player *player,
 						t_ray *h_ray, int bs, double arctan)
 {
-	h_ray->coord_y = player->coord.y / bs * bs + 30;
+	h_ray->coord_y = player->coord.y / bs * bs + bs;
 	h_ray->coord_x = (player->coord.y - h_ray->coord_y)
 		* arctan + player->coord.x;
 	h_ray->offset_y = bs;
