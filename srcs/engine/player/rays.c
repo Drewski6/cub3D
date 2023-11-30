@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:10:28 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:13:20 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
  *		Bool function returns 0 on success and 1 on error.
  */
 
-bool	ft_dir_ray(t_engine *engine, t_player *player)
+bool	ft_dir_ray(t_engine *engine, t_player *player, t_map_data *map_data)
 {
 	double	x_start;
 	double	y_start;
@@ -116,8 +116,8 @@ bool	ft_dir_ray(t_engine *engine, t_player *player)
 	y_start = player->coord.y + MAP_ORIG_Y;
 	ft_bresenhams_line(engine,
 		(t_point){x_start, y_start},
-		(t_point){x_start + player->delta.x * 150,
-		y_start + player->delta.y * 150},
+		(t_point){x_start + player->delta.x * (map_data->bs * 5),
+		y_start + player->delta.y * (map_data->bs * 5)},
 		ft_color_to_int((t_rgb){PLAYER_R, PLAYER_G, PLAYER_B}));
 	return (0);
 }
@@ -148,6 +148,6 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 			ft_color_to_int((t_rgb){0, 255, 0}));
 		ray_num++;
 	}
-	ft_dir_ray(engine, player);
+	ft_dir_ray(engine, player, map_data);
 	return (0);
 }

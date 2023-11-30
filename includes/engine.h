@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:04:21 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:13:57 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIN_X			1024
 # define WIN_Y			512
 # define WIN_NAME		"dpentlan - cub3D"
-# define MAP_SIZE		800
+# define MAP_SIZE		1200
 # define MAP_ORIG_X		20
 # define MAP_ORIG_Y		20
 # define MOVE_SPEED		0.1
