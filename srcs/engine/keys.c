@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:35:11 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/28 18:18:56 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:03:05 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,15 @@ int	ft_key_press(int key, void *param)
 	else if (key == W_KEY)
 		ft_move_player(clear->player, FORWARD_DIR);
 	else if (key == A_KEY)
-		ft_rotate_player(clear->player, LEFT_DIR);
+		ft_move_player(clear->player, LEFT_DIR);
 	else if (key == S_KEY)
 		ft_move_player(clear->player, BACKWARD_DIR);
 	else if (key == D_KEY)
-		ft_rotate_player(clear->player, RIGHT_DIR);
+		ft_move_player(clear->player, RIGHT_DIR);
 	else if (key == L_ARROW)
-		ft_printf("Key Press: Left Arrow\n");
+		ft_rotate_player(clear->player, TURN_LEFT);
 	else if (key == R_ARROW)
-		ft_printf("Key Press: Right Arrow\n");
-	else if (key == D_ARROW)
-		ft_printf("Key Press: Down Arrow\n");
-	else if (key == U_ARROW)
-		ft_printf("Key Press: Up Arrow\n");
+		ft_rotate_player(clear->player, TURN_RIGHT);
 	return (0);
 }
 
