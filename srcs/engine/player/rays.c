@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 14:46:30 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:23:24 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,20 +137,22 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 	t_ray	ray;
 	int		vert_bar_height;
 	int		h_offset;
+	int		v_offset;
 
 	ray_num = 0;
 	h_offset = WIN_X / FOV;
 	ft_bzero(&ray, sizeof(t_ray));
-	while (ray_num < FOV)
+	while (ray_num < FOV + 2)
 	{
 		ft_draw_one_ray(player, map_data, &ray, ray_num);
 		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
-		if (vert_bar_height > WIN_X)
-			vert_bar_height = WIN_X;
+		if (vert_bar_height > WIN_Y)
+			vert_bar_height = WIN_Y;
+		v_offset = WIN_Y/2 - (vert_bar_height / 2);
 		ft_px_put_rect(engine,
 			(t_rect){
-			(t_point){h_offset * ray_num, 0},
-			(t_point){(h_offset * ray_num) + h_offset - 1, vert_bar_height},
+			(t_point){h_offset * ray_num, v_offset},
+			(t_point){(h_offset * ray_num) + h_offset - 1, vert_bar_height + v_offset},
 			(t_rgb){255, 255, 255},
 		});
 		//printf("ray_num: %d\tvert_bar_height: %d\n", ray_num, vert_bar_height);
