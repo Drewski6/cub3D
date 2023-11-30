@@ -6,13 +6,14 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:38:17 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 09:16:43 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 10:43:04 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "cub3D.h"
 #include "math.h"
+#include <stdio.h>
 
 /*
  *	***** ft_horiz_looking_up *****
@@ -28,10 +29,10 @@
 void	ft_horiz_looking_up(t_player *player,
 						t_ray *h_ray, int bs, double arctan)
 {
-	h_ray->coord_y = player->coord.y / 30 * 30 + 30;
+	h_ray->coord_y = player->coord.y / 30 * 30 + 0.0001;
 	h_ray->coord_x = (player->coord.y - h_ray->coord_y)
 		* arctan + player->coord.x;
-	h_ray->offset_y = bs;
+	h_ray->offset_y = -bs;
 	h_ray->offset_x = -h_ray->offset_y * arctan;
 }
 
@@ -49,10 +50,10 @@ void	ft_horiz_looking_up(t_player *player,
 void	ft_horiz_looking_down(t_player *player,
 						t_ray *h_ray, int bs, double arctan)
 {
-	h_ray->coord_y = player->coord.y / 30 * 30 + 0.0001;
+	h_ray->coord_y = player->coord.y / 30 * 30 + 30;
 	h_ray->coord_x = (player->coord.y - h_ray->coord_y)
 		* arctan + player->coord.x;
-	h_ray->offset_y = -bs;
+	h_ray->offset_y = bs;
 	h_ray->offset_x = -h_ray->offset_y * arctan;
 }
 
@@ -142,9 +143,9 @@ void	ft_horiz_check(t_player *player, t_map_data *map_data, t_ray *h_ray,
 	if (arctan < -100)
 		arctan = -100;
 	if (h_ray->angle > PI)
-		ft_horiz_looking_down(player, h_ray, map_data->map_block_size, arctan);
-	if (h_ray->angle < PI)
 		ft_horiz_looking_up(player, h_ray, map_data->map_block_size, arctan);
+	if (h_ray->angle < PI)
+		ft_horiz_looking_down(player, h_ray, map_data->map_block_size, arctan);
 	if (h_ray->angle == 0 || h_ray->angle == PI)
 		ft_horiz_looking_across(player, h_ray);
 	ft_horiz_dof(player, map_data, h_ray, max_dof);

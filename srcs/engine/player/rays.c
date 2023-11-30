@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 10:05:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/11/30 10:43:15 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,13 @@ void	ft_set_ray_angles(t_player *player, t_full_ray *ray, int ray_num)
 	ray->h_ray.angle = player->angle + ((ray_num - offset) * RADS_PER_DEG);
 	if (ray->h_ray.angle > (2 * PI))
 		ray->h_ray.angle -= (2 * PI);
+	if (ray->h_ray.angle < 0)
+		ray->h_ray.angle += (2 * PI);
 	ray->v_ray.angle = player->angle + ((ray_num - offset) * RADS_PER_DEG);
 	if (ray->v_ray.angle > (2 * PI))
 		ray->v_ray.angle -= (2 * PI);
+	if (ray->v_ray.angle < 0)
+		ray->v_ray.angle += (2 * PI);
 }
 
 /*
@@ -138,7 +142,7 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 			(t_point){player->coord.x + MAP_ORIG_X,
 			player->coord.y + MAP_ORIG_Y},
 			ft_draw_one_ray(player, map_data, ray_num),
-			ft_color_to_int((t_rgb){255, 255, 0}));
+			ft_color_to_int((t_rgb){0, 255, 0}));
 		ray_num++;
 	}
 	ft_dir_ray(engine, player);
