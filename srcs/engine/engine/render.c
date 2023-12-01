@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:09:45 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:51:32 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ bool	ft_prerender(t_engine *engine, t_map_data *map_data)
  *		Essencially this is the refresh.
  *	RETURN:
  *		Returns an int as required by mlx.
+ *	NOTE:
+ *		Removed this from render if so that map will go away.
+		|| ft_send_image_to_window(engine, engine->lst_images, MINI_MAP,
+			(t_point){MAP_ORIG_X, MAP_ORIG_Y})
+		|| ft_draw_map_rays(engine, player, map_data)
+		|| ft_draw_player(engine, map_data, player)
  */
 
 int	ft_render(t_clear *clear)
@@ -68,10 +74,6 @@ int	ft_render(t_clear *clear)
 		|| ft_draw_rays(engine, player, map_data)
 		|| ft_send_image_to_window(engine, engine->lst_images, RAYS,
 			(t_point){0, 0})
-		|| ft_send_image_to_window(engine, engine->lst_images, MINI_MAP,
-			(t_point){MAP_ORIG_X, MAP_ORIG_Y})
-		|| ft_draw_map_rays(engine, player, map_data)
-		|| ft_draw_player(engine, map_data, player)
 	)
 		return (1);
 	return (0);
