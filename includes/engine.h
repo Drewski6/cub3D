@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:38:18 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:44:58 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ typedef enum e_direction
 	TURN_RIGHT = 5,
 }	t_direction;
 
+typedef enum e_card_dir
+{
+	D_NORTH = 0,
+	D_EAST = 1,
+	D_SOUTH = 2,
+	D_WEST = 3,
+}	t_card_dir;
+
 //***** typesdefs/structs *****//
 
 typedef struct s_map_data	t_map_data;
@@ -49,14 +57,15 @@ typedef struct s_list		t_list;
 
 typedef struct s_ray
 {
-	double	coord_x;
-	double	coord_y;
-	double	offset_x;
-	double	offset_y;
-	double	angle;
-	double	dist_from_player;
-	t_rgb	color;
-}		t_ray;
+	double		coord_x;
+	double		coord_y;
+	double		offset_x;
+	double		offset_y;
+	double		angle;
+	double		dist_from_player;
+	t_card_dir	d_wall;
+	t_rgb		color;
+}				t_ray;
 
 typedef struct s_player
 {
