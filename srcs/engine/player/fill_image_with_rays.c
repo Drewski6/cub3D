@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 11:18:03 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:36:09 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 #include "cub3D.h"
 #include "libft.h"
 
-int	ft_draw_wall(t_map_data *map_data, t_image *rays, t_ray *ray,
+/*
+ *	***** ft_draw_wall *****
+ *
+ *	DESCRIPTION:
+ *		Draw the wall portion of the ray which is a function of the distance 
+ *		of the wall from the player.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
+void	ft_draw_wall(t_map_data *map_data, t_image *rays, t_ray *ray,
 				t_point *wr_head)
 {
 	int		vert_bar_height;
@@ -30,8 +40,18 @@ int	ft_draw_wall(t_map_data *map_data, t_image *rays, t_ray *ray,
 		wr_head->y++;
 		i++;
 	}
-	return (wr_head->y);
+	return ;
 }
+
+/*
+ *	***** ft_draw_ceiling *****
+ *
+ *	DESCRIPTION:
+ *		Draws the ceiling which is determined by the vertical offset which
+ *		depends on the vertical wall height.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
 
 void	ft_draw_ceiling(t_map_data *map_data, t_image *rays,
 					t_point *wr_head, int vert_bar_height)
@@ -49,6 +69,16 @@ void	ft_draw_ceiling(t_map_data *map_data, t_image *rays,
 	return ;
 }
 
+/*
+ *	***** ft_draw_floor *****
+ *
+ *	DESCRIPTION:
+ *		Draws the floor portion of the column which is simply the rest of
+ *		of the column to draw.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
 void	ft_draw_floor(t_map_data *map_data, t_image *rays, t_point *wr_head)
 {
 	while (wr_head->y < WIN_Y)
@@ -58,6 +88,21 @@ void	ft_draw_floor(t_map_data *map_data, t_image *rays, t_point *wr_head)
 	}
 	return ;
 }
+
+/*
+ *	***** ft_draw_rays *****
+ *
+ *	DESCRIPTION:
+ *		Draws a ray for each column in the window based on the distance of the 
+ *		nearest wall from the player's camera.
+ *		Draws these rays one at a time by first finding the distance,
+ *		drawing the ceiling based on the distance, drawing the wall based on the 
+ *		distance, and finally drawing the floor by filling in the rest.
+ *	RETURN:
+ *		Bool function returns 0 on success and 1 on error.
+ *		This function cannot fail but returns 0 so that it can be used in an if 
+ *		statement for the render function.
+ */
 
 bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 {
