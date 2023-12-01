@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:22:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:07:31 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:38:52 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ bool	ft_draw_map_rays(t_engine *engine, t_player *player,
 	ft_bzero(&ray, sizeof(t_ray));
 	while (ray_num < WIN_X)
 	{
-		ft_draw_one_ray(player, map_data, &ray, ray_num);
+		ft_get_ray_size(player, map_data, &ray, ray_num);
 		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
 		if (vert_bar_height > WIN_Y)
 			vert_bar_height = WIN_Y;

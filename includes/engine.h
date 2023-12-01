@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:09:21 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:46:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@
 
 //***** defines *****//
 
-# define WIN_X			1600
-# define WIN_Y			800
+# define WIN_X			1900
+# define WIN_Y			1000
 # define WIN_NAME		"dpentlan - cub3D"
-# define MAP_SIZE		250
+# define FOV			60
+# define MOVE_SPEED		0.2
+# define MAP_SIZE		1900
 # define MAP_ORIG_X		10
 # define MAP_ORIG_Y		10
-# define MOVE_SPEED		0.1
-# define PI				3.1415926535
-# define RADS_PER_DEG	0.0174533
-# define FOV			60
 
 //***** enums *****//
 
@@ -42,6 +40,14 @@ typedef enum e_direction
 	TURN_RIGHT = 5,
 }	t_direction;
 
+typedef enum e_card_dir
+{
+	D_NORTH = 0,
+	D_EAST = 1,
+	D_SOUTH = 2,
+	D_WEST = 3,
+}	t_card_dir;
+
 //***** typesdefs/structs *****//
 
 typedef struct s_map_data	t_map_data;
@@ -49,14 +55,15 @@ typedef struct s_list		t_list;
 
 typedef struct s_ray
 {
-	double	coord_x;
-	double	coord_y;
-	double	offset_x;
-	double	offset_y;
-	double	angle;
-	double	dist_from_player;
-	t_rgb	color;
-}		t_ray;
+	double		coord_x;
+	double		coord_y;
+	double		offset_x;
+	double		offset_y;
+	double		angle;
+	double		dist_from_player;
+	t_card_dir	d_wall;
+	t_rgb		color;
+}				t_ray;
 
 typedef struct s_player
 {
@@ -102,7 +109,7 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 			t_player *player);
 		//***** rays *****//
 bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data);
-void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
+void	ft_get_ray_size(t_player *player, t_map_data *map_data,
 			t_ray *ray, int ray_num);
 bool	ft_dir_ray(t_engine *engine, t_player *player, t_map_data *map_data);
 

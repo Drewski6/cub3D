@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:31:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:01:52 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "map_parsing.h"
 #include "images.h"
 #include "libft.h"
+#include "math.h"
 
 /*
  *	***** ft_set_ray_angles *****
@@ -29,12 +30,14 @@ void	ft_init_ray(t_player *player, t_ray *ray, int ray_num)
 {
 	double	fov;
 	double	offset;
+	double	win_x;
 
 	ray->dist_from_player = 1000000;
 	fov = FOV;
-	offset = fov * ((WIN_X / FOV) / 2);
+	win_x = WIN_X;
+	offset = fov * ((win_x / fov) / 2);
 	ray->angle = player->angle + ((ray_num - offset)
-			* (RADS_PER_DEG / (WIN_X / FOV)));
+			* (RADS_PER_DEG / (win_x / fov)));
 	if (ray->angle > (2 * PI))
 		ray->angle -= (2 * PI);
 	if (ray->angle < 0)
@@ -60,7 +63,9 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
 		ray->coord_y = h_ray->coord_y + MAP_ORIG_Y;
 		ray->dist_from_player = ft_fix_fisheye(player->angle,
 				h_ray->angle, h_ray->dist_from_player);
-		ray->color = (t_rgb){255, 255, 255};
+		ray->d_wall = D_NORTH;
+		if (sin(v_ray->angle) >= 0)
+			ray->d_wall = D_SOUTH;
 	}
 	else
 	{
@@ -68,12 +73,14 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
 		ray->coord_y = v_ray->coord_y + MAP_ORIG_Y;
 		ray->dist_from_player = ft_fix_fisheye(player->angle,
 				v_ray->angle, v_ray->dist_from_player);
-		ray->color = (t_rgb){200, 200, 200};
+		ray->d_wall = D_WEST;
+		if (cos(h_ray->angle) >= 0)
+			ray->d_wall = D_EAST;
 	}
 }
 
 /*
- *	***** ft_draw_one_ray *****
+ *	***** ft_get_ray_size *****
  *
  *	DESCRIPTION:
  *		Common function for returning the information for one ray.
@@ -83,7 +90,7 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
  *		Player position should be the starting point.
  */
 
-void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
+void	ft_get_ray_size(t_player *player, t_map_data *map_data,
 					t_ray *ray, int ray_num)
 {
 	t_ray		h_ray;
@@ -104,7 +111,6 @@ void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
 
 /*
  *	***** ft_dir_ray *****
-
  *
  *	DESCRIPTION:
  *		Draws the ray that indicates the player's direction on the mini map.

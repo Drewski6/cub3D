@@ -6,14 +6,12 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:16:49 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:16:50 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:00:09 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "mlx.h"
-#include <X11/X.h>
-#include <stdbool.h>
 #include "libft.h"
 #include "keys.h"
 
@@ -29,7 +27,7 @@
 bool	ft_hooks_cub3d(t_clear *clear)
 {
 	if (0
-		//|| !mlx_loop_hook(clear->engine->mlx_ptr, &ft_render, (void *)clear)
+		// || !mlx_loop_hook(clear->engine->mlx_ptr, &ft_render, (void *)clear)
 		|| !mlx_loop_hook(clear->engine->mlx_ptr, NULL, (void *)clear)
 		|| !mlx_hook(clear->engine->win_ptr, KeyPress, 1L << 0,
 			ft_key_press, clear)
