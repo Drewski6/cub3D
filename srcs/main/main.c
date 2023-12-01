@@ -6,20 +6,17 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:03:52 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:17:35 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "args.h"
-#include "cub3D.h"
-#include "debug.h"
 #include "engine.h"
-#include "ft_printf.h"
 #include "libft.h"
 #include "map_parsing.h"
 #include "mlx.h"
-#include <stdlib.h>
 #include "keys.h"
+#include "args.h"
+#include "debug.h"
 
 /*
  * ***** main *****

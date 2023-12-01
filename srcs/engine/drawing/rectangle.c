@@ -6,13 +6,13 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:42:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 12:52:01 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:03:48 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
 #include "engine.h"
 #include "mlx.h"
+#include "images.h"
 
 /*
  *	***** ft_img_buf_set_px_color *****

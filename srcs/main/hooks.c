@@ -6,15 +6,15 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:16:49 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:02:10 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:16:50 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "engine.h"
 #include "mlx.h"
 #include <X11/X.h>
 #include <stdbool.h>
 #include "libft.h"
-#include "cub3D.h"
 #include "keys.h"
 
 /*

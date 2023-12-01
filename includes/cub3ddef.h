@@ -1,28 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   cub3ddef.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 12:51:26 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 14:50:41 by dpentlan         ###   ########.fr       */
+/*   Created: 2023/12/01 14:41:25 by dpentlan          #+#    #+#             */
+/*   Updated: 2023/12/01 15:32:09 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#ifndef CUB3DDEF_H
+# define CUB3DDEF_H
 
-# include "cub3ddef.h"
+//***** includes *****//
 
-//***** typedefs *****//
+# include <stdbool.h>
 
-typedef struct s_map_data	t_map_data;
-typedef struct s_coord		t_coord;
+//***** typedefs/structs *****//
 
-//***** function declarations *****//
+typedef struct s_pos
+{
+	double	x;
+	double	y;
+}			t_pos;
 
-void	debug_print_map_data(t_map_data *map_data);
-bool	debug_print_coord_data(t_coord *coord, char *name);
+typedef struct s_rgb
+{
+	int			red;
+	int			green;
+	int			blue;
+}				t_rgb;
+
+typedef struct s_point
+{
+	int		x;
+	int		y;
+}			t_point;
+
+typedef struct s_rect
+{
+	t_point	top_left;
+	t_point	bottom_right;
+	t_rgb	color;
+}		t_rect;
 
 #endif

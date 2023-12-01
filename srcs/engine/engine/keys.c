@@ -6,12 +6,10 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:35:11 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:01:11 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:05:29 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "cub3D.h"
 #include "keys.h"
 #include "engine.h"
 

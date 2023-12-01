@@ -6,18 +6,16 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 12:50:56 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:21:24 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include "ft_printf.h"
-#include <stdbool.h>
-#include <stdlib.h>
-#include "gnl.h"
 #include "libft.h"
+#include "gnl.h"
 #include <stdio.h>
 #include <errno.h>
+#include "map_parsing.h"
+#include "engine.h"
 
 bool	ft_initial_read_in(t_list **list, int fd, char **line)
 {

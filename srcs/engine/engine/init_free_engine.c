@@ -6,16 +6,16 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:23:46 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 11:50:51 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:04:49 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "engine.h"
 #include "libft.h"
-#include "map_parsing.h"
 #include "mlx.h"
 #include <stdlib.h>
+#include "images.h"
 
 /*
  *	***** ft_free_engine *****

@@ -6,14 +6,13 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:38:17 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:09:36 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:13:45 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
-#include "cub3D.h"
 #include "math.h"
-#include <stdio.h>
+#include "map_parsing.h"
 
 /*
  *	***** ft_horiz_looking_up *****
