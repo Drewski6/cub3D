@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:38:00 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:41:37 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "map_parsing.h"
 #include "images.h"
 #include "libft.h"
+#include "math.h"
 
 /*
  *	***** ft_set_ray_angles *****
@@ -60,7 +61,9 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
 		ray->coord_y = h_ray->coord_y + MAP_ORIG_Y;
 		ray->dist_from_player = ft_fix_fisheye(player->angle,
 				h_ray->angle, h_ray->dist_from_player);
-		ray->color = (t_rgb){255, 255, 255};
+		ray->d_wall = D_NORTH;
+		if (sin(v_ray->angle) >= 0)
+			ray->d_wall = D_SOUTH;
 	}
 	else
 	{
@@ -68,7 +71,9 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
 		ray->coord_y = v_ray->coord_y + MAP_ORIG_Y;
 		ray->dist_from_player = ft_fix_fisheye(player->angle,
 				v_ray->angle, v_ray->dist_from_player);
-		ray->color = (t_rgb){200, 200, 200};
+		ray->d_wall = D_WEST;
+		if (cos(h_ray->angle) >= 0)
+			ray->d_wall = D_EAST;
 	}
 }
 
