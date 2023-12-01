@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 17:49:16 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:18:49 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIN_X			1600
 # define WIN_Y			800
 # define WIN_NAME		"dpentlan - cub3D"
-# define MAP_SIZE		300
+# define MAP_SIZE		250
 # define MAP_ORIG_X		10
 # define MAP_ORIG_Y		10
 # define MOVE_SPEED		0.1
@@ -35,9 +35,8 @@
 typedef enum e_image_id
 {
 	NO_ID = 0,
-	BG_IMAGE_C = 1,
-	BG_IMAGE_F = 2,
-	MINI_MAP = 3,
+	RAYS = 1,
+	MINI_MAP = 2,
 }	t_image_id;
 
 typedef enum e_direction
@@ -151,6 +150,10 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 void	ft_move_player(t_player *player, t_direction direction);
 void	ft_rotate_player(t_player *player, t_direction direction);
 bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data);
+bool	ft_draw_map_rays(t_engine *engine, t_player *player,
+			t_map_data *map_data);
+void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
+			t_ray *ray, int ray_num);
 void	ft_horiz_check(t_player *player, t_map_data *map_data, t_ray *h_ray,
 			int max_dof);
 void	ft_vert_check(t_player *player, t_map_data *map_data, t_ray *v_ray,
@@ -169,6 +172,7 @@ bool	ft_send_image_to_window(t_engine *engine, t_list *lst, t_image_id ID,
 			t_point start);
 bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
 			t_point size, t_rgb color);
+bool	ft_clear_image(t_list *lst, t_image_id ID);
 		//***** map *****/
 bool	ft_draw_map(t_engine *engine, t_map_data *map_data);
 
