@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 16:41:37 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:01:52 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@ void	ft_init_ray(t_player *player, t_ray *ray, int ray_num)
 {
 	double	fov;
 	double	offset;
+	double	win_x;
 
 	ray->dist_from_player = 1000000;
 	fov = FOV;
-	offset = fov * ((WIN_X / FOV) / 2);
+	win_x = WIN_X;
+	offset = fov * ((win_x / fov) / 2);
 	ray->angle = player->angle + ((ray_num - offset)
-			* (RADS_PER_DEG / (WIN_X / FOV)));
+			* (RADS_PER_DEG / (win_x / fov)));
 	if (ray->angle > (2 * PI))
 		ray->angle -= (2 * PI);
 	if (ray->angle < 0)
@@ -109,7 +111,6 @@ void	ft_get_ray_size(t_player *player, t_map_data *map_data,
 
 /*
  *	***** ft_dir_ray *****
-
  *
  *	DESCRIPTION:
  *		Draws the ray that indicates the player's direction on the mini map.
