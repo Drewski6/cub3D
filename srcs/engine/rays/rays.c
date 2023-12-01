@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:14:51 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:31:27 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,3 @@ bool	ft_dir_ray(t_engine *engine, t_player *player, t_map_data *map_data)
 		ft_color_to_int((t_rgb){PLAYER_R, PLAYER_G, PLAYER_B}));
 	return (0);
 }
-

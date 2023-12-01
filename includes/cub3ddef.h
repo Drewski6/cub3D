@@ -6,12 +6,12 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:41:25 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 14:52:04 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:32:09 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-# define POINT_H
+#ifndef CUB3DDEF_H
+# define CUB3DDEF_H
 
 //***** includes *****//
 
@@ -25,14 +25,12 @@ typedef struct s_pos
 	double	y;
 }			t_pos;
 
-
 typedef struct s_rgb
 {
 	int			red;
 	int			green;
 	int			blue;
 }				t_rgb;
-
 
 typedef struct s_point
 {
