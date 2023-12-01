@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:41:25 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:32:09 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:50:24 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 //***** includes *****//
 
 # include <stdbool.h>
+
+//***** defines *****//
+
+# define PI				3.1415926535
+# define RADS_PER_DEG	0.0174533
 
 //***** typedefs/structs *****//
 

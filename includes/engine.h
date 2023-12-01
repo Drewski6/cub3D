@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 16:02:22 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:51:05 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,14 @@
 
 //***** defines *****//
 
-# define WIN_X			1600
-# define WIN_Y			800
+# define WIN_X			1900
+# define WIN_Y			1000
 # define WIN_NAME		"dpentlan - cub3D"
-# define MAP_SIZE		250
+# define FOV			60
+# define MOVE_SPEED		0.2
+# define MAP_SIZE		400
 # define MAP_ORIG_X		10
 # define MAP_ORIG_Y		10
-# define MOVE_SPEED		0.1
-# define PI				3.1415926535
-# define RADS_PER_DEG	0.0174533
-# define FOV			60
 
 //***** enums *****//
 

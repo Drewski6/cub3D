@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:38:38 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:45:31 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,23 @@ void	ft_draw_wall(t_map_data *map_data, t_image *rays, t_ray *ray,
 {
 	int		vert_bar_height;
 	int		i;
+	t_rgb	color;
 
 	vert_bar_height = (map_data->bs * WIN_X) / ray->dist_from_player;
 	if (vert_bar_height > WIN_Y)
 		vert_bar_height = WIN_Y;
 	i = 0;
+	if (ray->d_wall == D_NORTH)
+		color = (t_rgb){0, 0, 0};
+	if (ray->d_wall == D_SOUTH)
+		color = (t_rgb){255, 255, 255};
+	if (ray->d_wall == D_EAST)
+		color = (t_rgb){255, 255, 0};
+	if (ray->d_wall == D_WEST)
+		color = (t_rgb){0, 255, 255};
 	while (i < vert_bar_height)
 	{
-		ft_img_buf_set_px_color(rays, (ray->color), wr_head->x, wr_head->y);
+		ft_img_buf_set_px_color(rays, color, wr_head->x, wr_head->y);
 		wr_head->y++;
 		i++;
 	}
