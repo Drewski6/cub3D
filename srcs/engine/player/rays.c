@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 16:09:20 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:18:22 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	ft_init_ray(t_player *player, t_ray *ray, int ray_num)
 
 	ray->dist_from_player = 1000000;
 	fov = FOV;
-	offset = fov / 2;
-	ray->angle = player->angle + ((ray_num - offset) * RADS_PER_DEG);
+	offset = fov * ((WIN_X / FOV) / 2);
+	ray->angle = player->angle + ((ray_num - offset)
+			* (RADS_PER_DEG / (WIN_X / FOV)));
 	if (ray->angle > (2 * PI))
 		ray->angle -= (2 * PI);
 	if (ray->angle < 0)
@@ -45,9 +46,10 @@ void	ft_init_ray(t_player *player, t_ray *ray, int ray_num)
  *	***** ft_set_return_ray_values *****
  *
  *	DESCRIPTION:
- *		desc
+ *		Helper function that sets the return ray based on which ray is shorter
+ *		horizontal or vertical.
  *	RETURN:
- *		ret
+ *		Void function does not return a value.
  */
 
 void	ft_set_return_ray_values(t_player *player, t_ray *ray,
@@ -127,37 +129,37 @@ bool	ft_dir_ray(t_engine *engine, t_player *player, t_map_data *map_data)
 }
 
 /*
- *	***** ft_draw_rays *****
+ *	***** ft_draw_map_rays *****
  *
  *	DESCRIPTION:
  *		Draw function for the player's rays on the map.
  *	RETURN:
  *		Bool function returns 0 on success and 1 on error.
+ *	NOTE:
+ *		Saving this piece of code for if I want to draw map rays.
+ *
  */
 
-bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
+bool	ft_draw_map_rays(t_engine *engine, t_player *player,
+					t_map_data *map_data)
 {
 	int		ray_num;
 	t_ray	ray;
 	int		vert_bar_height;
-	int		h_offset;
-	int		v_offset;
 
 	ray_num = 0;
-	h_offset = WIN_X / FOV;
 	ft_bzero(&ray, sizeof(t_ray));
-	while (ray_num < FOV + 2)
+	while (ray_num < WIN_X)
 	{
 		ft_draw_one_ray(player, map_data, &ray, ray_num);
 		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
 		if (vert_bar_height > WIN_Y)
 			vert_bar_height = WIN_Y;
-		v_offset = WIN_Y / 2 - (vert_bar_height / 2);
-		ft_px_put_rect(engine,
-			(t_rect){(t_point){h_offset * ray_num, v_offset},
-			(t_point){(h_offset * ray_num) + h_offset,
-			vert_bar_height + v_offset}, ray.color,
-		});
+		ft_bresenhams_line(engine,
+			(t_point){player->coord.x + MAP_ORIG_X,
+			player->coord.y + MAP_ORIG_Y},
+			(t_point){ray.coord_x, ray.coord_y},
+			ft_color_to_int((t_rgb){0, 255, 0}));
 		ray_num++;
 	}
 	ft_dir_ray(engine, player, map_data);

@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:50 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 15:11:05 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:37:54 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@
 bool	ft_prerender(t_engine *engine, t_map_data *map_data)
 {
 	if (0
-		|| ft_create_rect_image(engine, BG_IMAGE_C, (t_point){WIN_X, WIN_Y / 2},
-		map_data->c)
-		|| ft_create_rect_image(engine, BG_IMAGE_F, (t_point){WIN_X, WIN_Y / 2},
-		map_data->f)
+		|| ft_create_rect_image(engine, RAYS, (t_point){WIN_X, WIN_Y},
+		(t_rgb){0, 0, 0})
 		|| ft_create_rect_image(engine, MINI_MAP,
 		(t_point){map_data->size.x * map_data->bs,
 		map_data->size.y * map_data->bs},
@@ -67,13 +65,13 @@ int	ft_render(t_clear *clear)
 	player = clear->player;
 	ft_update_player_coords(player, map_data->bs);
 	if (0
-		|| ft_send_image_to_window(engine, engine->lst_images, BG_IMAGE_C,
-			(t_point){0, 0})
-		|| ft_send_image_to_window(engine, engine->lst_images, BG_IMAGE_F,
-			(t_point){0, WIN_Y / 2})
+		|| ft_clear_image(engine->lst_images, RAYS)
 		|| ft_draw_rays(engine, player, map_data)
+		|| ft_send_image_to_window(engine, engine->lst_images, RAYS,
+			(t_point){0, 0})
 		|| ft_send_image_to_window(engine, engine->lst_images, MINI_MAP,
 			(t_point){MAP_ORIG_X, MAP_ORIG_Y})
+		|| ft_draw_map_rays(engine, player, map_data)
 		|| ft_draw_player(engine, map_data, player)
 	)
 		return (1);

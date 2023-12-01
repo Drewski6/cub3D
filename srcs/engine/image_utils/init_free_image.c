@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:33:19 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 12:40:54 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:37:40 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,30 @@ void	ft_free_lst_images(t_list **lst)
 	if (!lst)
 		return ;
 	ft_lstclear(lst, ft_free_image);
+}
+
+/*
+ *	***** ft_clear_image *****
+ *
+ *	DESCRIPTION:
+ *		reset all the values of an image to BLACK.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
+bool	ft_clear_image(t_list *lst, t_image_id ID)
+{
+	t_image	*image;
+
+	image = ft_get_image(lst, ID);
+	if (!image)
+		return (ft_putstr_fd("Error\nImage with matching ID not found \
+					during clear.\n", 2), 1);
+	ft_paint_bucket(image,
+		(t_rect){
+		(t_point){0, 0},
+		(t_point){image->size.x, image->size.y},
+		(t_rgb){0, 0, 0},
+	});
+	return (0);
 }
