@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:09:21 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:38:18 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 			t_player *player);
 		//***** rays *****//
 bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data);
-void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
+void	ft_get_ray_size(t_player *player, t_map_data *map_data,
 			t_ray *ray, int ray_num);
 bool	ft_dir_ray(t_engine *engine, t_player *player, t_map_data *map_data);
 

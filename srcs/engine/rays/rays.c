@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 10:23:57 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:31:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:38:00 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
 }
 
 /*
- *	***** ft_draw_one_ray *****
+ *	***** ft_get_ray_size *****
  *
  *	DESCRIPTION:
  *		Common function for returning the information for one ray.
@@ -83,7 +83,7 @@ void	ft_set_return_ray_values(t_player *player, t_ray *ray,
  *		Player position should be the starting point.
  */
 
-void	ft_draw_one_ray(t_player *player, t_map_data *map_data,
+void	ft_get_ray_size(t_player *player, t_map_data *map_data,
 					t_ray *ray, int ray_num)
 {
 	t_ray		h_ray;
