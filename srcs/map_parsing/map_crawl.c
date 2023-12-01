@@ -6,18 +6,12 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:17:14 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 13:41:45 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:18:27 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include <stdbool.h>
-#include <stddef.h>
-#include "debug.h"
-#include "libft.h"
-#include <stdio.h>
-#include "ft_printf.h"
 #include "map_parsing.h"
+#include "libft.h"
 
 /*
  *	***** ft_map_crawl_get_start *****

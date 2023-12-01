@@ -6,38 +6,38 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/12/01 11:16:56 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/12/01 14:31:34 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC				=	cc
 
-SRC 			=	main/close.c \
-					main/hooks.c \
-					main/main.c \
-					args/arg_parsing.c \
+SRC				=	args/arg_parsing.c \
+					debug/map_debug.c \
+					engine/drawing/line.c \
+					engine/drawing/rectangle.c \
+					engine/engine/init_free_engine.c \
+					engine/engine/keys.c \
+					engine/engine/map.c \
+					engine/engine/render.c \
+					engine/image_utils/create_rect.c \
+					engine/image_utils/get_or_send_image.c \
+					engine/image_utils/init_free_image.c \
+					engine/player/player.c \
+					engine/rays/rays.c \
+					engine/rays/vert_rays.c \
+					engine/rays/horiz_rays.c \
+					engine/rays/misc_utils.c \
+					engine/rays/fill_image_with_rays.c \
 					map_parsing/map_data_load.c \
 					map_parsing/map_data_valid.c \
 					map_parsing/map_elements.c \
 					map_parsing/map_readin.c \
 					map_parsing/map_validation.c \
 					map_parsing/map_crawl.c \
-					engine/drawing/rectangle.c \
-					engine/drawing/line.c \
-					engine/image_utils/create_rect.c \
-					engine/image_utils/get_or_send_image.c \
-					engine/image_utils/init_free_image.c \
-					engine/init_free_engine.c \
-					engine/keys.c \
-					engine/map.c \
-					engine/player/player.c \
-					engine/player/rays.c \
-					engine/player/vert_rays.c \
-					engine/player/horiz_rays.c \
-					engine/player/misc_utils.c \
-					engine/player/fill_image_with_rays.c \
-					engine/render.c \
-					debug/map_debug.c \
+					main/close.c \
+					main/hooks.c \
+					main/main.c \
 
 NAME			=	cub3D
 

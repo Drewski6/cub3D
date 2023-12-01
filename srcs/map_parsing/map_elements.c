@@ -6,24 +6,16 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 13:44:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:20:19 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-#include "debug.h"
-#include "errno.h"
-#include "ft_printf.h"
-#include "gnl.h"
-#include "libft.h"
 #include "map_parsing.h"
-#include <fcntl.h>
-#include <stdbool.h>
+#include "libft.h"
 #include <stdio.h>
+#include "gnl.h"
+#include "errno.h"
 #include <stdlib.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <unistd.h>
 
 bool	ft_save_texture_path(char **dest, char *src)
 {

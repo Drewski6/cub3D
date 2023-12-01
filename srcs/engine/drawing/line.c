@@ -6,15 +6,13 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:24:28 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/28 18:38:48 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:03:20 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 #include "mlx.h"
 #include "math.h"
-#include "ft_printf.h"
-#include <stdio.h>
 
 /*
  *	***** ft_bresenhams_line *****

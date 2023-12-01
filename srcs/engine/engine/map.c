@@ -6,13 +6,13 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:22:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 12:51:20 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:07:31 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "images.h"
+#include "map_parsing.h"
 #include "engine.h"
-#include "cub3D.h"
-#include "ft_printf.h"
 #include "libft.h"
 #include "colors.h"
 
@@ -25,7 +25,7 @@ void	ft_draw_map_block(t_rgb color, t_image *image, int bs, t_point org)
 }
 
 /*
- *	***** ft_draw_map *****
+ *	***** ft_draw_mini_map *****
  *
  *	DESCRIPTION:
  *		Finds the map background image and draws blocks on it to create a map.
@@ -33,7 +33,7 @@ void	ft_draw_map_block(t_rgb color, t_image *image, int bs, t_point org)
  *		Bool function returns 0 on success and 1 on error.
  */
 
-bool	ft_draw_map(t_engine *engine, t_map_data *map_data)
+bool	ft_draw_mini_map(t_engine *engine, t_map_data *map_data)
 {
 	t_image	*map;
 	int		x;
@@ -59,5 +59,43 @@ bool	ft_draw_map(t_engine *engine, t_map_data *map_data)
 		}
 		y++;
 	}
+	return (0);
+}
+
+/*
+ *	***** ft_draw_map_rays *****
+ *
+ *	DESCRIPTION:
+ *		Draw function for the player's rays on the map.
+ *	RETURN:
+ *		Bool function returns 0 on success and 1 on error.
+ *	NOTE:
+ *		Saving this piece of code for if I want to draw map rays.
+ *
+ */
+
+bool	ft_draw_map_rays(t_engine *engine, t_player *player,
+					t_map_data *map_data)
+{
+	int		ray_num;
+	t_ray	ray;
+	int		vert_bar_height;
+
+	ray_num = 0;
+	ft_bzero(&ray, sizeof(t_ray));
+	while (ray_num < WIN_X)
+	{
+		ft_draw_one_ray(player, map_data, &ray, ray_num);
+		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
+		if (vert_bar_height > WIN_Y)
+			vert_bar_height = WIN_Y;
+		ft_bresenhams_line(engine,
+			(t_point){player->coord.x + MAP_ORIG_X,
+			player->coord.y + MAP_ORIG_Y},
+			(t_point){ray.coord_x, ray.coord_y},
+			ft_color_to_int((t_rgb){0, 255, 0}));
+		ray_num++;
+	}
+	ft_dir_ray(engine, player, map_data);
 	return (0);
 }

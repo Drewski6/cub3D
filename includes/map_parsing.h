@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:40:07 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/23 10:46:09 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:59:11 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,35 @@
 
 //***** includes *****//
 
-# include <stdbool.h>
+# include "cub3ddef.h"
 
 //***** typedefs *****//
 
 typedef struct s_map_data	t_map_data;
 typedef struct s_coord		t_coord;
+
+typedef struct s_coord
+{
+	int				x;
+	int				y;
+	int				source;
+	unsigned char	neighbors;
+}					t_coord;
+
+typedef struct s_map_data
+{
+	char		*no;
+	char		*so;
+	char		*ea;
+	char		*we;
+	t_rgb		f;
+	t_rgb		c;
+	char		**map;
+	t_coord		start_pos;
+	t_point		size;
+	int			bs;
+	char		start_ori;
+}				t_map_data;
 
 //***** function declarations *****//
 

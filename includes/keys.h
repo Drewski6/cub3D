@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:03:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/25 13:41:46 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:49:53 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 //***** includes *****//
 
-# include "engine.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <stdbool.h>
 
 //***** defines *****//
 
@@ -46,6 +46,10 @@
 #  define S_KEY			0
 #  define D_KEY			0
 # endif
+
+//***** typedefs *****//
+
+typedef struct s_clear	t_clear;
 
 //***** function declaractions *****//
 

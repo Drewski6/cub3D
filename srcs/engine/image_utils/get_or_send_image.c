@@ -6,11 +6,12 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:20:26 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/24 14:02:53 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:10:42 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
+#include "images.h"
 #include "libft.h"
 #include "mlx.h"
 

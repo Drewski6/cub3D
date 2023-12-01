@@ -6,12 +6,13 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 11:36:09 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:13:04 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
-#include "cub3D.h"
+#include "images.h"
+#include "map_parsing.h"
 #include "libft.h"
 
 /*

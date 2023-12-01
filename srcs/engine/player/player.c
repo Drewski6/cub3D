@@ -6,18 +6,16 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:33:51 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:12:33 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "colors.h"
 #include "engine.h"
-#include "mlx.h"
-#include "stdbool.h"
-#include "cub3D.h"
+#include "images.h"
+#include "map_parsing.h"
 #include "libft.h"
 #include "math.h"
-#include <stdio.h>
 
 /*
  *	***** ft_rotate_player *****

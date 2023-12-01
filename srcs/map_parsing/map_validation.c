@@ -6,17 +6,12 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/11/30 13:28:11 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:21:46 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
 #include "map_parsing.h"
-#include "cub3D.h"
-#include <stdbool.h>
-#include <stddef.h>
 #include "libft.h"
-#include "ft_printf.h"
 
 /*
  *	***** ft_map_boarder_check *****
