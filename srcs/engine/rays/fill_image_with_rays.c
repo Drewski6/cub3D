@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 16:14:50 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:20:29 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "math.h"
 
 /*
- *	***** ft_draw_wall *****
+*	***** ft_draw_wall *****
  *
  *	DESCRIPTION:
  *		Draw the wall portion of the ray which is a function of the distance 
@@ -26,43 +26,27 @@
  *		Void function does not return a value.
  */
 
-void	ft_draw_wall(t_engine *engine, t_map_data *map_data,
-				t_image *rays, t_ray *ray, t_point *wr_head)
+void	ft_draw_wall(t_image *rays, t_point *wr_head, t_tex *tex,
+				int vert_bar_height)
 {
-	int		vert_bar_height;
-	int		i;
-	t_image	*texture;
-	int		tex_offset;
-	int		rays_offset;
-	t_tex	tex;
+	int			i;
+	int			rays_offset;
 
 	i = 0;
-	texture = ft_select_texture(engine, ray);
-	tex.y_offset = 0;
-	vert_bar_height = (map_data->bs * WIN_X) / ray->dist_from_player;
-	tex.y_step = (double)texture->size.y / (double)vert_bar_height;
-	if (vert_bar_height > WIN_Y)
-	{
-		tex.y_offset = ((double)vert_bar_height - (double)WIN_Y) / 2;
-		vert_bar_height = WIN_Y;
-	}
-	tex.y = tex.y_offset * tex.y_step;
-	if (ray->d_wall == D_NORTH || ray->d_wall == D_SOUTH)
-		tex.x = (int)(fabs(ray->coord_x)
-				/ ((double)map_data->bs / texture->size.x)) % texture->size.x;
-	if (ray->d_wall == D_WEST || ray->d_wall == D_EAST)
-		tex.x = (int)(fabs(ray->coord_y)
-				/ ((double)map_data->bs / texture->size.x)) % texture->size.x;
 	while (i < vert_bar_height)
 	{
 		rays_offset = (wr_head->y * rays->size_line) + (wr_head->x * 4);
-		tex_offset = ((int)tex.y * texture->size_line) + (tex.x * 4);
-		rays->img_buf[rays_offset + 0] = texture->img_buf[tex_offset + 0];
-		rays->img_buf[rays_offset + 1] = texture->img_buf[tex_offset + 1];
-		rays->img_buf[rays_offset + 2] = texture->img_buf[tex_offset + 2];
-		rays->img_buf[rays_offset + 3] = texture->img_buf[tex_offset + 3];
+		tex->tex_offset = ((int)tex->y * tex->image->size_line) + (tex->x * 4);
+		rays->img_buf[rays_offset + 0]
+			= tex->image->img_buf[tex->tex_offset + 0];
+		rays->img_buf[rays_offset + 1]
+			= tex->image->img_buf[tex->tex_offset + 1];
+		rays->img_buf[rays_offset + 2]
+			= tex->image->img_buf[tex->tex_offset + 2];
+		rays->img_buf[rays_offset + 3]
+			= tex->image->img_buf[tex->tex_offset + 3];
 		wr_head->y++;
-		tex.y += tex.y_step;
+		tex->y += tex->y_step;
 		i++;
 	}
 	return ;
@@ -135,21 +119,21 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 	t_point	wr_head;
 	int		vert_bar_height;
 	t_ray	ray;
+	t_tex	tex;
 
 	rays = ft_get_image(engine->lst_images, RAYS);
 	if (!rays)
 		return (ft_putstr_fd("Error\nImage with matching ID not found.\n", 2), 1);
 	wr_head.x = 0;
 	ft_bzero(&ray, sizeof(t_ray));
+	ft_bzero(&tex, sizeof(t_tex));
 	while (wr_head.x < WIN_X)
 	{
 		wr_head.y = 0;
 		ft_get_ray_size(player, map_data, &ray, wr_head.x);
-		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
-		if (vert_bar_height > WIN_Y)
-			vert_bar_height = WIN_Y;
+		vert_bar_height = ft_tex_init(engine, map_data, &ray, &tex);
 		ft_draw_ceiling(map_data, rays, &wr_head, vert_bar_height);
-		ft_draw_wall(engine, map_data, rays, &ray, &wr_head);
+		ft_draw_wall(rays, &wr_head, &tex, vert_bar_height);
 		wr_head.x++;
 		ft_draw_floor(map_data, rays, &wr_head);
 	}

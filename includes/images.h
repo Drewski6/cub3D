@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:36:48 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 16:13:44 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:20:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ typedef struct s_image
 	t_point		size;
 }				t_image;
 
-typedef struct	s_tex
+typedef struct s_tex
 {
+	t_image	*image;
 	double	x;
 	double	y;
 	double	y_step;
 	double	y_offset;
+	int		tex_offset;
 }			t_tex;
 
 //***** function declarations *****//
@@ -84,5 +86,7 @@ bool	ft_bresenhams_line(t_engine *engine,
 		//***** textures *****/
 bool	ft_load_textures(t_engine *engine, t_map_data *map_data);
 t_image	*ft_select_texture(t_engine *engine, t_ray *ray);
+int		ft_tex_init(t_engine *engine, t_map_data *map_data,
+			t_ray *ray, t_tex *tex);
 
 #endif
