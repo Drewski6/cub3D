@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 14:24:23 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 15:59:32 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "images.h"
 #include "map_parsing.h"
 #include "libft.h"
+#include "math.h"
 
 /*
  *	***** ft_draw_wall *****
@@ -50,10 +51,10 @@ void	ft_draw_wall(t_engine *engine, t_map_data *map_data,
 	}
 	texture_y = texture_y_offset * texture_y_step;
 	if (ray->d_wall == D_NORTH || ray->d_wall == D_SOUTH)
-		texture_x = (int)(ray->coord_x
+		texture_x = (int)(fabs(ray->coord_x)
 				/ ((double)map_data->bs / texture->size.x)) % texture->size.x;
 	if (ray->d_wall == D_WEST || ray->d_wall == D_EAST)
-		texture_x = (int)(ray->coord_y
+		texture_x = (int)(fabs(ray->coord_y)
 				/ ((double)map_data->bs / texture->size.x)) % texture->size.x;
 	while (i < vert_bar_height)
 	{
