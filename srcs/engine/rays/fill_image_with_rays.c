@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 12:17:54 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 14:24:23 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_draw_ceiling(t_map_data *map_data, t_image *rays,
 		v_offset = WIN_Y / 2;
 	while (wr_head->y < v_offset)
 	{
-		ft_img_buf_set_px_color(rays, map_data->f, wr_head->x, wr_head->y);
+		ft_img_buf_set_px_color(rays, map_data->c, wr_head->x, wr_head->y);
 		wr_head->y++;
 	}
 	return ;
@@ -110,7 +110,7 @@ void	ft_draw_floor(t_map_data *map_data, t_image *rays, t_point *wr_head)
 {
 	while (wr_head->y < WIN_Y)
 	{
-		ft_img_buf_set_px_color(rays, map_data->c, wr_head->x, wr_head->y);
+		ft_img_buf_set_px_color(rays, map_data->f, wr_head->x, wr_head->y);
 		wr_head->y++;
 	}
 	return ;
