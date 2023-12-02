@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 22:42:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:03:48 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 10:00:32 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,30 +76,6 @@ void	ft_paint_bucket(t_image *image, t_rect rect)
 		}
 		y_start++;
 	}
-}
-
-/*
- *	***** ft_color_to_int *****
- *
- *	DESCRIPTION:
- *		Converts a t_rgb struct containing RGB values to an integer passable
- *		to mlx_pixel_put.
- *	RETURN:
- *		Returns an int representation of color.
- */
-
-int	ft_color_to_int(t_rgb color)
-{
-	int		ret;
-	char	*byte;
-
-	ret = 0;
-	byte = (char *)&ret;
-	byte[0] = (unsigned char)(color.blue);
-	byte[1] = (unsigned char)(color.green);
-	byte[2] = (unsigned char)(color.red);
-	byte[3] = 1;
-	return (ret);
 }
 
 /*

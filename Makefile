@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/12/01 14:31:34 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/12/02 10:06:17 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ CC				=	cc
 
 SRC				=	args/arg_parsing.c \
 					debug/map_debug.c \
+					engine/drawing/colors.c \
 					engine/drawing/line.c \
 					engine/drawing/rectangle.c \
 					engine/engine/init_free_engine.c \
@@ -23,12 +24,14 @@ SRC				=	args/arg_parsing.c \
 					engine/image_utils/create_rect.c \
 					engine/image_utils/get_or_send_image.c \
 					engine/image_utils/init_free_image.c \
+					engine/image_utils/textures.c \
 					engine/player/player.c \
-					engine/rays/rays.c \
-					engine/rays/vert_rays.c \
+					engine/rays/draw_textures.c \
+					engine/rays/fill_image_with_rays.c \
 					engine/rays/horiz_rays.c \
 					engine/rays/misc_utils.c \
-					engine/rays/fill_image_with_rays.c \
+					engine/rays/rays.c \
+					engine/rays/vert_rays.c \
 					map_parsing/map_data_load.c \
 					map_parsing/map_data_valid.c \
 					map_parsing/map_elements.c \

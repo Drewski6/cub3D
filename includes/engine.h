@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 18:46:41 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 10:01:52 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,15 @@ typedef struct s_clear
 
 		//***** main *****//
 int		ft_close_cub3d(t_clear *clear);
+
 		//***** render *****/
 bool	ft_prerender(t_engine *engine, t_map_data *map_data);
 int		ft_render(t_clear *clear);
+
 		//***** engine *****/
 void	ft_free_engine(t_engine *engine);
 bool	ft_engine_init(t_engine *engine);
+
 		//***** player *****/
 void	ft_rotate_player(t_player *player, t_direction direction);
 void	ft_move_player(t_player *player, t_direction direction);
@@ -107,18 +110,19 @@ bool	ft_player_init(t_player *player, t_map_data *map_data);
 void	ft_update_player_coords(t_player *player, int block_size);
 bool	ft_draw_player(t_engine *engine, t_map_data *map_data,
 			t_player *player);
+
 		//***** rays *****//
 bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data);
 void	ft_get_ray_size(t_player *player, t_map_data *map_data,
 			t_ray *ray, int ray_num);
 bool	ft_dir_ray(t_engine *engine, t_player *player, t_map_data *map_data);
-
 void	ft_horiz_check(t_player *player, t_map_data *map_data, t_ray *h_ray,
 			int max_dof);
 void	ft_vert_check(t_player *player, t_map_data *map_data, t_ray *v_ray,
 			int max_dof);
 double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y);
 double	ft_fix_fisheye(double player_angle, double ray_angle, double dist);
+
 		//***** mini_map *****/
 bool	ft_draw_mini_map(t_engine *engine, t_map_data *map_data);
 bool	ft_draw_map_rays(t_engine *engine, t_player *player,

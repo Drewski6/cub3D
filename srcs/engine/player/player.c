@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:12:33 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 08:11:27 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_rotate_player(t_player *player, t_direction direction)
 {
 	if (direction == TURN_LEFT)
 	{
-		player->angle -= 0.1;
+		player->angle -= 0.02;
 		if (player->angle < 0)
 			player->angle += 2 * PI;
 		player->delta.x = cos(player->angle) * MOVE_SPEED;
@@ -38,7 +38,7 @@ void	ft_rotate_player(t_player *player, t_direction direction)
 	}
 	if (direction == TURN_RIGHT)
 	{
-		player->angle += 0.1;
+		player->angle += 0.02;
 		if (player->angle > 2 * PI)
 			player->angle -= 2 * PI;
 		player->delta.x = cos(player->angle) * MOVE_SPEED;

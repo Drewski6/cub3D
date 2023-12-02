@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:36:48 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 14:46:49 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:20:41 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,18 @@ typedef enum e_image_id
 	NO_ID = 0,
 	RAYS = 1,
 	MINI_MAP = 2,
+	NT = 3,
+	ST = 4,
+	ET = 5,
+	WT = 6,
 }	t_image_id;
 
 //***** typedefs/structs *****//
 
-typedef struct s_list	t_list;
-typedef struct s_engine	t_engine;
+typedef struct s_list		t_list;
+typedef struct s_engine		t_engine;
+typedef struct s_map_data	t_map_data;
+typedef struct s_ray		t_ray;
 
 typedef struct s_image
 {
@@ -42,6 +48,16 @@ typedef struct s_image
 	t_image_id	id;
 	t_point		size;
 }				t_image;
+
+typedef struct s_tex
+{
+	t_image	*image;
+	double	x;
+	double	y;
+	double	y_step;
+	double	y_offset;
+	int		tex_offset;
+}			t_tex;
 
 //***** function declarations *****//
 
@@ -59,11 +75,18 @@ bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
 bool	ft_clear_image(t_list *lst, t_image_id ID);
 
 		//***** drawing *****/
+int		ft_color_to_int(t_rgb color);
+t_rgb	ft_int_to_color(int color);
 void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rect rect);
 void	ft_px_put_rect(t_engine *engine, t_rect rect);
-int		ft_color_to_int(t_rgb color);
 bool	ft_bresenhams_line(t_engine *engine,
 			t_point from, t_point to, int color);
+
+		//***** textures *****/
+bool	ft_load_textures(t_engine *engine, t_map_data *map_data);
+t_image	*ft_select_texture(t_engine *engine, t_ray *ray);
+int		ft_tex_init(t_engine *engine, t_map_data *map_data,
+			t_ray *ray, t_tex *tex);
 
 #endif
