@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 09:29:26 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 16:18:53 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:40:08 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "engine.h"
 #include "libft.h"
 #include "map_parsing.h"
+#include "math.h"
 
 int	ft_tex_init(t_engine *engine, t_map_data *map_data, t_ray *ray, t_tex *tex)
 {
@@ -31,10 +32,12 @@ int	ft_tex_init(t_engine *engine, t_map_data *map_data, t_ray *ray, t_tex *tex)
 	}
 	tex->y = tex->y_offset * tex->y_step;
 	if (ray->d_wall == D_NORTH || ray->d_wall == D_SOUTH)
-		tex->x = (int)(ray->coord_x / ((double)map_data->bs
+		tex->x = (int)(fabs(ray->coord_x)
+				/ ((double)map_data->bs
 					/ tex->image->size.x)) % tex->image->size.x;
 	if (ray->d_wall == D_WEST || ray->d_wall == D_EAST)
-		tex->x = (int)(ray->coord_y / ((double)map_data->bs
+		tex->x = (int)(fabs(ray->coord_y)
+				/ ((double)map_data->bs
 					/ tex->image->size.x)) % tex->image->size.x;
 	return (vert_bar_height);
 }
@@ -61,4 +64,40 @@ t_image	*ft_select_texture(t_engine *engine, t_ray *ray)
 	if (ray->d_wall == D_WEST)
 		texture = ft_get_image(engine->lst_images, WT);
 	return (texture);
+}
+
+/*
+ *	***** ft_draw_wall *****
+ *
+ *	DESCRIPTION:
+ *		Draw the wall portion of the ray which is a function of the distance 
+ *		of the wall from the player.
+ *	RETURN:
+ *		Void function does not return a value.
+ */
+
+void	ft_draw_wall(t_image *rays, t_point *wr_head, t_tex *tex,
+				int vert_bar_height)
+{
+	int			i;
+	int			rays_offset;
+
+	i = 0;
+	while (i < vert_bar_height)
+	{
+		rays_offset = (wr_head->y * rays->size_line) + (wr_head->x * 4);
+		tex->tex_offset = ((int)tex->y * tex->image->size_line) + (tex->x * 4);
+		rays->img_buf[rays_offset + 0]
+			= tex->image->img_buf[tex->tex_offset + 0];
+		rays->img_buf[rays_offset + 1]
+			= tex->image->img_buf[tex->tex_offset + 1];
+		rays->img_buf[rays_offset + 2]
+			= tex->image->img_buf[tex->tex_offset + 2];
+		rays->img_buf[rays_offset + 3]
+			= tex->image->img_buf[tex->tex_offset + 3];
+		wr_head->y++;
+		tex->y += tex->y_step;
+		i++;
+	}
+	return ;
 }

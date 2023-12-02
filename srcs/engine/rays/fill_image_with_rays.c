@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 16:20:29 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:36:28 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,6 @@
 #include "map_parsing.h"
 #include "libft.h"
 #include "math.h"
-
-/*
-*	***** ft_draw_wall *****
- *
- *	DESCRIPTION:
- *		Draw the wall portion of the ray which is a function of the distance 
- *		of the wall from the player.
- *	RETURN:
- *		Void function does not return a value.
- */
-
-void	ft_draw_wall(t_image *rays, t_point *wr_head, t_tex *tex,
-				int vert_bar_height)
-{
-	int			i;
-	int			rays_offset;
-
-	i = 0;
-	while (i < vert_bar_height)
-	{
-		rays_offset = (wr_head->y * rays->size_line) + (wr_head->x * 4);
-		tex->tex_offset = ((int)tex->y * tex->image->size_line) + (tex->x * 4);
-		rays->img_buf[rays_offset + 0]
-			= tex->image->img_buf[tex->tex_offset + 0];
-		rays->img_buf[rays_offset + 1]
-			= tex->image->img_buf[tex->tex_offset + 1];
-		rays->img_buf[rays_offset + 2]
-			= tex->image->img_buf[tex->tex_offset + 2];
-		rays->img_buf[rays_offset + 3]
-			= tex->image->img_buf[tex->tex_offset + 3];
-		wr_head->y++;
-		tex->y += tex->y_step;
-		i++;
-	}
-	return ;
-}
 
 /*
  *	***** ft_draw_ceiling *****
