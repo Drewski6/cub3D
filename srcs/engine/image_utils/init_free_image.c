@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:33:19 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:11:21 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 08:55:57 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	ft_add_image(t_list **lst, void *mlx_ptr, t_image_id ID, t_point size)
 	if (!new_image)
 		return (perror("malloc"), 1);
 	if (ft_image_init(new_image, mlx_ptr, ID, size))
-		return (-1);
+		return (free(new_image), 1);
 	new_link = ft_lstnew(new_image);
 	if (!new_link)
 		return (perror("malloc"), 1);

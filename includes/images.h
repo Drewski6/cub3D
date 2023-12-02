@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:36:48 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 14:46:49 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 08:58:55 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,17 @@ typedef enum e_image_id
 	NO_ID = 0,
 	RAYS = 1,
 	MINI_MAP = 2,
+	NT = 3,
+	ST = 4,
+	ET = 5,
+	WT = 6,
 }	t_image_id;
 
 //***** typedefs/structs *****//
 
-typedef struct s_list	t_list;
-typedef struct s_engine	t_engine;
+typedef struct s_list		t_list;
+typedef struct s_engine		t_engine;
+typedef struct s_map_data	t_map_data;
 
 typedef struct s_image
 {
@@ -65,5 +70,8 @@ void	ft_px_put_rect(t_engine *engine, t_rect rect);
 int		ft_color_to_int(t_rgb color);
 bool	ft_bresenhams_line(t_engine *engine,
 			t_point from, t_point to, int color);
+
+		//***** textures *****/
+bool	ft_load_textures(t_engine *engine, t_map_data *map_data);
 
 #endif
