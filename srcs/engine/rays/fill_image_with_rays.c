@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 16:45:31 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 11:01:38 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,41 @@
  *		Void function does not return a value.
  */
 
-void	ft_draw_wall(t_map_data *map_data, t_image *rays, t_ray *ray,
+void	ft_draw_wall(t_engine *engine, t_map_data *map_data, t_image *rays, t_ray *ray,
 				t_point *wr_head)
 {
 	int		vert_bar_height;
 	int		i;
-	t_rgb	color;
+	t_image	*texture;
+	int		tex_offset;
+	int		rays_offset;
 
 	vert_bar_height = (map_data->bs * WIN_X) / ray->dist_from_player;
 	if (vert_bar_height > WIN_Y)
 		vert_bar_height = WIN_Y;
 	i = 0;
 	if (ray->d_wall == D_NORTH)
-		color = (t_rgb){0, 0, 0};
+		texture = ft_get_image(engine->lst_images, NT);
 	if (ray->d_wall == D_SOUTH)
-		color = (t_rgb){255, 255, 255};
+		texture = ft_get_image(engine->lst_images, ST);
 	if (ray->d_wall == D_EAST)
-		color = (t_rgb){255, 255, 0};
+		texture = ft_get_image(engine->lst_images, ET);
 	if (ray->d_wall == D_WEST)
-		color = (t_rgb){0, 255, 255};
+		texture = ft_get_image(engine->lst_images, WT);
 	while (i < vert_bar_height)
 	{
-		ft_img_buf_set_px_color(rays, color, wr_head->x, wr_head->y);
+		rays_offset = (wr_head->y * rays->size_line) + (wr_head->x * 4);
+		tex_offset = (i * texture->size_line) + (0 * 4);
+		if (i < texture->size.y)
+		{
+			rays->img_buf[rays_offset + 0] = texture->img_buf[tex_offset + 0];
+			rays->img_buf[rays_offset + 1] = texture->img_buf[tex_offset + 1];
+			rays->img_buf[rays_offset + 2] = texture->img_buf[tex_offset + 2];
+			rays->img_buf[rays_offset + 3] = texture->img_buf[tex_offset + 3];
+		}
+		else
+			ft_img_buf_set_px_color(rays, (t_rgb){255, 255, 255},
+				wr_head->x, wr_head->y);
 		wr_head->y++;
 		i++;
 	}
@@ -134,7 +147,7 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data)
 		if (vert_bar_height > WIN_Y)
 			vert_bar_height = WIN_Y;
 		ft_draw_ceiling(map_data, rays, &wr_head, vert_bar_height);
-		ft_draw_wall(map_data, rays, &ray, &wr_head);
+		ft_draw_wall(engine, map_data, rays, &ray, &wr_head);
 		wr_head.x++;
 		ft_draw_floor(map_data, rays, &wr_head);
 	}

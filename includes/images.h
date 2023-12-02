@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:36:48 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 08:58:55 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 11:04:35 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,11 @@ bool	ft_create_rect_image(t_engine *engine, t_image_id ID,
 bool	ft_clear_image(t_list *lst, t_image_id ID);
 
 		//***** drawing *****/
+int		ft_color_to_int(t_rgb color);
+t_rgb	ft_int_to_color(int color);
 void	ft_img_buf_set_px_color(t_image *image, t_rgb color, int x, int y);
 void	ft_paint_bucket(t_image *image, t_rect rect);
 void	ft_px_put_rect(t_engine *engine, t_rect rect);
-int		ft_color_to_int(t_rgb color);
 bool	ft_bresenhams_line(t_engine *engine,
 			t_point from, t_point to, int color);
 

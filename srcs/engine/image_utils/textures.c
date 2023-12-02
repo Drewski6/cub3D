@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 07:50:07 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 09:22:08 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 10:54:48 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ bool	ft_xpm_image_init(t_image *image,
 	image->size_line = 0;
 	image->endian = 0;
 	image->img_buf = NULL;
+	image->img_buf = mlx_get_data_addr(
+			image->img_ptr,
+			&image->bits_per_pixel,
+			&image->size_line,
+			&image->endian);
+	if (!image->img_buf)
+		return (1);
 	return (0);
 }
 
@@ -84,8 +91,8 @@ bool	ft_load_textures(t_engine *engine, t_map_data *map_data)
 	int		width;
 	int		height;
 
-	width = 100;
-	height = 100;
+	width = 383;
+	height = 383;
 	if (ft_add_xpm_image(engine, map_data->no, NT,
 			(t_point){width, height}))
 		return (ft_putstr_fd("Error\nCould not open north texture.\n", 2), 1);
