@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 15:59:32 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:14:50 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,35 @@ void	ft_draw_wall(t_engine *engine, t_map_data *map_data,
 	t_image	*texture;
 	int		tex_offset;
 	int		rays_offset;
-	double	texture_y_step;
-	double	texture_y;
-	double	texture_y_offset;
-	double	texture_x;
+	t_tex	tex;
 
 	i = 0;
 	texture = ft_select_texture(engine, ray);
-	texture_y_offset = 0;
+	tex.y_offset = 0;
 	vert_bar_height = (map_data->bs * WIN_X) / ray->dist_from_player;
-	texture_y_step = (double)texture->size.y / (double)vert_bar_height;
+	tex.y_step = (double)texture->size.y / (double)vert_bar_height;
 	if (vert_bar_height > WIN_Y)
 	{
-		texture_y_offset = ((double)vert_bar_height - (double)WIN_Y) / 2;
+		tex.y_offset = ((double)vert_bar_height - (double)WIN_Y) / 2;
 		vert_bar_height = WIN_Y;
 	}
-	texture_y = texture_y_offset * texture_y_step;
+	tex.y = tex.y_offset * tex.y_step;
 	if (ray->d_wall == D_NORTH || ray->d_wall == D_SOUTH)
-		texture_x = (int)(fabs(ray->coord_x)
+		tex.x = (int)(fabs(ray->coord_x)
 				/ ((double)map_data->bs / texture->size.x)) % texture->size.x;
 	if (ray->d_wall == D_WEST || ray->d_wall == D_EAST)
-		texture_x = (int)(fabs(ray->coord_y)
+		tex.x = (int)(fabs(ray->coord_y)
 				/ ((double)map_data->bs / texture->size.x)) % texture->size.x;
 	while (i < vert_bar_height)
 	{
 		rays_offset = (wr_head->y * rays->size_line) + (wr_head->x * 4);
-		tex_offset = ((int)texture_y * texture->size_line) + (texture_x * 4);
+		tex_offset = ((int)tex.y * texture->size_line) + (tex.x * 4);
 		rays->img_buf[rays_offset + 0] = texture->img_buf[tex_offset + 0];
 		rays->img_buf[rays_offset + 1] = texture->img_buf[tex_offset + 1];
 		rays->img_buf[rays_offset + 2] = texture->img_buf[tex_offset + 2];
 		rays->img_buf[rays_offset + 3] = texture->img_buf[tex_offset + 3];
 		wr_head->y++;
-		texture_y += texture_y_step;
+		tex.y += tex.y_step;
 		i++;
 	}
 	return ;
