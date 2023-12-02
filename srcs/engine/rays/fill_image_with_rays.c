@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 11:38:34 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 12:17:54 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_draw_wall(t_engine *engine, t_map_data *map_data,
 	double	texture_y_step;
 	double	texture_y;
 	double	texture_y_offset;
+	double	texture_x;
 
 	i = 0;
 	texture = ft_select_texture(engine, ray);
@@ -48,10 +49,16 @@ void	ft_draw_wall(t_engine *engine, t_map_data *map_data,
 		vert_bar_height = WIN_Y;
 	}
 	texture_y = texture_y_offset * texture_y_step;
+	if (ray->d_wall == D_NORTH || ray->d_wall == D_SOUTH)
+		texture_x = (int)(ray->coord_x
+				/ ((double)map_data->bs / texture->size.x)) % texture->size.x;
+	if (ray->d_wall == D_WEST || ray->d_wall == D_EAST)
+		texture_x = (int)(ray->coord_y
+				/ ((double)map_data->bs / texture->size.x)) % texture->size.x;
 	while (i < vert_bar_height)
 	{
 		rays_offset = (wr_head->y * rays->size_line) + (wr_head->x * 4);
-		tex_offset = ((int)texture_y * texture->size_line) + (0 * 4);
+		tex_offset = ((int)texture_y * texture->size_line) + (texture_x * 4);
 		rays->img_buf[rays_offset + 0] = texture->img_buf[tex_offset + 0];
 		rays->img_buf[rays_offset + 1] = texture->img_buf[tex_offset + 1];
 		rays->img_buf[rays_offset + 2] = texture->img_buf[tex_offset + 2];
