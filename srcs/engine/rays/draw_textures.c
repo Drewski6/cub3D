@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 09:29:26 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 16:40:08 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:42:59 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 #include "libft.h"
 #include "map_parsing.h"
 #include "math.h"
+
+/*
+ *	***** ft_tex_init *****
+ *
+ *	DESCRIPTION:
+ *		Initialize the tex struct which will be used when indexing the 
+ *		texture for values to push to the image.
+ *	RETURN:
+ *		Returns a newly calculated vertical bar height which has been
+ *		capped at WIN_Y AFTER calculating the y texture offset.
+ */
 
 int	ft_tex_init(t_engine *engine, t_map_data *map_data, t_ray *ray, t_tex *tex)
 {
