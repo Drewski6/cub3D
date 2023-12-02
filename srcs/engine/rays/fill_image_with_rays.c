@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:16:42 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 11:01:38 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 11:38:34 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,42 +25,39 @@
  *		Void function does not return a value.
  */
 
-void	ft_draw_wall(t_engine *engine, t_map_data *map_data, t_image *rays, t_ray *ray,
-				t_point *wr_head)
+void	ft_draw_wall(t_engine *engine, t_map_data *map_data,
+				t_image *rays, t_ray *ray, t_point *wr_head)
 {
 	int		vert_bar_height;
 	int		i;
 	t_image	*texture;
 	int		tex_offset;
 	int		rays_offset;
+	double	texture_y_step;
+	double	texture_y;
+	double	texture_y_offset;
 
-	vert_bar_height = (map_data->bs * WIN_X) / ray->dist_from_player;
-	if (vert_bar_height > WIN_Y)
-		vert_bar_height = WIN_Y;
 	i = 0;
-	if (ray->d_wall == D_NORTH)
-		texture = ft_get_image(engine->lst_images, NT);
-	if (ray->d_wall == D_SOUTH)
-		texture = ft_get_image(engine->lst_images, ST);
-	if (ray->d_wall == D_EAST)
-		texture = ft_get_image(engine->lst_images, ET);
-	if (ray->d_wall == D_WEST)
-		texture = ft_get_image(engine->lst_images, WT);
+	texture = ft_select_texture(engine, ray);
+	texture_y_offset = 0;
+	vert_bar_height = (map_data->bs * WIN_X) / ray->dist_from_player;
+	texture_y_step = (double)texture->size.y / (double)vert_bar_height;
+	if (vert_bar_height > WIN_Y)
+	{
+		texture_y_offset = ((double)vert_bar_height - (double)WIN_Y) / 2;
+		vert_bar_height = WIN_Y;
+	}
+	texture_y = texture_y_offset * texture_y_step;
 	while (i < vert_bar_height)
 	{
 		rays_offset = (wr_head->y * rays->size_line) + (wr_head->x * 4);
-		tex_offset = (i * texture->size_line) + (0 * 4);
-		if (i < texture->size.y)
-		{
-			rays->img_buf[rays_offset + 0] = texture->img_buf[tex_offset + 0];
-			rays->img_buf[rays_offset + 1] = texture->img_buf[tex_offset + 1];
-			rays->img_buf[rays_offset + 2] = texture->img_buf[tex_offset + 2];
-			rays->img_buf[rays_offset + 3] = texture->img_buf[tex_offset + 3];
-		}
-		else
-			ft_img_buf_set_px_color(rays, (t_rgb){255, 255, 255},
-				wr_head->x, wr_head->y);
+		tex_offset = ((int)texture_y * texture->size_line) + (0 * 4);
+		rays->img_buf[rays_offset + 0] = texture->img_buf[tex_offset + 0];
+		rays->img_buf[rays_offset + 1] = texture->img_buf[tex_offset + 1];
+		rays->img_buf[rays_offset + 2] = texture->img_buf[tex_offset + 2];
+		rays->img_buf[rays_offset + 3] = texture->img_buf[tex_offset + 3];
 		wr_head->y++;
+		texture_y += texture_y_step;
 		i++;
 	}
 	return ;
