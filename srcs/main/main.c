@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 10:46:20 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:17:35 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 08:03:25 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int argc, char **argv)
 		|| ft_arg_parse(argc, argv)
 		|| ft_map_data(&map_data, argv[1])
 		|| ft_engine_init(&engine)
+		|| ft_load_textures(&engine, &map_data)
 		|| ft_player_init(&player, &map_data)
 		|| ft_prerender(&engine, &map_data)
 	)

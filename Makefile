@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/12/01 14:31:34 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/12/02 08:01:34 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC				=	args/arg_parsing.c \
 					engine/image_utils/create_rect.c \
 					engine/image_utils/get_or_send_image.c \
 					engine/image_utils/init_free_image.c \
+					engine/image_utils/textures.c \
 					engine/player/player.c \
 					engine/rays/rays.c \
 					engine/rays/vert_rays.c \

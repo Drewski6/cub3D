@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:24:47 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 18:46:41 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/02 07:54:19 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,14 @@ bool	ft_draw_rays(t_engine *engine, t_player *player, t_map_data *map_data);
 void	ft_get_ray_size(t_player *player, t_map_data *map_data,
 			t_ray *ray, int ray_num);
 bool	ft_dir_ray(t_engine *engine, t_player *player, t_map_data *map_data);
-
 void	ft_horiz_check(t_player *player, t_map_data *map_data, t_ray *h_ray,
 			int max_dof);
 void	ft_vert_check(t_player *player, t_map_data *map_data, t_ray *v_ray,
 			int max_dof);
 double	ft_distance(double pt1x, double pt1y, double pt2x, double pt2y);
 double	ft_fix_fisheye(double player_angle, double ray_angle, double dist);
+		//***** textures *****/
+bool	ft_load_textures(t_engine *engine, t_map_data *map_data);
 		//***** mini_map *****/
 bool	ft_draw_mini_map(t_engine *engine, t_map_data *map_data);
 bool	ft_draw_map_rays(t_engine *engine, t_player *player,
