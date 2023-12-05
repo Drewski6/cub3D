@@ -12,6 +12,7 @@
 
 #include "keys.h"
 #include "engine.h"
+#include <stdio.h>
 
 /*
  *	***** ft_key_press *****
@@ -43,7 +44,7 @@ int	ft_key_press(int key, void *param)
 	else if (key == R_ARROW)
 		ft_rotate_player(clear->player, TURN_RIGHT);
 	else
-		return (0);
+		printf("key pressed: %d\n", key);
 	ft_render(clear);
 	return (0);
 }
