@@ -21,7 +21,7 @@
 
 //***** defines *****//
 
-# define HOME_PC
+//# define HOME_PC
 # ifdef HOME_PC
 #  define ESC			65307
 #  define L_ARROW		65361
@@ -34,17 +34,17 @@
 #  define D_KEY			100
 # endif
 
-//# define SCHOOL_PC
+# define SCHOOL_PC
 # ifdef SCHOOL_PC
-#  define ESC			0
-#  define L_ARROW		0 
-#  define U_ARROW		0
-#  define R_ARROW		0
-#  define D_ARROW		0
-#  define W_KEY			0
-#  define A_KEY			0
-#  define S_KEY			0
-#  define D_KEY			0
+#  define ESC			65307
+#  define L_ARROW		65361
+#  define U_ARROW		65362
+#  define R_ARROW		65363
+#  define D_ARROW		65364
+#  define W_KEY			119
+#  define A_KEY			97
+#  define S_KEY			115
+#  define D_KEY			100
 # endif
 
 //***** typedefs *****//

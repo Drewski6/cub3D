@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/12/02 10:06:17 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/12/05 13:37:44 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ OBJ_FOLDER		=	objs/
 CFLAGS			=	-Wall -Wextra -Werror -g
 
 # Link to libft, mlx, and math libraries
-LINKS			=	-Llibft -lft -Lminilibx-linux -lmlx -lXext -lX11 -lm
+LINKS			:=	-Llibft -lft -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
 LIBS			=	libft/libft.a \
 					minilibx-linux/libmlx_Linux.a \
@@ -81,7 +81,7 @@ $(SUBMODULES) :
 $(NAME): $(LIBS) $(OBJS) $(SUBMODULES)
 	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $@
 
-COMP_COMMAND = $(CC) -c $(CFLAGS) $(addprefix -I,$(HEADERS_FOLDER)) $(LINKS) -MMD -MP $< -o $@
+COMP_COMMAND = $(CC) -c $(CFLAGS) $(addprefix -I,$(HEADERS_FOLDER)) -MMD -MP $< -o $@
 CONCAT = awk 'FNR==1 && NR!=1 {print ","}{print}'
 
 $(OBJ_FOLDER)%.o $(OBJ_FOLDER)%.cc: $(SRC_FOLDER)%.c
