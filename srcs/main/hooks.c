@@ -26,7 +26,6 @@
 
 bool	ft_hooks_cub3d(t_clear *clear)
 {
-	//mlx_loop_hook(clear->engine->mlx_ptr, NULL, (void *)clear);
 	if (0
 		|| !mlx_loop_hook(clear->engine->mlx_ptr, &ft_render, (void *)clear)
 		|| !mlx_hook(clear->engine->win_ptr, KeyPress, 1L << 0,
