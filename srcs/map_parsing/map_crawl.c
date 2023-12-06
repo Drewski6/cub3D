@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:17:14 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:18:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/06 13:48:53 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ bool	ft_map_crawl(char **map, t_coord *head)
 	if (head->neighbors == 0)
 		return (ft_putstr_fd("Error\nMap perimeter too small.\n", 2), 1);
 	ft_memcpy(&start, head, sizeof(t_coord));
-	if (map[start.x][start.y] != '1')
+	if (map[start.y][start.x] != '1')
 		return (ft_putstr_fd("Error\nInvalid character in boarder.\n", 2), 1);
 	ft_memcpy(&next, head, sizeof(t_coord));
 	ft_take_next_step(&next, map, ft_find_next_step(&next));
