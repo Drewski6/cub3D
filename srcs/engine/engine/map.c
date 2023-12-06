@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:22:53 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:38:52 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/06 09:27:45 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,18 @@ bool	ft_draw_map_rays(t_engine *engine, t_player *player,
 	ft_bzero(&ray, sizeof(t_ray));
 	while (ray_num < WIN_X)
 	{
-		ft_get_ray_size(player, map_data, &ray, ray_num);
-		vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
-		if (vert_bar_height > WIN_Y)
-			vert_bar_height = WIN_Y;
-		ft_bresenhams_line(engine,
-			(t_point){player->coord.x + MAP_ORIG_X,
-			player->coord.y + MAP_ORIG_Y},
-			(t_point){ray.coord_x, ray.coord_y},
-			ft_color_to_int((t_rgb){0, 255, 0}));
+		if (ray_num == 0 || ray_num == WIN_X - 1)
+		{
+			ft_get_ray_size(player, map_data, &ray, ray_num);
+			vert_bar_height = (map_data->bs * WIN_X) / ray.dist_from_player;
+			if (vert_bar_height > WIN_Y)
+				vert_bar_height = WIN_Y;
+			ft_bresenhams_line(engine,
+				(t_point){player->coord.x + MAP_ORIG_X,
+				player->coord.y + MAP_ORIG_Y},
+				(t_point){ray.coord_x, ray.coord_y},
+				ft_color_to_int((t_rgb){0, 255, 0}));
+		}
 		ray_num++;
 	}
 	ft_dir_ray(engine, player, map_data);
