@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 09:29:26 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/06 12:08:14 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:55:21 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	ft_tex_init(t_engine *engine, t_map_data *map_data, t_ray *ray, t_tex *tex)
 		tex->x = (int)(fabs(ray->coord_y)
 				/ ((double)map_data->bs / tex->image->size.x))
 			% (tex->image->size.x);
-	tex->x += 226;
 	return (vert_bar_height);
 }
 
