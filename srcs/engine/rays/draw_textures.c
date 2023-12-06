@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 09:29:26 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 16:42:59 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:08:14 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ int	ft_tex_init(t_engine *engine, t_map_data *map_data, t_ray *ray, t_tex *tex)
 	tex->y = tex->y_offset * tex->y_step;
 	if (ray->d_wall == D_NORTH || ray->d_wall == D_SOUTH)
 		tex->x = (int)(fabs(ray->coord_x)
-				/ ((double)map_data->bs
-					/ tex->image->size.x)) % tex->image->size.x;
+				/ ((double)map_data->bs / tex->image->size.x))
+			% tex->image->size.x;
 	if (ray->d_wall == D_WEST || ray->d_wall == D_EAST)
 		tex->x = (int)(fabs(ray->coord_y)
-				/ ((double)map_data->bs
-					/ tex->image->size.x)) % tex->image->size.x;
+				/ ((double)map_data->bs / tex->image->size.x))
+			% (tex->image->size.x);
+	tex->x += 226;
 	return (vert_bar_height);
 }
 

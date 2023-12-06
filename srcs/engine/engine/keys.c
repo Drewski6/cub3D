@@ -6,13 +6,12 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:35:11 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 08:15:32 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/06 09:27:24 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "keys.h"
 #include "engine.h"
-#include <stdio.h>
 
 /*
  *	***** ft_key_press *****
@@ -44,7 +43,7 @@ int	ft_key_press(int key, void *param)
 	else if (key == R_ARROW)
 		ft_rotate_player(clear->player, TURN_RIGHT);
 	else
-		printf("key pressed: %d\n", key);
+		return (0);
 	ft_render(clear);
 	return (0);
 }
