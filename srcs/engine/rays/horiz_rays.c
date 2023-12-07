@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 08:38:17 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 17:07:31 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:39:24 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,10 @@ void	ft_horiz_dof(t_player *player, t_map_data *map_data, t_ray *h_ray,
 	int	map_x;
 	int	map_y;
 
-	dof = 0;
-	while (dof < max_dof)
+	dof = -1;
+	map_y = 0;
+	map_x = 0;
+	while (++dof < max_dof)
 	{
 		map_x = (h_ray->coord_x + map_data->bs) / map_data->bs;
 		if (h_ray->angle > PI)
@@ -115,7 +117,6 @@ void	ft_horiz_dof(t_player *player, t_map_data *map_data, t_ray *h_ray,
 		}
 		h_ray->coord_y += h_ray->offset_y;
 		h_ray->coord_x += h_ray->offset_x;
-		dof += 1;
 	}
 }
 
