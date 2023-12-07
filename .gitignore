@@ -16,3 +16,4 @@ minilibx-linux/
 !minilibx-linux/.git
 libft/
 !libft/.git
+levels/test/
