@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:21:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:46:49 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <errno.h>
 #include "map_parsing.h"
 #include "engine.h"
+#include <stdlib.h>
 
 bool	ft_initial_read_in(t_list **list, int fd, char **line)
 {
@@ -29,9 +30,16 @@ bool	ft_initial_read_in(t_list **list, int fd, char **line)
 		*line = get_next_line(fd);
 		if (errno != 0)
 			return (perror("malloc"), 1);
+		if (*line && **line == '\n')
+		{
+			free(*line);
+			*line = (char *)&current;
+			continue ;
+		}
 		ft_striteri(*line, ft_newline_to_null);
 		if (ft_strset(*line, "01NSEW "))
-			return (ft_putstr_fd("Error\nInvalid character in map.\n", 2),
+			return (ft_putstr_fd("Error\nInvalid character in map or \
+elements out of order.\n", 2),
 				1);
 		current = ft_lstnew(*line);
 		if (!current)
