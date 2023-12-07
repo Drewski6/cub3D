@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:21:46 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/07 11:41:17 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,24 +139,31 @@ bool	ft_map_at_least_one_start(t_map_data *map_data)
 {
 	int		y;
 	char	*nsew;
+	int		found_one;
 
 	y = 0;
+	found_one = 0;
 	while (map_data->map[y])
 	{
 		nsew = ft_strset(map_data->map[y], "01 ");
 		if (nsew)
 		{
+			if (found_one == 1)
+				return (ft_putstr_fd("Error\n\
+More than one starting position found.\n", 2), 1);
 			map_data->start_pos.x = nsew - map_data->map[y];
 			map_data->start_pos.y = y;
 			map_data->start_pos.source = 0;
 			map_data->start_pos.neighbors = 0;
 			map_data->start_ori = *nsew;
-			return (0);
+			found_one = 1;
 		}
 		y++;
 	}
-	ft_putstr_fd("Error\nNo starting position (N, S, E, or W) in map.\n", 2);
-	return (1);
+	if (found_one != 1)
+		return (ft_putstr_fd("Error\n\
+No starting position (N, S, E, or W) in map.\n", 2), 1);
+	return (0);
 }
 
 /*
