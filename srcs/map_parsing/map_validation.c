@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:14:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/07 11:41:17 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:55:57 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ bool	ft_map_space_check(char **map)
  *		Bool function returns 0 on success and 1 on error.
  */
 
-bool	ft_map_at_least_one_start(t_map_data *map_data)
+bool	ft_map_verify_only_one_start(t_map_data *map_data)
 {
 	int		y;
 	char	*nsew;
@@ -189,7 +189,7 @@ bool	ft_map_validation(t_map_data *map_data)
 		|| ft_map_crawl(map_data->map, &head)
 		|| ft_map_boarder_check(map_data->map)
 		|| ft_map_space_check(map_data->map)
-		|| ft_map_at_least_one_start(map_data)
+		|| ft_map_verify_only_one_start(map_data)
 	)
 		return (1);
 	return (0);

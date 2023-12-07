@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 23:02:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/02 08:11:27 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:58:37 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ bool	ft_player_init(t_player *player, t_map_data *map_data)
 	player->coord.y = 0;
 	player->size = map_data->bs / 3;
 	if (map_data->start_ori == 'N')
-		player->angle = 3 * PI / 2;
+		player->angle = (3 * PI / 2) + 0.0001;
 	if (map_data->start_ori == 'S')
-		player->angle = PI / 2;
+		player->angle = (PI / 2) + 0.0001;
 	if (map_data->start_ori == 'E')
-		player->angle = 0;
+		player->angle = (0) + 0.0001;
 	if (map_data->start_ori == 'W')
-		player->angle = PI;
+		player->angle = (PI) + 0.0001;
 	player->delta.x = cos(player->angle) * MOVE_SPEED;
 	player->delta.y = sin(player->angle) * MOVE_SPEED;
 	return (0);
