@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 11:03:10 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/06 09:01:20 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/07 11:18:01 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 //***** defines *****//
 
-# define HOME_PC
+// # define HOME_PC
 # ifdef HOME_PC
 #  define ESC			65307
 #  define L_ARROW		65361
@@ -34,7 +34,7 @@
 #  define D_KEY			100
 # endif
 
-// # define SCHOOL_PC
+# define SCHOOL_PC
 # ifdef SCHOOL_PC
 #  define ESC			65307
 #  define L_ARROW		65361
