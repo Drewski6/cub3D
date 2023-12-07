@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/07 16:08:11 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:33:39 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ bool	ft_save_rgb_settings(t_rgb *rgb, char *src)
 
 	if (rgb->red >= 0 || rgb->green >= 0 || rgb->blue >= 0)
 		return (ft_putstr_fd("Error\nRGB value set twice.\n", 2), 1);
+	if (ft_strchr_count(src, ',') != 2)
+		return (ft_putstr_fd("Error\nToo many commas present\
+in RGB value.\n", 2), 1);
 	tab = ft_split(src, ',');
 	if (!tab)
 		return (perror("malloc"), 1);
