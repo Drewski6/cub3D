@@ -6,16 +6,18 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/01 15:21:24 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:50:15 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "cub3ddef.h"
 #include "libft.h"
 #include "gnl.h"
 #include <stdio.h>
 #include <errno.h>
 #include "map_parsing.h"
 #include "engine.h"
+#include <stdlib.h>
 
 bool	ft_initial_read_in(t_list **list, int fd, char **line)
 {
@@ -31,7 +33,8 @@ bool	ft_initial_read_in(t_list **list, int fd, char **line)
 			return (perror("malloc"), 1);
 		ft_striteri(*line, ft_newline_to_null);
 		if (ft_strset(*line, "01NSEW "))
-			return (ft_putstr_fd("Error\nInvalid character in map.\n", 2),
+			return (ft_putstr_fd("Error\nInvalid character in map or \
+elements out of order.\n", 2),
 				1);
 		current = ft_lstnew(*line);
 		if (!current)
@@ -79,6 +82,15 @@ void	ft_xfer_map(t_list *list, char **map)
 	}
 }
 
+/*
+	NAME
+		ft_check_for_empty_lines
+	DESCRIPTION
+		Deletes all the lines in the linked list that have only \n or space.
+	RETURN
+		returns 0 because if statement
+*/
+
 bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 {
 	t_list	*lst_map;
@@ -95,6 +107,9 @@ bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 		biggest = map_data->size.x;
 	else
 		biggest = map_data->size.y;
+	if (biggest == 0)
+		return (ft_putstr_fd("Error\nMap size is 0.\n", 2),
+			ft_lstclear(&lst_map, ft_lst_free_link), 1);
 	map_data->bs = MAP_SIZE / biggest;
 	map_data->map = ft_create_blank_map(x_len, y_len);
 	if (!map_data->map)
