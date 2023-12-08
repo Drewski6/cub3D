@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/08 12:01:22 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:50:15 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,6 @@ void	ft_xfer_map(t_list *list, char **map)
 		returns 0 because if statement
 */
 
-bool	ft_check_for_empty_lines(t_list **lst)
-{
-	t_list	*current;
-	t_list	*delete;
-
-	current = *lst;
-	while (current && current->next)
-	{
-		if ((char *)current->next->content
-			&& ft_strset((char *)current->next->content, "\n ") == NULL
-			&& ft_strset((char *)current->content, "\n 1") == NULL)
-		{
-			delete = current->next;
-			if (current->next)
-				current->next = current->next->next;
-			ft_lstdelone(delete, ft_lst_free_link);
-		}
-		else
-			current = current->next;
-	}
-	return (0);
-}
-
 bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 {
 	t_list	*lst_map;
@@ -123,7 +100,6 @@ bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 
 	if (ft_initial_read_in(&lst_map, fd, line))
 		return (ft_lstclear(&lst_map, ft_lst_free_link), 1);
-	ft_check_for_empty_lines(&lst_map);
 	x_len = ft_lst_largest(&lst_map, ft_lst_strlen);
 	y_len = ft_lstsize(lst_map) - 1;
 	map_data->size = (t_point){x_len, y_len};
