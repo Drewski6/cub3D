@@ -6,7 +6,7 @@
 #    By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/05 10:49:04 by dpentlan          #+#    #+#              #
-#    Updated: 2023/12/05 13:37:44 by dpentlan         ###   ########.fr        #
+#    Updated: 2023/12/08 14:46:58 by dpentlan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,11 @@ SRC				=	args/arg_parsing.c \
 
 NAME			=	cub3D
 
+NAME_BONUS		=	cub3D_bonus
+
 OBJ_FOLDER		=	objs/
+
+OBJ_FOLDER_BONUS	=	objs_bonus/
 
 CFLAGS			=	-Wall -Wextra -Werror -g
 
@@ -59,15 +63,20 @@ SUBMODULES		=	minilibx-linux/.git \
 
 SRC_FOLDER		=	srcs/
 
+SRC_FOLDER_BONUS	=	srcs_bonus/
+
 HEADERS_FOLDER	=	includes/ \
 					libft/includes \
 					minilibx-linux \
 
 DEPENDS		:=	$(patsubst %.c,$(OBJ_FOLDER)%.d,$(SRC))
 OBJS		:=	$(patsubst %.c,$(OBJ_FOLDER)%.o,$(SRC))
+OBJS_BONUS	:=	$(patsubst %.c,$(OBJ_FOLDER_BONUS)%.o,$(SRC))
 COMMANDS	:=	$(patsubst %.c,$(OBJ_FOLDER)%.cc,$(SRC))
 
 all: $(NAME) compile_commands.json
+
+bonus: $(NAME_BONUS) compile_commands.json
 
 -include $(DEPENDS)
 
@@ -81,8 +90,16 @@ $(SUBMODULES) :
 $(NAME): $(LIBS) $(OBJS) $(SUBMODULES)
 	$(CC) $(CFLAGS) $(OBJS) $(LINKS) -o $@
 
+$(NAME_BONUS): $(LIBS) $(OBJS_BONUS) $(SUBMODULES)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LINKS) -o $@
+
 COMP_COMMAND = $(CC) -c $(CFLAGS) $(addprefix -I,$(HEADERS_FOLDER)) -MMD -MP $< -o $@
 CONCAT = awk 'FNR==1 && NR!=1 {print ","}{print}'
+
+$(OBJ_FOLDER_BONUS)%.o $(OBJ_FOLDER_BONUS)%.cc: $(SRC_FOLDER_BONUS)%.c
+	@mkdir -p $(dir $@)
+	$(COMP_COMMAND)
+	@printf '{\n\t"directory" : "$(shell pwd)",\n\t"command" : "$(COMP_COMMAND)",\n\t"file" : "$<"\n}' > $(OBJ_FOLDER_BONUS)$*.cc
 
 $(OBJ_FOLDER)%.o $(OBJ_FOLDER)%.cc: $(SRC_FOLDER)%.c
 	@mkdir -p $(dir $@)
@@ -96,15 +113,15 @@ compile_commands.json : $(COMMANDS) Makefile $(SUBMODULES)
 	@echo "]" >> compile_commands.json
 
 norm:
-	@watch 'find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} + | grep -v "OK!"'
+	@find . \( -name "*.c" -o -name "*.h" \) -not -path "./minilibx-linux/*" -exec norminette {} +
 
 clean: $(SUBMODULES)
-	@rm -rf $(OBJ_FOLDER)
+	@rm -rf $(OBJ_FOLDER) $(OBJ_FOLDER_BONUS)
 	make -C libft clean
 	make -C minilibx-linux clean
 
 fclean: clean $(SUBMODULES)
-	rm -f $(NAME) compile_commands.json
+	rm -f $(NAME) $(NAME_BONUS) compile_commands.json
 	make -C libft fclean
 
 re: fclean all
