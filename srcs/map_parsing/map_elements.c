@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:36:30 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/07 16:33:39 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:06:02 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	ft_save_rgb_settings(t_rgb *rgb, char *src)
 	if (rgb->red >= 0 || rgb->green >= 0 || rgb->blue >= 0)
 		return (ft_putstr_fd("Error\nRGB value set twice.\n", 2), 1);
 	if (ft_strchr_count(src, ',') != 2)
-		return (ft_putstr_fd("Error\nToo many commas present\
+		return (ft_putstr_fd("Error\nToo many commas present \
 in RGB value.\n", 2), 1);
 	tab = ft_split(src, ',');
 	if (!tab)
@@ -49,6 +49,17 @@ in RGB value.\n", 2), 1);
 	rgb->green = ft_atoi(tab[1]);
 	rgb->blue = ft_atoi(tab[2]);
 	return (ft_free_table(tab), 0);
+}
+
+int	ft_element_error_print(int ret)
+{
+	if (ret == 1)
+		return (1);
+	else if (ret == 2)
+		return (ft_putstr_fd("Error\nInvalid line in map file\n", 2), 1);
+	else if (ret == 3)
+		return (ft_putstr_fd("Error\nInvalid element name in list.\n", 2), 1);
+	return (ret);
 }
 
 /*
@@ -81,12 +92,8 @@ bool	ft_select_element(t_map_data *map_data, char **tab)
 	else if (!ft_strncmp(tab[0], "C", 2))
 		ret = ft_save_rgb_settings(&map_data->c, tab[1]);
 	else
-		ret = 1;
-	if (ret == 1)
-		return (1);
-	else if (ret == 2)
-		return (ft_putstr_fd("Error\nInvalid line in map file\n", 2), 1);
-	return (ret);
+		ret = 3;
+	return (ft_element_error_print(ret));
 }
 
 bool	ft_read_in_elements(t_map_data *map_data, int fd, char **line)

@@ -6,7 +6,7 @@
 /*   By: dpentlan <dpentlan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:59:08 by dpentlan          #+#    #+#             */
-/*   Updated: 2023/12/07 18:51:01 by dpentlan         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:01:22 by dpentlan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ bool	ft_check_for_empty_lines(t_list **lst)
 	while (current && current->next)
 	{
 		if ((char *)current->next->content
-			&& ft_strset((char *)current->next->content, "\n ") == NULL)
+			&& ft_strset((char *)current->next->content, "\n ") == NULL
+			&& ft_strset((char *)current->content, "\n 1") == NULL)
 		{
 			delete = current->next;
 			if (current->next)
@@ -122,8 +123,7 @@ bool	ft_read_in_map(t_map_data *map_data, int fd, char **line)
 
 	if (ft_initial_read_in(&lst_map, fd, line))
 		return (ft_lstclear(&lst_map, ft_lst_free_link), 1);
-	if (ft_check_for_empty_lines(&lst_map))
-		return (ft_putstr_fd("Error\nneed to clean\n", 2), 1);
+	ft_check_for_empty_lines(&lst_map);
 	x_len = ft_lst_largest(&lst_map, ft_lst_strlen);
 	y_len = ft_lstsize(lst_map) - 1;
 	map_data->size = (t_point){x_len, y_len};
